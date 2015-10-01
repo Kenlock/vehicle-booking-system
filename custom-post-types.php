@@ -52,9 +52,35 @@ function add_post_types() {
     'public'        => true,
     'supports'      => array( 'title', 'thumbnail' ),
     'has_archive'   => true,
-    'menu_icon'     => 'dashicons-info',
+    'menu_icon'     => 'dashicons-groups',
   );
   register_post_type( 'drivers', $args_dri );
+
+  // Surcharges Post Type
+  $labels_sur = array(
+    'name'               => _x( 'Surcharge', 'post type general name' ),
+    'singular_name'      => _x( 'Surcharges', 'post type singular name' ),
+    'add_new'            => _x( 'Add New', 'surcharge' ),
+    'add_new_item'       => __( 'Add New Surcharge', 'vbs' ),
+    'edit_item'          => __( 'Edit Surcharge', 'vbs' ),
+    'new_item'           => __( 'New Surcharge', 'vbs' ),
+    'all_items'          => __( 'All Surcharges', 'vbs' ),
+    'view_item'          => __( 'View Surcharges', 'vbs' ),
+    'search_items'       => __( 'Search Surcharges', 'vbs' ),
+    'not_found'          => __( 'No surcharges found', 'vbs' ),
+    'not_found_in_trash' => __( 'No surcharges found in the Trash', 'vbs' ),
+    'parent_item_colon'  => '',
+    'menu_name'          => __('Surcharges', 'vbs')
+  );
+  $args_sur = array(
+    'labels'        => $labels_sur,
+    'description'   => __('Holds our Surcharge specific data', 'vbs'),
+    'public'        => true,
+    'supports'      => array( 'title' ),
+    'has_archive'   => true,
+    'menu_icon'     => 'dashicons-flag',
+  );
+  register_post_type( 'surcharges', $args_sur );
 
   // Locations Post Type
   $labels_loc = array(

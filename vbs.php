@@ -18,10 +18,10 @@ function add_roles_on_plugin_activation() {
 }
 register_activation_hook( __FILE__, 'add_roles_on_plugin_activation' );
 
-function contests_load_plugin_textdomain() {
-  load_plugin_textdomain( 'contests', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
+function vbs_load_plugin_textdomain() {
+  load_plugin_textdomain( 'vbs', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
 }
-add_action( 'plugins_loaded', 'contests_load_plugin_textdomain' );
+add_action( 'plugins_loaded', 'vbs_load_plugin_textdomain' );
 
 if(isset($_REQUEST['action']) && $_REQUEST['action']=='ajaxFunctionMethod'){
         do_action( 'wp_ajax_' . $_REQUEST['action'] );
@@ -36,7 +36,7 @@ require_once (dirname(__FILE__) . '/admin/admin-config.php');
 Redux::setExtensions( 'booking', dirname(__FILE__) . '/admin/vendor_support'  );
 
 if ( !class_exists( 'RW_Meta_Box' ) )
-  require_once 'meta-box/meta-box.php';
+  require_once 'include/meta-box/meta-box.php';
 include 'custom-post-types.php';
 include 'meta-boxes.php';
 include 'shortcodes.php';
@@ -44,7 +44,7 @@ include 'form_handler.php';
 include 'helper.php';
 
 // TGM activation class
-require_once PLUGIN_DIR . 'tgm/tgm-init.php';
+require_once PLUGIN_DIR . 'include/tgm/tgm-init.php';
 
 add_action( 'admin_enqueue_scripts', 'add_admin_scripts', 10, 1 );
 function add_admin_scripts( $hook ) {
@@ -94,8 +94,8 @@ function bookings_columns($columns) {
   return $columns;
 }
 
-add_action("manage_posts_custom_column",  "contestants_custom_columns");
-function contestants_custom_columns($column){
+add_action("manage_posts_custom_column",  "vbs_custom_columns");
+function vbs_custom_columns($column){
   global $post;
   switch ($column) {
     case "route":
