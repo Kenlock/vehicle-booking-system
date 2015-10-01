@@ -33,16 +33,7 @@ if ( !class_exists( 'ReduxFramework' ) && file_exists( dirname( __FILE__ ) . '/a
     require_once( dirname( __FILE__ ) . '/admin/framework.php' );
 }
 require_once (dirname(__FILE__) . '/admin/admin-config.php');
-
-// Change Elusive Icons to Font Awesome
-function FAIconFont() {
-  wp_deregister_style( 'redux-elusive-icon' );
-  wp_deregister_style( 'redux-elusive-icon-ie7' );
-
-  wp_register_style( 'redux-font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css', array(), time(), 'all' );
-  wp_enqueue_style( 'redux-font-awesome' );
-}
-add_action( 'redux/page/booking/enqueue', 'FAIconFont' );
+Redux::setExtensions( 'booking', dirname(__FILE__) . '/admin/vendor_support'  );
 
 if ( !class_exists( 'RW_Meta_Box' ) )
   require_once 'meta-box/meta-box.php';
@@ -89,4 +80,64 @@ function add_scripts() {
 
   wp_enqueue_script( 'form', PLUGIN_DIR_URL . 'js/form.js', array('jquery','jquery-form', 'validate'), '1.0.8', true );
   wp_localize_script( 'form', 'booking', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
+}
+
+// Add columns to custom post type edit screen
+add_filter('manage_edit-bookings_columns', 'bookings_columns');
+function bookings_columns($columns) {
+  $columns['route'] = 'Route';
+  $columns['datetime'] = 'Date / Time';
+  $columns['full_name'] = 'Full Name';
+  $columns['email'] = 'Email';
+  $columns['status']  = 'Status';
+  unset($columns['date']);
+  return $columns;
+}
+
+add_action("manage_posts_custom_column",  "contestants_custom_columns");
+function contestants_custom_columns($column){
+  global $post;
+  switch ($column) {
+    case "route":
+      echo '<b>From:</b> ' . rwmb_meta('vbs_pickup', $post->ID) . '<br/><b>To:</b> ' .rwmb_meta('vbs_dropoff', $post->ID);
+      break;
+    case "datetime":
+      echo rwmb_meta('vbs_pickup_date', $post->ID) . ' @ ' . rwmb_meta('vbs_pickup_time', $post->ID);
+      break;
+    case "full_name":
+      echo rwmb_meta('vbs_full_name', $post->ID);
+      break;
+    case "email":
+      echo rwmb_meta('vbs_email', $post->ID);
+      break;
+    case "status":
+      echo rwmb_meta('vbs_status', $post->ID);
+      break;
+  }
+}
+
+function calculateCost( $car_id, $distance ) {
+  $pricing = rwmb_meta('vbs_pricing', $car_id);
+    foreach ($pricing as $price) {
+      if( $distance >= $price[0] && $distance < $price[1] ) {
+        $cost = $distance * $price[2];
+      }
+    }
+  return $cost;
+}
+
+add_action('paypal_ipn_for_wordpress_payment_status_completed', 'handle_ipn_update');
+function handle_ipn_update( $posted ) {
+
+  $status = isset($posted['payment_status']) ? $posted['payment_status'] : '';
+  $item_number = isset($posted['item_number']) ? $posted['item_number'] : '';
+  $trans_id = isset($posted['txn_id']) ? $posted['txn_id'] : '';
+  $payer = isset($posted['payer_email']) ? $posted['payer_email'] : '';
+  $total = isset($posted['payment_gross']) ? $posted['payment_gross'] : '';
+
+  update_post_meta($item_number, "vbs_status", "valid");
+  add_post_meta($item_number, "vbs_transaction", $trans_id);
+  add_post_meta($item_number, "vbs_payer_email", $payer);
+  add_post_meta($item_number, "vbs_pay_amount", $total);
+
 }

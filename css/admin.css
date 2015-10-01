@@ -2,6 +2,7 @@
   display: none;
 }
 
-#booking-client-meta .rwmb-input input {
+#booking-client-meta .rwmb-input input,
+#booking-payment-meta .rwmb-input input {
   width: 100%;
 }

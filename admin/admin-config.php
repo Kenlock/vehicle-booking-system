@@ -55,7 +55,7 @@
         'output_tag'           => true,
 
         'database'             => '',
-        'use_cdn'              => true,
+        'use_cdn'              => false,
 
         // HINTS
         'hints'                => array(
@@ -120,16 +120,32 @@
      */
 
     Redux::setSection( $opt_name, array(
+        'title'      => __( 'Basic Settings', 'vbs' ),
+        'desc'       => __( 'General settings', 'vbs' ),
+        'id'         => 'opt-general',
+        'icon'       => 'fa fa-cogs',
+        'fields'     => array(
+            array(
+                'id'       => 'base_location',
+                'type'     => 'text',
+                'title'    => __( 'Set your base location', 'vbs' ),
+                'default'  => 'Pl. Sintagmatos, Athina 105 63, Greece',
+            ),
+        )
+    ) );
+
+    Redux::setSection( $opt_name, array(
         'title'      => __( 'PayPal Settings', 'vbs' ),
         'desc'       => __( 'PayPal Setting', 'vbs' ),
         'id'         => 'opt-paypal',
-        'icon'       => 'el el-home',
+        'icon'       => 'fa fa-paypal',
         'fields'     => array(
             array(
                 'id'       => 'paypal_email',
                 'type'     => 'text',
                 'title'    => __( 'PayPal email', 'vbs' ),
                 'default'  => 'example@example.com',
+                'validate' => 'email'
             ),
 
             array(
@@ -141,7 +157,7 @@
             ),
 
             array(
-                'id'       => 'busines_name',
+                'id'       => 'business_name',
                 'type'     => 'text',
                 'title'    => __( 'Will appear on the PayPal form', 'vbs' ),
                 'default'  => 'Your Company LLC.',
@@ -159,6 +175,55 @@
                 'type'     => 'select',
                 'title'    => __( 'Page to return to after transaction', 'vbs' ),
                 'data'     => 'pages',
+            ),
+        )
+    ) );
+
+    Redux::setSection( $opt_name, array(
+        'title'      => __( 'Email Settings', 'vbs' ),
+        'desc'       => __( 'Email addresses, reply-to, notifications', 'vbs' ),
+        'id'         => 'opt-email',
+        'icon'       => 'fa fa-envelope',
+        'fields'     => array(
+            array(
+                'id'       => 'default_email',
+                'type'     => 'text',
+                'title'    => __( 'Email to be used as the From: field', 'vbs' ),
+                'default'  => 'example@example.com',
+                'validate' => 'email'
+            ),
+
+            array(
+                'id'       => 'email_mode',
+                'type'     => 'switch',
+                'title'    => __('Use PHP mailer?', 'vbs'),
+                'subtitle' => __('Use PHP Mailer instead of wp_mail()', 'vbs'),
+                'default'  => true,
+            ),
+        )
+    ) );
+
+    Redux::setSection( $opt_name, array(
+        'title'      => __( 'PHP Mailer Settings', 'vbs' ),
+        'desc'       => __( 'Only needed when you don\'t want to use wp_mail()', 'vbs' ),
+        'id'         => 'opt-mailer',
+        'icon'       => 'fa fa-envelope-o',
+        'subsection' => true,
+        'fields'     => array(
+            array(
+                'id'       => 'default_email',
+                'type'     => 'text',
+                'title'    => __( 'Email to be used as the From: field', 'vbs' ),
+                'default'  => 'example@example.com',
+                'validate' => 'email'
+            ),
+
+            array(
+                'id'       => 'email_mode',
+                'type'     => 'switch',
+                'title'    => __('Use PHP mailer?', 'vbs'),
+                'subtitle' => __('Use PHP Mailer instead of wp_mail()', 'vbs'),
+                'default'  => true,
             ),
         )
     ) );

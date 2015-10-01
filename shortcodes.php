@@ -29,6 +29,9 @@ add_shortcode( 'carlist', 'cars_list' );
 
 // Booking Form
 function booking_form() {
+
+	global $booking;
+
 	$html = '<form action="" id="bookingForm" method="POST" enctype="multipart/form-data">
 
 		<div class="step1">
@@ -36,7 +39,7 @@ function booking_form() {
 	    <div class="form-group narrow">
 	      <input type="text" name="pickup" id="pickup" class="required" placeholder="' . __('Pickup Location', 'vbs') . '" />
 	      <input type="text" name="dropoff" id="dropoff" class="required" placeholder="' . __('Dropoff Location', 'vbs') . '" />
-	      <button class="act" type="submit">' . __('Route!', 'vbs') . '</button>
+	      <button class="act route" type="submit">' . __('Route!', 'vbs') . '</button>
 	    </div>
 
 	    <div class="form-group">
@@ -128,18 +131,20 @@ function booking_form() {
 
 	  </div> <!-- step4 end -->
 
-	  <div class="end" style="display: none;">
 
-	  <div class="response"></div> <!-- server response -->
-
-	  <div class="addon" style="display: none;"></div> <-- additional data -->
-
-	  </div> <!-- result end -->
 
 	  <div id="map-canvas" style="display: none;"></div>
 	  <input type="hidden" name="security" id="security" value="' . wp_create_nonce( "booking-nonce" ) .'" />
+	  <input type="hidden" name="base_location" id="base_location" value="' . $booking['base_location'] . '" />
 
-</form>';
+</form>
+
+<div class="final" style="display: none;">
+
+	<div class="response"></div> <!-- server response -->
+	<div class="addon" style="display: none;"></div> <!-- additional data -->
+
+</div> <!-- result end -->';
 return $html;
 }
 add_shortcode('bookingform', 'booking_form');

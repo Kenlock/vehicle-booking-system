@@ -22,12 +22,7 @@ function ajax_get_car_list() {
       foreach ($image as $img) {
         $src = $img['url'];
       }
-      $pricing = rwmb_meta('vbs_pricing');
-      foreach ($pricing as $price) {
-        if( $distance >= $price[0] && $distance < $price[1] ) {
-          $cost = $distance * $price[2];
-        }
-      }
+      $cost = calculateCost( get_the_ID(), $distance );
       if( $is_return == '1' ) {
         $cost = $cost * 2;
       }
@@ -96,6 +91,7 @@ function ajax_create_booking() {
     } else {
       $success['text'] = "Thanks for you booking. An email has been sent with details and payment information";
     }
+    $success['id'] = $post;
     // Booking Details
     update_post_meta($post, "vbs_pickup", $pickup);
     update_post_meta($post, "vbs_dropoff", $dropoff);
@@ -118,9 +114,9 @@ function ajax_create_booking() {
 
     update_post_meta($post, 'vbs_status', "pending");
 
-    echo $success;
+    echo json_encode($success);
   } else {
-    echo $error;
+    echo json_encode($error);
   }
 
   exit;
@@ -128,10 +124,11 @@ function ajax_create_booking() {
 
 add_action('wp_ajax_create_payment', 'ajax_create_payment');
 add_action('wp_ajax_nopriv_create_payment', 'ajax_create_payment');
-function create_payment() {
+function ajax_create_payment() {
 
   $cost = $_POST['cost'];
   $id = $_POST['id'];
+  $code = $_POST['code'];
 
   global $booking;
   if( $booking['paypal_mode'] ) {
@@ -140,20 +137,22 @@ function create_payment() {
     $paypal_url = "https://www.paypal.com/cgi-bin/webscr";
   }
 
-  $html = '<form action="' . $paypal_url . '" method="post">
-                <input type="hidden" name="cmd" value="_xclick">
-                <input type="hidden" name="business" value="' . $booking['paypal_email'] . '">
-                <input type="hidden" name="item_name" value="' . $id . '">
-                <input type="hidden" name="item_number" value="1">
-                <input type="hidden" name="amount" value="' . $cost . '">
-                <input type="hidden" name="no_shipping" value="1">
-                <input type="hidden" name="no_note" value="1">
-                <input type="hidden" name="currency_code" value="' . $booking['currency_code'] . '">
-                <input type="hidden" name="lc" value="US">
-                <input type="hidden" name="bn" value="' . $booking['business_name'] . '">
-                <input type="hidden" name="notify_url" value="' . get_bloginfo("url") . '/?AngellEYE_Paypal_Ipn_For_Wordpress&action=ipn_handler">
-                <input type="hidden" name="return" value="' . get_permalink( $booking['return_page'] ) . '">
-              </form>';
+  $html = '<div class="paypal">
+            <form action="' . $paypal_url . '" method="post">
+            <input type="hidden" name="cmd" value="_xclick">
+            <input type="hidden" name="business" value="' . $booking['paypal_email'] . '">
+            <input type="hidden" name="item_name" value="' . $code . '">
+            <input type="hidden" name="item_number" value="' . $id . '">
+            <input type="hidden" name="amount" value="' . $cost . '">
+            <input type="hidden" name="no_shipping" value="1">
+            <input type="hidden" name="no_note" value="1">
+            <input type="hidden" name="currency_code" value="' . $booking['currency_code'] . '">
+            <input type="hidden" name="lc" value="US">
+            <input type="hidden" name="bn" value="' . $booking['business_name'] . '">
+            <input type="hidden" name="notify_url" value="' . get_bloginfo("url") . '/?AngellEYE_Paypal_Ipn_For_Wordpress&action=ipn_handler">
+            <input type="hidden" name="return" value="' . get_permalink( $booking['return_page'] ) . '">
+          </form>
+          </div>';
 
   echo $html;
   exit;

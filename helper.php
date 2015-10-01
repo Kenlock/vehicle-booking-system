@@ -44,4 +44,14 @@ function prefix_input_readonly( $html ) {
   return str_replace( '<input', '<input readonly', $html );
 }
 
+// Change Elusive Icons to Font Awesome
+function FAIconFont() {
+  wp_deregister_style( 'redux-elusive-icon' );
+  wp_deregister_style( 'redux-elusive-icon-ie7' );
+
+  wp_register_style( 'redux-font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css', array(), time(), 'all' );
+  wp_enqueue_style( 'redux-font-awesome' );
+}
+add_action( 'redux/page/booking/enqueue', 'FAIconFont' );
+
 ?>

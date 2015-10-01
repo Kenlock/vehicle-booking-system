@@ -326,6 +326,41 @@ function vbs_register_meta_boxes( $meta_boxes )
 		)
 	);
 
+	// Booking client Data Meta Box
+	$meta_boxes[] = array(
+		'id'			=> 'booking-payment-meta',
+		'title'   => __('Payment Details', 'vbs'),
+		'pages'   => array( 'bookings' ),
+		'context' => 'side',
+		'fields'  => array(
+
+			// Full Name
+			array(
+				'id'   => $prefix . 'transaction',
+				'name' => __( 'PayPal Transaaction ID', 'vbs' ),
+				'type' => 'text',
+				'std'  => '',
+			),
+
+			// Email
+			array(
+				'id'   => $prefix . 'payer_email',
+				'name' => __( 'Payer Email', 'vbs' ),
+				'type' => 'text',
+				'std'  => '',
+			),
+
+			// Phone
+			array(
+				'id'   => $prefix . 'pay_amount',
+				'name' => __( 'Payment amount', 'vbs' ),
+				'type' => 'text',
+				'std'  => '',
+			),
+
+		)
+	);
+
 	return $meta_boxes;
 }
 

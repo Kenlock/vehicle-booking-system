@@ -58,21 +58,25 @@ jQuery(document).ready(function($) {
     set( 'return', '1' );
   })
 
-  $(".act").on("click", function(e){
+  $(".route").on("click", function(e){
     e.preventDefault();
+    var distance = 0;
     $("#route-info").hide().html('');
+    var waypts = [];
+    waypts.push({
+      location: $('#pickup').val(),
+      stopover: false
+    });
     map.getRoutes({
-      origin: $('#pickup').val(),
+      origin: $('#base_location').val(),
       destination: $('#dropoff').val(),
-      unitSystem: 'metric',
-      optimizeWaypoints: true,
-      provideRouteAlternatives: false,
+      waypoints: waypts,
       travelMode: 'driving',
       callback: function(results){
         routes = results;
         distance = routes[0].legs[0].distance.value;
         set('dist', distance);
-        console.log(distance);
+        console.log(routes);
         $("#route-info").show().html( '<i class="fa fa-map-o"></i> ' + (distance/1000).toFixed(2) + 'km' );
       }
     });
@@ -184,7 +188,7 @@ jQuery(document).ready(function($) {
       fd.append( "cost", get('cost') );
       fd.append( "nonce", $("#security").val() );
 
-      // Ajax call
+      // Ajax call to create booking
       $.ajax({
         url: booking.ajax_url,
         processData: false,
@@ -193,14 +197,17 @@ jQuery(document).ready(function($) {
         type: 'POST',
         responseType: 'json',
         dataType: 'json',
-        success: function( response ) {
-          $(".end").html(response['text']);
-          var code = response('code');
-          $(".step4, .end").slideToggle();
+        success: function( booking_response ) {
+          $(".final > .response").html(booking_response['text']);
+          var booking_id = booking_response['id'];
+          var booking_code = booking_response['code'];
+          $(".step4, .final").slideToggle();
           if( get('payment') == 'paypal' ) {
             var payment_data = new FormData();
             payment_data.append( "cost", get('cost') );
-            payment_data.append( "id" , code);
+            payment_data.append( "id" , booking_id);
+            payment_data.append( "code" , booking_code);
+            payment_data.append( "action", "create_payment" );
 
             // Ajax call to create PayPal form
             $.ajax({
@@ -211,9 +218,9 @@ jQuery(document).ready(function($) {
               type: 'POST',
               responseType: 'html',
               dataType: 'html',
-              success: function( results ) {
-                $('.addon').html( results );
-                //$('.addon > form').submit();
+              success: function( paypal_response ) {
+                $('.addon').html( paypal_response );
+                $('.paypal > form').submit();
               }
             })
           }

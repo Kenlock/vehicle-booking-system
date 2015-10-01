@@ -30,6 +30,32 @@ function add_post_types() {
   );
   register_post_type( 'cars', $args_cars );
 
+  // Drivers Post Type
+  $labels_dri = array(
+    'name'               => _x( 'Drivers', 'post type general name' ),
+    'singular_name'      => _x( 'Driver', 'post type singular name' ),
+    'add_new'            => _x( 'Add New', 'driver' ),
+    'add_new_item'       => __( 'Add New Driver', 'vbs' ),
+    'edit_item'          => __( 'Edit Driver', 'vbs' ),
+    'new_item'           => __( 'New Driver', 'vbs' ),
+    'all_items'          => __( 'All Drivers', 'vbs' ),
+    'view_item'          => __( 'View Drivers', 'vbs' ),
+    'search_items'       => __( 'Search Drivers', 'vbs' ),
+    'not_found'          => __( 'No drivers found', 'vbs' ),
+    'not_found_in_trash' => __( 'No drivers found in the Trash', 'vbs' ),
+    'parent_item_colon'  => '',
+    'menu_name'          => __('Drivers', 'vbs')
+  );
+  $args_dri = array(
+    'labels'        => $labels_dri,
+    'description'   => __('Holds our Drivers specific data', 'vbs'),
+    'public'        => true,
+    'supports'      => array( 'title', 'thumbnail' ),
+    'has_archive'   => true,
+    'menu_icon'     => 'dashicons-info',
+  );
+  register_post_type( 'drivers', $args_dri );
+
   // Locations Post Type
   $labels_loc = array(
     'name'               => _x( 'Locations', 'post type general name' ),

@@ -103,4 +103,8 @@
   width: 20%;
 }
 
-#bookingForm .car_info_right .selection {}
+/* Map options */
+#bookingForm #map-canvas {
+  width: 500px;
+  height: 500px;
+}
