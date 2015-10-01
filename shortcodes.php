@@ -128,7 +128,13 @@ function booking_form() {
 
 	  </div> <!-- step4 end -->
 
-	  <div class="end" style="display: none;"></div> <!-- result end -->
+	  <div class="end" style="display: none;">
+
+	  <div class="response"></div> <!-- server response -->
+
+	  <div class="addon" style="display: none;"></div> <-- additional data -->
+
+	  </div> <!-- result end -->
 
 	  <div id="map-canvas" style="display: none;"></div>
 	  <input type="hidden" name="security" id="security" value="' . wp_create_nonce( "booking-nonce" ) .'" />

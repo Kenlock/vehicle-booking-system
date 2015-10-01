@@ -34,11 +34,20 @@ if ( !class_exists( 'ReduxFramework' ) && file_exists( dirname( __FILE__ ) . '/a
 }
 require_once (dirname(__FILE__) . '/admin/admin-config.php');
 
+// Change Elusive Icons to Font Awesome
+function FAIconFont() {
+  wp_deregister_style( 'redux-elusive-icon' );
+  wp_deregister_style( 'redux-elusive-icon-ie7' );
+
+  wp_register_style( 'redux-font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css', array(), time(), 'all' );
+  wp_enqueue_style( 'redux-font-awesome' );
+}
+add_action( 'redux/page/booking/enqueue', 'FAIconFont' );
+
 if ( !class_exists( 'RW_Meta_Box' ) )
   require_once 'meta-box/meta-box.php';
 include 'custom-post-types.php';
 include 'meta-boxes.php';
-include 'settings.php';
 include 'shortcodes.php';
 include 'form_handler.php';
 include 'helper.php';

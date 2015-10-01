@@ -120,9 +120,9 @@
      */
 
     Redux::setSection( $opt_name, array(
-        'title'      => __( 'Basic Settings', 'vbs' ),
-        'desc'       => __( 'Basic plugin settings &amp; variables', 'vbs' ),
-        'id'         => 'opt-basic',
+        'title'      => __( 'PayPal Settings', 'vbs' ),
+        'desc'       => __( 'PayPal Setting', 'vbs' ),
+        'id'         => 'opt-paypal',
         'icon'       => 'el el-home',
         'fields'     => array(
             array(
@@ -141,10 +141,10 @@
             ),
 
             array(
-                'id'       => 'entry_price',
+                'id'       => 'busines_name',
                 'type'     => 'text',
-                'title'    => __( 'Fee for entering the contest', 'vbs' ),
-                'default'  => '100',
+                'title'    => __( 'Will appear on the PayPal form', 'vbs' ),
+                'default'  => 'Your Company LLC.',
             ),
 
             array(
@@ -159,64 +159,6 @@
                 'type'     => 'select',
                 'title'    => __( 'Page to return to after transaction', 'vbs' ),
                 'data'     => 'pages',
-            ),
-        )
-    ) );
-
-    Redux::setSection( $opt_name, array(
-        'title'      => __( 'Post Settings', 'vbs' ),
-        'desc'       => __( 'Auto posting settings', 'vbs' ),
-        'id'         => 'opt-post',
-        'icon'       => 'el el-file-new',
-        'fields'     => array(
-            array(
-                'id'       => 'auto_on',
-                'type'     => 'switch',
-                'title'    => __('Auto-create post', 'vbs'),
-                'default'  => true,
-            ),
-
-            array(
-                'id'       => 'post_cat',
-                'type'     => 'select',
-                'title'    => __( 'Category for new posts', 'vbs' ),
-                'data'     => 'categories',
-            ),
-        )
-    ) );
-
-    Redux::setSection( $opt_name, array(
-        'title'      => __( 'Email Settings', 'vbs' ),
-        'desc'       => __( 'Email Setting for notifications', 'vbs' ),
-        'id'         => 'opt-email',
-        'icon'       => 'el el-envelope',
-        'fields'     => array(
-            array(
-                'id'       => 'email_to',
-                'type'     => 'text',
-                'title'    => __( 'Email recipient', 'vbs' ),
-                'default'  => 'info@example.com',
-            ),
-
-            array(
-                'id'       => 'email_from',
-                'type'     => 'text',
-                'title'    => __( 'Send from email', 'vbs' ),
-                'default'  => 'info@example.com',
-            ),
-
-            array(
-                'id'       => 'email_subject',
-                'type'     => 'text',
-                'title'    => __( 'Email Subject', 'vbs' ),
-                'default'  => 'New contest entry',
-            ),
-
-            array(
-                'id'       => 'include_att',
-                'type'     => 'switch',
-                'title'    => __('Include attachments?', 'vbs'),
-                'default'  => true,
             ),
         )
     ) );

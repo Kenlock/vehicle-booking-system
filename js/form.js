@@ -191,12 +191,32 @@ jQuery(document).ready(function($) {
         contentType: false,
         data: fd,
         type: 'POST',
-        responseType: 'html',
-        dataType: 'html',
+        responseType: 'json',
+        dataType: 'json',
         success: function( response ) {
-          $(".step4").hide();
-          $(".end").html(response).show();
-          $("#paypal").submit();
+          $(".end").html(response['text']);
+          var code = response('code');
+          $(".step4, .end").slideToggle();
+          if( get('payment') == 'paypal' ) {
+            var payment_data = new FormData();
+            payment_data.append( "cost", get('cost') );
+            payment_data.append( "id" , code);
+
+            // Ajax call to create PayPal form
+            $.ajax({
+              url: booking.ajax_url,
+              processData: false,
+              contentType: false,
+              data: payment_data,
+              type: 'POST',
+              responseType: 'html',
+              dataType: 'html',
+              success: function( results ) {
+                $('.addon').html( results );
+                //$('.addon > form').submit();
+              }
+            })
+          }
         }
       })
 

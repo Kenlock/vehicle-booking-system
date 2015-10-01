@@ -91,6 +91,11 @@ function ajax_create_booking() {
   );
   $post = wp_insert_post( $postData );
   if($post) {
+    if($payment == 'paypal') {
+      $success['text'] = "Thanks for you booking. An email has been sent with details and payment information. You will now be reditected to PayPal to complete payment.";
+    } else {
+      $success['text'] = "Thanks for you booking. An email has been sent with details and payment information";
+    }
     // Booking Details
     update_post_meta($post, "vbs_pickup", $pickup);
     update_post_meta($post, "vbs_dropoff", $dropoff);
@@ -115,10 +120,42 @@ function ajax_create_booking() {
 
     echo $success;
   } else {
-
     echo $error;
   }
 
+  exit;
+}
+
+add_action('wp_ajax_create_payment', 'ajax_create_payment');
+add_action('wp_ajax_nopriv_create_payment', 'ajax_create_payment');
+function create_payment() {
+
+  $cost = $_POST['cost'];
+  $id = $_POST['id'];
+
+  global $booking;
+  if( $booking['paypal_mode'] ) {
+    $paypal_url = "https://www.sandbox.paypal.com/cgi-bin/webscr";
+  } else {
+    $paypal_url = "https://www.paypal.com/cgi-bin/webscr";
+  }
+
+  $html = '<form action="' . $paypal_url . '" method="post">
+                <input type="hidden" name="cmd" value="_xclick">
+                <input type="hidden" name="business" value="' . $booking['paypal_email'] . '">
+                <input type="hidden" name="item_name" value="' . $id . '">
+                <input type="hidden" name="item_number" value="1">
+                <input type="hidden" name="amount" value="' . $cost . '">
+                <input type="hidden" name="no_shipping" value="1">
+                <input type="hidden" name="no_note" value="1">
+                <input type="hidden" name="currency_code" value="' . $booking['currency_code'] . '">
+                <input type="hidden" name="lc" value="US">
+                <input type="hidden" name="bn" value="' . $booking['business_name'] . '">
+                <input type="hidden" name="notify_url" value="' . get_bloginfo("url") . '/?AngellEYE_Paypal_Ipn_For_Wordpress&action=ipn_handler">
+                <input type="hidden" name="return" value="' . get_permalink( $booking['return_page'] ) . '">
+              </form>';
+
+  echo $html;
   exit;
 }
 
