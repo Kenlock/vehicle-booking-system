@@ -54,4 +54,8 @@ function FAIconFont() {
 }
 add_action( 'redux/page/booking/enqueue', 'FAIconFont' );
 
+function set_html_content_type() {
+  return 'text/html';
+}
+
 ?>

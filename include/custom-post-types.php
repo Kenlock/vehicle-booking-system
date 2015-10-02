@@ -51,15 +51,15 @@ function add_post_types() {
     'description'   => __('Holds our Drivers specific data', 'vbs'),
     'public'        => true,
     'supports'      => array( 'title', 'thumbnail' ),
-    'has_archive'   => true,
+    'has_archive'   => false,
     'menu_icon'     => 'dashicons-groups',
   );
   register_post_type( 'drivers', $args_dri );
 
   // Surcharges Post Type
   $labels_sur = array(
-    'name'               => _x( 'Surcharge', 'post type general name' ),
-    'singular_name'      => _x( 'Surcharges', 'post type singular name' ),
+    'name'               => _x( 'Surcharges', 'post type general name' ),
+    'singular_name'      => _x( 'Surcharge', 'post type singular name' ),
     'add_new'            => _x( 'Add New', 'surcharge' ),
     'add_new_item'       => __( 'Add New Surcharge', 'vbs' ),
     'edit_item'          => __( 'Edit Surcharge', 'vbs' ),
@@ -75,9 +75,9 @@ function add_post_types() {
   $args_sur = array(
     'labels'        => $labels_sur,
     'description'   => __('Holds our Surcharge specific data', 'vbs'),
-    'public'        => true,
+    'public'        => false,
     'supports'      => array( 'title' ),
-    'has_archive'   => true,
+    'has_archive'   => false,
     'menu_icon'     => 'dashicons-flag',
   );
   register_post_type( 'surcharges', $args_sur );

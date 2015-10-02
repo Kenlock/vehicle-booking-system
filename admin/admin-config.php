@@ -20,7 +20,7 @@
 
     $args = array(
         'opt_name'             => $opt_name,
-        'display_name'         => 'Vehicle Booking Plugin Settings',
+        'display_name'         => 'Vehicle Booking System Settings',
         'display_version'      => '1.0.0',
         'menu_type'            => 'menu',
         'allow_sub_menu'       => true,
@@ -131,6 +131,13 @@
                 'title'    => __( 'Set your base location', 'vbs' ),
                 'default'  => 'Pl. Sintagmatos, Athina 105 63, Greece',
             ),
+
+            array(
+                'id'       => 'currency_symbol',
+                'type'     => 'text',
+                'title'    => __( 'Set Currency symbol', 'vbs' ),
+                'default'  => '€',
+            ),
         )
     ) );
 
@@ -181,7 +188,6 @@
 
     Redux::setSection( $opt_name, array(
         'title'      => __( 'Email Settings', 'vbs' ),
-        'desc'       => __( 'Email addresses, reply-to, notifications', 'vbs' ),
         'id'         => 'opt-email',
         'icon'       => 'fa fa-envelope',
         'fields'     => array(
@@ -207,23 +213,142 @@
         'title'      => __( 'PHP Mailer Settings', 'vbs' ),
         'desc'       => __( 'Only needed when you don\'t want to use wp_mail()', 'vbs' ),
         'id'         => 'opt-mailer',
-        'icon'       => 'fa fa-envelope-o',
-        'subsection' => true,
+        'icon'       => 'fa fa-paper-plane',
         'fields'     => array(
             array(
-                'id'       => 'default_email',
+                'id'       => 'smtp_host',
                 'type'     => 'text',
-                'title'    => __( 'Email to be used as the From: field', 'vbs' ),
-                'default'  => 'example@example.com',
-                'validate' => 'email'
+                'title'    => __( 'SMTP Host', 'vbs' ),
+                'default'  => 'mail.example.com',
             ),
 
             array(
-                'id'       => 'email_mode',
+                'id'       => 'smtp_port',
+                'type'     => 'text',
+                'title'    => __( 'SMTP Port', 'vbs' ),
+                'default'  => '25',
+            ),
+
+            array(
+                'id'       => 'smtp_auth',
                 'type'     => 'switch',
-                'title'    => __('Use PHP mailer?', 'vbs'),
-                'subtitle' => __('Use PHP Mailer instead of wp_mail()', 'vbs'),
+                'title'    => __('SMTP requires authentication?', 'vbs'),
                 'default'  => true,
+            ),
+
+            array(
+                'id'       => 'smtp_secure',
+                'type'     => 'radio',
+                'title'    => __('Use  SSL/TLS?', 'vbs'),
+                'options'  => array(
+                    'none' => 'None',
+                    'ssl' => 'Use SSL',
+                    'tls' => 'Use TLS'
+                ),
+                'default' => 'none'
+            ),
+
+            array(
+                'id'       => 'smtp_login',
+                'type'     => 'password',
+                'username' => true,
+                'title'    => 'SMTP Account',
+                'placeholder' => array(
+                    'username'   => 'SMTP username',
+                    'password'   => 'SMTP Password'
+                )
+            ),
+        )
+    ) );
+
+    Redux::setSection( $opt_name, array(
+        'title'      => __( 'Email template settings', 'vbs' ),
+        'desc'       => __( 'Set options for the email template used for notifications', 'vbs' ),
+        'id'         => 'opt-template',
+        'icon'       => 'fa fa-paint-brush',
+        'fields'     => array(
+            array(
+                'id'       => 'email_logo',
+                'type'     => 'media',
+                'url'      => true,
+                'title'    => __('Logo image', 'vbs'),
+                'subtitle'     => __('140x50px', 'vbs'),
+                'default'  => array(
+                    'url'=> PLUGIN_DIR_URL . 'templates/default/img/logo.jpg'
+                ),
+            ),
+
+            array(
+                'id'       => 'email_banner',
+                'type'     => 'media',
+                'url'      => true,
+                'title'    => __('Heading image', 'vbs'),
+                'subtitle'     => __('600x300px', 'vbs'),
+                'default'  => array(
+                    'url'=> PLUGIN_DIR_URL . 'templates/default/img/banner.jpg'
+                ),
+            ),
+
+            array(
+                'id'       => 'email_template',
+                'type'     => 'text',
+                'title'    => __('Folder name that contains the mail template', 'vbs'),
+                'subtitle' => __('Must be under the /templates folder', 'vbs'),
+                'default'  => 'default',
+            ),
+
+            array(
+                'id'       => 'email_title',
+                'type'     => 'text',
+                'title'    => __('Email title/Subject', 'vbs'),
+                'default'  => 'Your booking details',
+            ),
+
+            array(
+                'id'       => 'email_heading',
+                'type'     => 'text',
+                'title'    => __('Header text for notification emails', 'vbs'),
+                'default'  => 'Thank you for booking with us!',
+            ),
+
+            array(
+                'id'       => 'email_intro',
+                'type'     => 'textarea',
+                'title'    => __('Email intro text', 'vbs'),
+                'subtitle' => __('No HTML allowed', 'vbs'),
+                'default'  => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod Tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo',
+                'validate' => 'no_html'
+            ),
+        )
+    ) );
+
+    Redux::setSection( $opt_name, array(
+        'title'      => __( 'Social', 'vbs' ),
+        'id'         => 'opt-social',
+        'icon'       => 'fa fa-share-alt',
+        'fields'     => array(
+            array(
+                'id'       => 'facebook_url',
+                'type'     => 'text',
+                'title'    => __( 'Your Facebook page/profile URL', 'vbs' ),
+                'default'  => 'http://facebook.com',
+                'validate' => 'url'
+            ),
+
+            array(
+                'id'       => 'linkedin_url',
+                'type'     => 'text',
+                'title'    => __( 'Your LinkedIn profile URL', 'vbs' ),
+                'default'  => 'http://linkedin.com',
+                'validate' => 'url'
+            ),
+
+            array(
+                'id'       => 'twitter_url',
+                'type'     => 'text',
+                'title'    => __( 'Your Twitter profile URL', 'vbs' ),
+                'default'  => 'http://twitter.com',
+                'validate' => 'url'
             ),
         )
     ) );

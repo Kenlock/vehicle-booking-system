@@ -11,7 +11,128 @@ function init() {
 
 jQuery(document).ready(function($) {
 
-  flush();
+  flush(); // Remove for pruduction
+
+  $(".formStep1").validate({
+    rules: {
+      pickup: {
+        required: true
+      },
+      dropoff: {
+        required: true
+      },
+      date_pickup: {
+        required: true
+      },
+      time_pickup: {
+        required: true
+      }
+    },
+    messages: {
+      pickup: {
+        required: "Select a pickup address"
+      },
+      dropoff: {
+        required: "Select a dropoff address"
+      },
+      date_pickup: {
+        required: "Select a date"
+      },
+      time_pickup: {
+        required: "Select a time"
+      }
+    },
+    errorClass: "errormessage",
+    onkeyup: false,
+    errorClass: 'error',
+    validClass: 'valid',
+    errorPlacement: function(error, element) {
+      var elem = $(element)
+      if(!error.is(':empty')) {
+         elem.filter(':not(.valid)').qtip({
+            overwrite: false,
+            content: error,
+            position: {
+               my: 'bottom center',
+               at: 'top center',
+               viewport: $(window)
+            },
+            show: {
+               event: false,
+               ready: true
+            },
+            hide: false,
+         })
+         .qtip('option', 'content.text', error);
+      }
+      else { elem.qtip('destroy'); }
+    },
+    success: $.noop
+  })
+
+  $(".formStep3").validate({
+    rules: {
+      first_name: {
+        required: true
+      },
+      last_name: {
+        required: true
+      },
+      email: {
+        required: true,
+        email: true
+      },
+      phone: {
+        required: true
+      },
+      payment: {
+        required: true
+      }
+    },
+    messages: {
+      first_name: {
+        required: "Enter your first name"
+      },
+      last_name: {
+        required: "Enter your last name"
+      },
+      email: {
+        required: "Enter your email address"
+      },
+      phone: {
+        required: "Enter a contact phone"
+      },
+      payment: {
+        required: "Please select a payment method"
+      }
+    },
+    errorClass: "errormessage",
+    onkeyup: false,
+    errorClass: 'error',
+    validClass: 'valid',
+    errorPlacement: function(error, element) {
+      var elem = $(element)
+      if(!error.is(':empty')) {
+         elem.filter(':not(.valid)').qtip({
+            overwrite: false,
+            content: error,
+            position: {
+               my: 'bottom center',
+               at: 'top center',
+               viewport: $(window)
+            },
+            show: {
+               event: false,
+               ready: true
+            },
+            hide: false,
+         })
+         .qtip('option', 'content.text', error);
+      }
+      else { elem.qtip('destroy'); }
+    },
+    success: $.noop
+  })
 
   // Create map element
   map = new GMaps({
@@ -65,7 +186,7 @@ jQuery(document).ready(function($) {
     var waypts = [];
     waypts.push({
       location: $('#pickup').val(),
-      stopover: false
+      stopover: true
     });
     map.getRoutes({
       origin: $('#base_location').val(),
@@ -74,9 +195,8 @@ jQuery(document).ready(function($) {
       travelMode: 'driving',
       callback: function(results){
         routes = results;
-        distance = routes[0].legs[0].distance.value;
+        distance = routes[0].legs[0].distance.value + routes[0].legs[1].distance.value;
         set('dist', distance);
-        console.log(routes);
         $("#route-info").show().html( '<i class="fa fa-map-o"></i> ' + (distance/1000).toFixed(2) + 'km' );
       }
     });
@@ -85,7 +205,7 @@ jQuery(document).ready(function($) {
   // Ajax handler for all buttons
   $(".btn").on("click", function(e){
     e.preventDefault();
-    if( $(this).data("goto") == '2' ) {
+    if( $(this).data("goto") == '2' && $(".formStep1").valid() ) {
       $(this).html('<i class="fa fa-spinner fa-pulse"></i> Working...');
       set( 'start', $("#pickup").val() );
       set( 'end', $("#dropoff").val() );
@@ -99,6 +219,7 @@ jQuery(document).ready(function($) {
       var fd = new FormData();
       fd.append( "action", "get_cars" );
       fd.append( "distance", get('dist') );
+      fd.append( "pickup_date", get('pickup_date') );
       fd.append( "return", get('return') );
 
       // ajax call
@@ -123,7 +244,7 @@ jQuery(document).ready(function($) {
       // Toggle
       $(".step2, .step3").slideToggle();
 
-    } else if ( $(this).data("goto") == '4' ) {
+    } else if ( $(this).data("goto") == '4' && $(".formStep3").valid() ) {
 
       $(this).html('<i class="fa fa-spinner fa-pulse"></i> Working...');
 
@@ -202,6 +323,7 @@ jQuery(document).ready(function($) {
           var booking_id = booking_response['id'];
           var booking_code = booking_response['code'];
           $(".step4, .final").slideToggle();
+          console.log( booking_response['email'] );
           if( get('payment') == 'paypal' ) {
             var payment_data = new FormData();
             payment_data.append( "cost", get('cost') );
@@ -221,6 +343,7 @@ jQuery(document).ready(function($) {
               success: function( paypal_response ) {
                 $('.addon').html( paypal_response );
                 $('.paypal > form').submit();
+                flush();
               }
             })
           }

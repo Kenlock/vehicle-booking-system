@@ -100,6 +100,14 @@ function vbs_register_meta_boxes( $meta_boxes )
 				'std'  => '-6.233406,-35.049906,15',
 				'address_field' => $prefix . 'address',
 			),
+			array(
+				'id'   => $prefix . 'location_charge',
+				'name' => __( 'Surcharge', 'vbs' ),
+				'type' => 'number',
+				'std'  => 0,
+				'step' => 'any',
+				'min'  => 0
+			),
 		)
 	);
 
@@ -357,6 +365,70 @@ function vbs_register_meta_boxes( $meta_boxes )
 				'type' => 'text',
 				'std'  => '',
 			),
+
+		)
+	);
+
+	// Surcharges meta box
+	$meta_boxes[] = array(
+		'id'			=> 'surcharges-meta',
+		'title'   => __('Surcharge Details', 'vbs'),
+		'pages'   => array( 'surcharges' ),
+		'fields'  => array(
+
+			// Date Start
+			array(
+				'name' => __( 'Date From', 'vbs' ),
+				'id'   => $prefix . 'sur_start_date',
+				'type' => 'date',
+				'js_options' => array(
+					'showTimepicker' => false,
+					'dateFormat'		 => 'dd.mm.yy'
+				),
+			),
+
+			// Date End
+			array(
+				'name' => __( 'Date To', 'vbs' ),
+				'id'   => $prefix . 'sur_end_date',
+				'type' => 'date',
+				'js_options' => array(
+					'showTimepicker' => false,
+					'dateFormat'		 => 'dd.mm.yy'
+				),
+			),
+
+			// Surcharge Type
+      array(
+          'name'    => __( 'Surcharge type', 'vbs' ),
+          'id'      => $prefix . 'sur_type',
+          'type'    => 'radio',
+          'options' => array(
+              'fixed' => __( 'Fixed Amount', 'vbs' ),
+              'percent' => __( 'Percentage', 'vbs' ),
+          ),
+      ),
+
+			// Amount
+			array(
+				'name'        => __( 'Surcharge', 'vbs' ),
+				'id'          => $prefix . 'sur_amount',
+				'type'        => 'number',
+				'step'        => 'any',
+				'min'         => 0,
+			),
+
+		)
+	);
+
+	// Drivers meta box
+	$meta_boxes[] = array(
+		'id'			=> 'driver-meta',
+		'title'   => __('Driver Details', 'vbs'),
+		'pages'   => array( 'drivers' ),
+		'fields'  => array(
+
+
 
 		)
 	);

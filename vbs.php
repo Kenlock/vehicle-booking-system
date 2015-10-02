@@ -30,18 +30,20 @@ if(isset($_REQUEST['action']) && $_REQUEST['action']=='ajaxFunctionMethod'){
 
 // Include the Redux files
 if ( !class_exists( 'ReduxFramework' ) && file_exists( dirname( __FILE__ ) . '/admin/framework.php' ) ) {
-    require_once( dirname( __FILE__ ) . '/admin/framework.php' );
+    require_once PLUGIN_DIR . 'admin/framework.php';
 }
 require_once (dirname(__FILE__) . '/admin/admin-config.php');
 Redux::setExtensions( 'booking', dirname(__FILE__) . '/admin/vendor_support'  );
 
 if ( !class_exists( 'RW_Meta_Box' ) )
   require_once 'include/meta-box/meta-box.php';
-include 'custom-post-types.php';
-include 'meta-boxes.php';
-include 'shortcodes.php';
-include 'form_handler.php';
-include 'helper.php';
+include 'include/custom-post-types.php';
+include 'include/meta-boxes.php';
+include 'include/shortcodes.php';
+include 'include/calculator.php';
+include 'include/form_handler.php';
+include 'include/helper.php';
+include 'include/email.php';
 
 // TGM activation class
 require_once PLUGIN_DIR . 'include/tgm/tgm-init.php';
@@ -66,6 +68,7 @@ function add_scripts() {
   wp_enqueue_style( 'style', PLUGIN_DIR_URL . 'css/style.css' );
   wp_enqueue_style( 'font-awesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css' );
   wp_enqueue_style( 'datetime-css', PLUGIN_DIR_URL . 'css/jquery.datetimepicker.css' );
+  wp_enqueue_style( 'qtip2-css', 'http://cdn.jsdelivr.net/qtip2/2.2.1/jquery.qtip.min.css' );
 
   // Scripts
   wp_enqueue_script( 'google-map', 'http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places', true );
@@ -80,6 +83,8 @@ function add_scripts() {
 
   wp_enqueue_script( 'form', PLUGIN_DIR_URL . 'js/form.js', array('jquery','jquery-form', 'validate'), '1.0.8', true );
   wp_localize_script( 'form', 'booking', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
+
+  wp_enqueue_script( 'qtip2', 'http://cdn.jsdelivr.net/qtip2/2.2.1/jquery.qtip.min.js', array('jquery','validate'), '2.2.1', true);
 }
 
 // Add columns to custom post type edit screen
@@ -116,16 +121,6 @@ function vbs_custom_columns($column){
   }
 }
 
-function calculateCost( $car_id, $distance ) {
-  $pricing = rwmb_meta('vbs_pricing', $car_id);
-    foreach ($pricing as $price) {
-      if( $distance >= $price[0] && $distance < $price[1] ) {
-        $cost = $distance * $price[2];
-      }
-    }
-  return $cost;
-}
-
 add_action('paypal_ipn_for_wordpress_payment_status_completed', 'handle_ipn_update');
 function handle_ipn_update( $posted ) {
 
@@ -135,7 +130,7 @@ function handle_ipn_update( $posted ) {
   $payer = isset($posted['payer_email']) ? $posted['payer_email'] : '';
   $total = isset($posted['payment_gross']) ? $posted['payment_gross'] : '';
 
-  update_post_meta($item_number, "vbs_status", "valid");
+  update_post_meta($item_number, "vbs_status", "confirmed");
   add_post_meta($item_number, "vbs_transaction", $trans_id);
   add_post_meta($item_number, "vbs_payer_email", $payer);
   add_post_meta($item_number, "vbs_pay_amount", $total);

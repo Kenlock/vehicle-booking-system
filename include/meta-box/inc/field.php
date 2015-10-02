@@ -85,7 +85,7 @@ if ( ! class_exists( 'RWMB_Field ' ) )
 						$sub_field['field_name'] .= '[]';
 
 					// Wrap field HTML in a div with class="rwmb-clone" if needed
-					$input_html = '<div class="rwmb-clone">';
+					$input_html = '<div class="rwmb-clone rwmb-' . $field['type'] . '-clone">';
 
 					// Drag clone icon
 					if ( $field['sort_clone'] )
@@ -241,7 +241,7 @@ if ( ! class_exists( 'RWMB_Field ' ) )
 		 */
 		static function add_clone_button( $field )
 		{
-			$text = apply_filters( 'rwmb_add_clone_button_text', __( '+', 'meta-box' ), $field );
+			$text = apply_filters( 'rwmb_add_clone_button_text', __( '+ Add more', 'meta-box' ), $field );
 			return "<a href='#' class='rwmb-button button-primary add-clone'>$text</a>";
 		}
 
@@ -254,8 +254,9 @@ if ( ! class_exists( 'RWMB_Field ' ) )
 		 */
 		static function remove_clone_button( $field )
 		{
-			$text = apply_filters( 'rwmb_remove_clone_button_text', __( '&#8211;', 'meta-box' ), $field );
-			return "<a href='#' class='rwmb-button button remove-clone'>$text</a>";
+			$icon = '<i class="dashicons dashicons-minus"></i>';
+			$text = apply_filters( 'rwmb_remove_clone_button_text', $icon, $field );
+			return "<a href='#' class='rwmb-button remove-clone'>$text</a>";
 		}
 
 		/**

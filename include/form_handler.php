@@ -6,8 +6,10 @@ add_action('wp_ajax_nopriv_get_cars', 'ajax_get_car_list');
 function ajax_get_car_list() {
   $distance = ($_POST['distance'])/1000;
   $is_return = $_POST['return'];
+  $date_pickup = $_POST['pickup_date'];
 
   $args = array(
+    'posts_per_page' => -1,
     'post_type'   => 'cars',
     'post_status' => 'publish',
   );
@@ -22,7 +24,7 @@ function ajax_get_car_list() {
       foreach ($image as $img) {
         $src = $img['url'];
       }
-      $cost = calculateCost( get_the_ID(), $distance );
+      $cost = calculateCost( get_the_ID(), $distance, $date_pickup );
       if( $is_return == '1' ) {
         $cost = $cost * 2;
       }
@@ -37,8 +39,8 @@ function ajax_get_car_list() {
 <li><i class="fa fa-child"></i> ' . rwmb_meta('vbs_child_seats') . '</li>
       </ul>';
       $car_html .= '</div>';
-      $car_html .= '<div class="car_info_right"><h1 class="car_cost"><span class="currency">€</span><span class="cost">'. $cost .'</span></h1>';
-      $car_html .= '<input class="selection" type="radio" data-id="' . get_the_ID() . '" name="cost" value="' . $cost . '" /> ' . __('Select', 'vbs') . '</div>';
+      $car_html .= '<div class="car_info_right"><h1 class="car_cost"><span class="currency">€</span><span class="cost">'. round($cost,2) .'</span></h1>';
+      $car_html .= '<input class="selection" type="radio" data-id="' . get_the_ID() . '" name="cost" value="' . round($cost,2) . '" /> ' . __('Select', 'vbs') . '</div>';
       $car_html .= '</div>';
     }
   }
@@ -86,11 +88,6 @@ function ajax_create_booking() {
   );
   $post = wp_insert_post( $postData );
   if($post) {
-    if($payment == 'paypal') {
-      $success['text'] = "Thanks for you booking. An email has been sent with details and payment information. You will now be reditected to PayPal to complete payment.";
-    } else {
-      $success['text'] = "Thanks for you booking. An email has been sent with details and payment information";
-    }
     $success['id'] = $post;
     // Booking Details
     update_post_meta($post, "vbs_pickup", $pickup);
@@ -112,7 +109,20 @@ function ajax_create_booking() {
     update_post_meta($post, 'vbs_payment', $payment);
     update_post_meta($post, 'vbs_cost', $cost);
 
+    if($payment == 'paypal') {
+      $success['text'] = "Thanks for you booking. An email has been sent with details and payment information. You will now be reditected to PayPal to complete payment.";
+    } else {
+      $success['text'] = "Thanks for you booking. An email has been sent with details and payment information";
+    }
     update_post_meta($post, 'vbs_status', "pending");
+
+    // Send email
+    $send = send_email( $email, $full_name, $post );
+    if( $send ) {
+      $success['email'] = "OK";
+    } else {
+      $success['email'] = "Not sent";
+    }
 
     echo json_encode($success);
   } else {
