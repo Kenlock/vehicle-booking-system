@@ -188,6 +188,7 @@ jQuery(document).ready(function($) {
       location: $('#pickup').val(),
       stopover: true
     });
+    map.removeRoutes();
     map.getRoutes({
       origin: $('#base_location').val(),
       destination: $('#dropoff').val(),
