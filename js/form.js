@@ -182,11 +182,11 @@ jQuery(document).ready(function($) {
   $(".route").on("click", function(e){
     e.preventDefault();
     var distance = 0;
-    $("#route-info").hide().html('');
+    $("#route-info").show().html('<i class="fa fa-spinner fa-pulse"></i> Calculating optimal route...');
     var waypts = [];
     waypts.push({
       location: $('#pickup').val(),
-      stopover: true
+      stopover: false
     });
     map.removeRoutes();
     map.getRoutes({
@@ -196,9 +196,9 @@ jQuery(document).ready(function($) {
       travelMode: 'driving',
       callback: function(results){
         routes = results;
-        distance = routes[0].legs[0].distance.value + routes[0].legs[1].distance.value;
+        distance = routes[0].legs[0].distance.value;
         set('dist', distance);
-        $("#route-info").show().html( '<i class="fa fa-map-o"></i> ' + (distance/1000).toFixed(2) + 'km' );
+        $("#route-info").html( '<i class="fa fa-map-o"></i> ' + routes[0].legs[0].distance.text + ' (aprox. ' + routes[0].legs[0].duration.text + ')' );
       }
     });
   })
