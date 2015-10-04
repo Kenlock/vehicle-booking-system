@@ -3,6 +3,7 @@
 }
 
 #booking-client-meta .rwmb-input input,
-#booking-payment-meta .rwmb-input input {
+#booking-payment-meta .rwmb-input input,
+#driver-meta-general .rwmb-input input {
   width: 100%;
 }

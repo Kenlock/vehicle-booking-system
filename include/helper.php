@@ -58,4 +58,9 @@ function set_html_content_type() {
   return 'text/html';
 }
 
+add_action( 'admin_menu', 'remove_redux_menu',12 );
+function remove_redux_menu() {
+  remove_submenu_page('tools.php','redux-about');
+}
+
 ?>

@@ -32,7 +32,8 @@ function booking_form() {
 
 	global $booking;
 
-	$html = '<form id="bookingForm" class="formStep1" method="POST" enctype="multipart/form-data">
+	$html = '<div id="bookingForm">
+		<form class="formStep1" method="POST" enctype="multipart/form-data">
 
 			<div class="step1">
 
@@ -149,12 +150,14 @@ function booking_form() {
 
 		</form>
 
-<div class="final" style="display: none;">
+		<div class="final" style="display: none;">
 
-	<div class="response"></div> <!-- server response -->
-	<div class="addon" style="display: none;"></div> <!-- additional data -->
+			<div class="response"></div> <!-- server response -->
+			<div class="addon" style="display: none;"></div> <!-- additional data -->
 
-</div> <!-- result end -->';
+		</div> <!-- result end -->
+
+	</div>';
 return $html;
 }
 add_shortcode('bookingform', 'booking_form');

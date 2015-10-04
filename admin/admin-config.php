@@ -20,12 +20,12 @@
 
     $args = array(
         'opt_name'             => $opt_name,
-        'display_name'         => 'Vehicle Booking System Settings',
+        'display_name'         => 'Vehicle Booking System',
         'display_version'      => '1.0.0',
-        'menu_type'            => 'menu',
-        'allow_sub_menu'       => true,
-        'menu_title'           => __( 'Booking Options', 'vbs' ),
-        'page_title'           => __( 'Booking Options', 'vbs' ),
+        'menu_type'            => 'submenu',
+        'allow_sub_menu'       => false,
+        'menu_title'           => __( 'VBS Options', 'vbs' ),
+        'page_title'           => __( 'Vehicle Booking Options', 'vbs' ),
         'google_api_key'       => '',
         'google_update_weekly' => false,
         'async_typography'     => true,
@@ -38,7 +38,7 @@
         'customizer'           => false,
 
         'page_priority'        => null,
-        'page_parent'          => 'themes.php',
+        'page_parent'          => 'vbs_admin_menu',
         'page_permissions'     => 'manage_options',
         'menu_icon'            => '',
         'last_tab'             => '',
@@ -53,13 +53,12 @@
         'transient_time'       => 60 * MINUTE_IN_SECONDS,
         'output'               => true,
         'output_tag'           => true,
-
         'database'             => '',
         'use_cdn'              => false,
 
         // HINTS
         'hints'                => array(
-            'icon'          => 'el el-question-sign',
+            'icon'          => 'fa fa-question',
             'icon_position' => 'right',
             'icon_color'    => 'lightgray',
             'icon_size'     => 'normal',
@@ -91,17 +90,22 @@
     $args['share_icons'][] = array(
         'url'   => 'http://www.facebook.com/interactivedes',
         'title' => 'Like us on Facebook',
-        'icon'  => 'el el-facebook'
+        'icon'  => 'fa fa-facebook'
     );
     $args['share_icons'][] = array(
         'url'   => 'http://twitter.com/intera_design',
         'title' => 'Follow us on Twitter',
-        'icon'  => 'el el-twitter'
+        'icon'  => 'fa fa-twitter'
     );
     $args['share_icons'][] = array(
         'url'   => 'http://www.linkedin.com/companies/820832',
         'title' => 'Find us on LinkedIn',
-        'icon'  => 'el el-linkedin'
+        'icon'  => 'fa fa-linkedin'
+    );
+    $args['share_icons'][] = array(
+        'url'   => 'http://github.com/gnikolopoulos',
+        'title' => 'Find us on GitHub',
+        'icon'  => 'fa fa-github'
     );
 
     // Add content after the form.
@@ -120,8 +124,7 @@
      */
 
     Redux::setSection( $opt_name, array(
-        'title'      => __( 'Basic Settings', 'vbs' ),
-        'desc'       => __( 'General settings', 'vbs' ),
+        'title'      => __( 'General', 'vbs' ),
         'id'         => 'opt-general',
         'icon'       => 'fa fa-cogs',
         'fields'     => array(
@@ -142,8 +145,25 @@
     ) );
 
     Redux::setSection( $opt_name, array(
-        'title'      => __( 'PayPal Settings', 'vbs' ),
-        'desc'       => __( 'PayPal Setting', 'vbs' ),
+        'title'      => __( 'Styling', 'vbs' ),
+        'id'         => 'opt-styling',
+        'icon'       => 'fa fa-paint-brush',
+        'fields'     => array(
+            array(
+                'id'       => 'form_style',
+                'type'     => 'button_set',
+                'title'    => __('Form Style', 'vbs'),
+                'options'  => array(
+                    'stacked'    => 'Stacked',
+                    'horizontal' => 'Horizontal'
+                ),
+                'default' => 'stacked'
+            ),
+        )
+    ) );
+
+    Redux::setSection( $opt_name, array(
+        'title'      => __( 'PayPal', 'vbs' ),
         'id'         => 'opt-paypal',
         'icon'       => 'fa fa-paypal',
         'fields'     => array(
@@ -187,7 +207,7 @@
     ) );
 
     Redux::setSection( $opt_name, array(
-        'title'      => __( 'Email Settings', 'vbs' ),
+        'title'      => __( 'Email', 'vbs' ),
         'id'         => 'opt-email',
         'icon'       => 'fa fa-envelope',
         'fields'     => array(
@@ -210,7 +230,7 @@
     ) );
 
     Redux::setSection( $opt_name, array(
-        'title'      => __( 'PHP Mailer Settings', 'vbs' ),
+        'title'      => __( 'PHP Mailer', 'vbs' ),
         'desc'       => __( 'Only needed when you don\'t want to use wp_mail()', 'vbs' ),
         'id'         => 'opt-mailer',
         'icon'       => 'fa fa-paper-plane',
@@ -262,10 +282,9 @@
     ) );
 
     Redux::setSection( $opt_name, array(
-        'title'      => __( 'Email template settings', 'vbs' ),
-        'desc'       => __( 'Set options for the email template used for notifications', 'vbs' ),
+        'title'      => __( 'Email Template', 'vbs' ),
         'id'         => 'opt-template',
-        'icon'       => 'fa fa-paint-brush',
+        'icon'       => 'fa fa-columns',
         'fields'     => array(
             array(
                 'id'       => 'email_logo',

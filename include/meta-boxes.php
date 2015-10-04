@@ -233,6 +233,21 @@ function vbs_register_meta_boxes( $meta_boxes )
 				)
 			),
 
+			// Driver Select
+			array(
+				'name'        => __( 'Driver', 'vbs' ),
+				'id'          => $prefix . 'driver',
+				'type'        => 'post',
+				'post_type'   => array( 'drivers' ),
+				'std'         => '',
+				'field_type'  => 'select_advanced',
+				'placeholder' => __( 'Select a Driver', 'vbs' ),
+				'query_args'  => array(
+					'post_status'    => 'publish',
+					'posts_per_page' => - 1,
+				)
+			),
+
 			// Holds the car id
 			array(
 				'id' => $prefix . 'car_id',
@@ -345,7 +360,7 @@ function vbs_register_meta_boxes( $meta_boxes )
 			// Full Name
 			array(
 				'id'   => $prefix . 'transaction',
-				'name' => __( 'PayPal Transaaction ID', 'vbs' ),
+				'name' => __( 'PayPal Transaction ID', 'vbs' ),
 				'type' => 'text',
 				'std'  => '',
 			),
@@ -423,12 +438,154 @@ function vbs_register_meta_boxes( $meta_boxes )
 
 	// Drivers meta box
 	$meta_boxes[] = array(
-		'id'			=> 'driver-meta',
-		'title'   => __('Driver Details', 'vbs'),
+		'id'			=> 'driver-meta-general',
+		'title'   => __('Driver Personal Details', 'vbs'),
+		'pages'   => array( 'drivers' ),
+		'context' => 'side',
+		'fields'  => array(
+
+			// Driver Address
+			array(
+				'id'   => $prefix . 'driver_address',
+				'name' => __( 'Driver Address', 'vbs' ),
+				'type' => 'text',
+				'std'  => '',
+			),
+
+			// Driver Phone
+			array(
+				'id'   => $prefix . 'driver_phone',
+				'name' => __( 'Driver Phone Number', 'vbs' ),
+				'type' => 'text',
+				'std'  => '',
+			),
+
+			// Driver Email
+			array(
+				'id'   => $prefix . 'driver_email',
+				'name' => __( 'Driver Email', 'vbs' ),
+				'type' => 'text',
+				'std'  => '',
+			),
+
+			// Driver NIN
+			array(
+				'id'   => $prefix . 'driver_nin',
+				'name' => __( 'Driver NIN', 'vbs' ),
+				'type' => 'text',
+				'std'  => '',
+			),
+
+			// Driver DoB
+			array(
+				'id'   => $prefix . 'driver_dob',
+				'name' => __( 'Driver Date of Birth', 'vbs' ),
+				'type' => 'date',
+				'js_options' => array(
+					'showTimepicker' => false,
+					'dateFormat'		 => 'dd.mm.yy'
+				),
+			),
+
+			// Driver status
+			array(
+          'name'    => __( 'Status', 'vbs' ),
+          'id'      => $prefix . 'driver_status',
+          'type'    => 'select',
+          'options' => array(
+              'active' => __( 'Active', 'vbs' ),
+              'inactive' => __( 'Inactive', 'vbs' ),
+          ),
+          'std'		  => 'active'
+      ),
+
+		)
+	);
+
+	// Drivers Insurance meta box
+	$meta_boxes[] = array(
+		'id'			=> 'driver-meta-insurance',
+		'title'   => __('Driver Insurance Details', 'vbs'),
 		'pages'   => array( 'drivers' ),
 		'fields'  => array(
 
+			// Driver Insurance Expiry Date
+			array(
+				'id'   => $prefix . 'driver_ins_exp',
+				'name' => __( 'Insurance Expiry Date', 'vbs' ),
+				'type' => 'date',
+				'js_options' => array(
+					'showTimepicker' => false,
+					'dateFormat'		 => 'dd.mm.yy'
+				),
+			),
 
+			// Driver Insurance Expiry Date
+			array(
+				'id'   => $prefix . 'driver_mot_exp',
+				'name' => __( 'MOT Expiry Date', 'vbs' ),
+				'type' => 'date',
+				'js_options' => array(
+					'showTimepicker' => false,
+					'dateFormat'		 => 'dd.mm.yy'
+				),
+			),
+
+			// Driver Insurance Details
+			array(
+				'name'        => __( 'Driver Insurance Notes', 'vbs' ),
+				'id'          => $prefix . 'driver_ins_notes',
+				'type'        => 'textarea',
+				'std'         => '',
+				'rows'        => 5,
+				'columns'     => 5,
+			),
+
+		)
+	);
+
+	// Drivers Insurance meta box
+	$meta_boxes[] = array(
+		'id'			=> 'driver-meta-licence',
+		'title'   => __('Driver Licence Details', 'vbs'),
+		'pages'   => array( 'drivers' ),
+		'fields'  => array(
+
+			// Driver Taxi/PH Licence Number
+			array(
+				'id'   => $prefix . 'driver_taxi_lic',
+				'name' => __( 'Driver Taxi/PH Licence Number', 'vbs' ),
+				'type' => 'text',
+			),
+
+			// Driver Taxi Licence Expiry Date
+			array(
+				'id'   => $prefix . 'driver_lic_exp',
+				'name' => __( 'Driver Taxi/PH Licence Expiry Date', 'vbs' ),
+				'type' => 'date',
+				'js_options' => array(
+					'showTimepicker' => false,
+					'dateFormat'		 => 'dd.mm.yy'
+				),
+			),
+
+			// Driver Vehicle Licence Plate
+			array(
+				'id'   => $prefix . 'driver_lic_plate',
+				'name' => __( 'Driver Vehicle Licence Plate', 'vbs' ),
+				'type' => 'text',
+			),
+
+			// Driver Taxi Licence Expiry Date
+			array(
+				'id'   => $prefix . 'driver_plate_exp',
+				'name' => __( 'Vehicle Licence Plate Expiry Date', 'vbs' ),
+				'type' => 'date',
+				'js_options' => array(
+					'showTimepicker' => false,
+					'dateFormat'		 => 'dd.mm.yy'
+				),
+			),
 
 		)
 	);

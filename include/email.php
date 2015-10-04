@@ -7,8 +7,8 @@ function get_email_template( $id ) {
   $heading = str_replace("[heading]", $booking['email_heading'], $title);
   $intro = str_replace("[intro]", $booking['email_intro'], $heading);
 
-  $banner = str_replace("[banner]", $booking['email_banner'], $intro);
-  $logo = str_replace("[logo]", $booking['email_logo'], $banner);
+  $banner = str_replace("[banner]", $booking['email_banner']['url'], $intro);
+  $logo = str_replace("[logo]", $booking['email_logo']['url'], $banner);
 
   $link = str_replace("[link]", get_bloginfo('url'), $logo);
 
@@ -16,7 +16,7 @@ function get_email_template( $id ) {
   $li = str_replace("[li_url]", $booking['linkedin_url'], $fb);
   $tw = str_replace("[tw_url]", $booking['twitter_url'], $li);
 
-  $src = str_replace("[src]", PLUGIN_DIR_URL . 'templates/' . $booking['email_template'] . '/img/', $tw);
+  $src = str_replace("[src]", PLUGIN_DIR_URL . 'templates/' . $booking['email_template'], $tw);
 
   $html = $src;
   $final = str_replace("[details]", get_details( $id ), $html);

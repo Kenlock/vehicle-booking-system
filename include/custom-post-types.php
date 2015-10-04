@@ -12,7 +12,7 @@ function add_post_types() {
     'add_new_item'       => __( 'Add New Car', 'vbs' ),
     'edit_item'          => __( 'Edit Car', 'vbs' ),
     'new_item'           => __( 'New Car', 'vbs' ),
-    'all_items'          => __( 'All Cars', 'vbs' ),
+    'all_items'          => __( 'Cars', 'vbs' ),
     'view_item'          => __( 'View Cars', 'vbs' ),
     'search_items'       => __( 'Search Cars', 'vbs' ),
     'not_found'          => __( 'No cars found', 'vbs' ),
@@ -27,6 +27,8 @@ function add_post_types() {
     'supports'      => array( 'title', 'thumbnail' ),
     'has_archive'   => true,
     'menu_icon'     => 'dashicons-info',
+    'show_ui'       => true,
+    'show_in_menu'  => 'vbs_admin_menu',
   );
   register_post_type( 'cars', $args_cars );
 
@@ -38,7 +40,7 @@ function add_post_types() {
     'add_new_item'       => __( 'Add New Driver', 'vbs' ),
     'edit_item'          => __( 'Edit Driver', 'vbs' ),
     'new_item'           => __( 'New Driver', 'vbs' ),
-    'all_items'          => __( 'All Drivers', 'vbs' ),
+    'all_items'          => __( 'Drivers', 'vbs' ),
     'view_item'          => __( 'View Drivers', 'vbs' ),
     'search_items'       => __( 'Search Drivers', 'vbs' ),
     'not_found'          => __( 'No drivers found', 'vbs' ),
@@ -53,6 +55,8 @@ function add_post_types() {
     'supports'      => array( 'title', 'thumbnail' ),
     'has_archive'   => false,
     'menu_icon'     => 'dashicons-groups',
+    'show_ui'       => true,
+    'show_in_menu'  => 'vbs_admin_menu',
   );
   register_post_type( 'drivers', $args_dri );
 
@@ -64,7 +68,7 @@ function add_post_types() {
     'add_new_item'       => __( 'Add New Surcharge', 'vbs' ),
     'edit_item'          => __( 'Edit Surcharge', 'vbs' ),
     'new_item'           => __( 'New Surcharge', 'vbs' ),
-    'all_items'          => __( 'All Surcharges', 'vbs' ),
+    'all_items'          => __( 'Surcharges', 'vbs' ),
     'view_item'          => __( 'View Surcharges', 'vbs' ),
     'search_items'       => __( 'Search Surcharges', 'vbs' ),
     'not_found'          => __( 'No surcharges found', 'vbs' ),
@@ -79,6 +83,8 @@ function add_post_types() {
     'supports'      => array( 'title' ),
     'has_archive'   => false,
     'menu_icon'     => 'dashicons-flag',
+    'show_ui'       => true,
+    'show_in_menu'  => 'vbs_admin_menu',
   );
   register_post_type( 'surcharges', $args_sur );
 
@@ -90,7 +96,7 @@ function add_post_types() {
     'add_new_item'       => __( 'Add New Location', 'vbs' ),
     'edit_item'          => __( 'Edit Location', 'vbs' ),
     'new_item'           => __( 'New Location', 'vbs' ),
-    'all_items'          => __( 'All Locations', 'vbs' ),
+    'all_items'          => __( 'Locations', 'vbs' ),
     'view_item'          => __( 'View Locations', 'vbs' ),
     'search_items'       => __( 'Search Locations', 'vbs' ),
     'not_found'          => __( 'No locations found', 'vbs' ),
@@ -105,6 +111,8 @@ function add_post_types() {
     'supports'      => array( 'title' ),
     'has_archive'   => true,
     'menu_icon'     => 'dashicons-location',
+    'show_ui'       => true,
+    'show_in_menu'  => 'vbs_admin_menu',
   );
   register_post_type( 'locations', $args_loc );
 
@@ -116,7 +124,7 @@ function add_post_types() {
     'add_new_item'       => __( 'Add New Booking', 'vbs' ),
     'edit_item'          => __( 'Edit Booking', 'vbs' ),
     'new_item'           => __( 'New Booking', 'vbs' ),
-    'all_items'          => __( 'All Bookings', 'vbs' ),
+    'all_items'          => __( 'Bookings', 'vbs' ),
     'view_item'          => __( 'View Bookings', 'vbs' ),
     'search_items'       => __( 'Search Bookings', 'vbs' ),
     'not_found'          => __( 'No bookings found', 'vbs' ),
@@ -131,6 +139,8 @@ function add_post_types() {
     'supports'      => array( 'title' ),
     'has_archive'   => true,
     'menu_icon'     => 'dashicons-calendar-alt',
+    'show_ui'       => true,
+    'show_in_menu'  => 'vbs_admin_menu',
   );
   register_post_type( 'bookings', $args_book );
 }

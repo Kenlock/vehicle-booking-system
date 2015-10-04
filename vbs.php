@@ -52,7 +52,7 @@ add_action( 'admin_enqueue_scripts', 'add_admin_scripts', 10, 1 );
 function add_admin_scripts( $hook ) {
     global $post;
     if ( $hook == 'post-new.php' || $hook == 'post.php' ) {
-        if ( 'bookings' === $post->post_type ) {
+        if ( 'bookings' === $post->post_type || 'drivers'  === $post->post_type ) {
           wp_enqueue_style( 'admin-style', PLUGIN_DIR_URL . 'css/admin.css' );
 
           wp_enqueue_script(  'gmaps', PLUGIN_DIR_URL . 'js/gmaps.js', array('jquery','google-maps'), '0.4.18', true );
@@ -135,4 +135,9 @@ function handle_ipn_update( $posted ) {
   add_post_meta($item_number, "vbs_payer_email", $payer);
   add_post_meta($item_number, "vbs_pay_amount", $total);
 
+}
+
+add_action( 'admin_menu', 'vbs_menu' );
+function vbs_menu() {
+  add_menu_page( 'Vehicle Booking', 'Vehicle Booking', 'edit_others_posts', 'vbs_admin_menu', 'function()', 'dashicons-tickets-alt', 6 );
 }
