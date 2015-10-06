@@ -13,13 +13,19 @@ jQuery(document).ready(function($) {
 
   flush(); // Remove for pruduction
 
+  $.validator.addMethod("notEqual", function(value, element, param) {
+    return this.optional(element) || value != param;
+  }, "The pickup and dropoff points cannot be the same");
+
   $(".formStep1").validate({
     rules: {
       pickup: {
-        required: true
+        required: true,
+        notEqual: '#dropoff'
       },
       dropoff: {
-        required: true
+        required: true,
+        notEqual: '#pickup'
       },
       date_pickup: {
         required: true
@@ -179,19 +185,71 @@ jQuery(document).ready(function($) {
     set( 'return', '1' );
   })
 
+  var pickup_loc = '0'; // 0 for address, 1 for location
+  var dropoff_loc = '0'; // 0 for address, 1 for location
+
+  $(".pick-loc-select").on("click", function(e) {
+    e.preventDefault();
+    $("#pickup, #pickup_location").toggle();
+    if( pickup_loc == '0' ) {
+      pickup_loc = '1';
+      $(".pick-loc-select").html('Enter address');
+    } else {
+      pickup_loc = '0';
+      $(".pick-loc-select").html('Select Location');
+      set('start_location_id', '0');
+    }
+  })
+
+  $(".drop-loc-select").on("click", function(e) {
+    e.preventDefault();
+    $("#dropoff, #dropoff_location").toggle();
+    if( dropoff_loc == '0' ) {
+      dropoff_loc = '1';
+      $(".drop-loc-select").html('Enter address');
+    } else {
+      dropoff_loc = '0';
+      $(".drop-loc-select").html('Select Location');
+      set('end_location_id', '0');
+    }
+  })
+
+  $('#pickup_location').change(function(){
+    set('start_location_id', $('#pickup_location').find('option:selected').data('id'));
+  });
+
+  $('#dropoff_location').change(function(){
+    set('end_location_id', $('#dropoff_location').find('option:selected').data('id'));
+  });
+
   $(".route").on("click", function(e){
     e.preventDefault();
     var distance = 0;
     $("#route-info").show().html('<i class="fa fa-spinner fa-pulse"></i> Calculating optimal route...');
     var waypts = [];
+    var selected_pickup;
+    var selected_destination;
+
+    if(pickup_loc == '1') {
+      selected_pickup = $("#pickup_location").find('option:selected').val();
+    } else {
+      selected_pickup = $("#pickup").val();
+    }
+
+    if(dropoff_loc == '1') {
+      selected_destination = $("#dropoff_location").find('option:selected').val();
+    } else {
+      selected_destination = $("#dropoff").val();
+    }
+
     waypts.push({
-      location: $('#pickup').val(),
+      location: selected_pickup,
       stopover: false
-    });
+    })
     map.removeRoutes();
     map.getRoutes({
       origin: $('#base_location').val(),
-      destination: $('#dropoff').val(),
+      destination: selected_destination,
       waypoints: waypts,
       travelMode: 'driving',
       callback: function(results){
@@ -208,8 +266,16 @@ jQuery(document).ready(function($) {
     e.preventDefault();
     if( $(this).data("goto") == '2' && $(".formStep1").valid() ) {
       $(this).html('<i class="fa fa-spinner fa-pulse"></i> Working...');
-      set( 'start', $("#pickup").val() );
-      set( 'end', $("#dropoff").val() );
+      if(pickup_loc == '1') {
+        set( 'start', $("#pickup_location").val() );
+      } else {
+        set( 'start', $("#pickup").val() );
+      }
+      if(dropoff_loc == '1') {
+        set( 'end', $("#dropoff_location").val() );
+      } else {
+        set( 'end', $("#dropoff").val() );
+      }
       set( 'pickup_date', $("#date_pickup").val() );
       set( 'pickup_time', $("#time_pickup").val() );
       if( get('return') == '1' ) {
@@ -222,6 +288,8 @@ jQuery(document).ready(function($) {
       fd.append( "distance", get('dist') );
       fd.append( "pickup_date", get('pickup_date') );
       fd.append( "return", get('return') );
+      fd.append( "start_id", get('start_location_id') );
+      fd.append( "end_id", get('end_location_id') );
 
       // ajax call
       $.ajax({

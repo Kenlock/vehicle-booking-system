@@ -30,7 +30,7 @@
 }
 
 #bookingForm .form-group input,
-#bookingForm .form-group textarea {
+#bookingForm .form-group textarea, {
   width: 49.5%;
 }
 
@@ -39,13 +39,23 @@
   width: 100%;
 }
 
-#bookingForm .narrow input {
+#bookingForm .narrow input,
+#bookingForm .narrow select {
   width: 40%;
 }
 
 #bookingForm .narrow button {
   width: 18%;
   display: inline;
+}
+
+#bookingForm .selection button {
+  width: 40%;
+  margin: 0px auto 0px;
+}
+
+#bookingForm .locations button {
+  margin: 0px auto 0px;
 }
 
 #bookingForm .form-group input[type="checkbox"],

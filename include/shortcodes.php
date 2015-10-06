@@ -39,8 +39,23 @@ function booking_form() {
 
 		    <div class="form-group narrow">
 		      <input type="text" name="pickup" id="pickup" class="required" placeholder="' . __('Pickup Location', 'vbs') . '" />
+		      <select style="display: none;" id="pickup_location" name="pickup_location">
+		      	<option value="">' . __('Select location...', 'vbs') . '</option>
+		      	' . get_locations() . '
+		      </select>
+
 		      <input type="text" name="dropoff" id="dropoff" class="required" placeholder="' . __('Dropoff Location', 'vbs') . '" />
+		      <select style="display: none;" id="dropoff_location" name="dropoff_location">
+		      	<option value="">' . __('Select location...', 'vbs') . '</option>
+		      	' . get_locations() . '
+		      </select>
+
 		      <button class="act route" type="submit">' . __('Route!', 'vbs') . '</button>
+		    </div>
+
+		    <div class="form-group narrow selection">
+		    	<button class="act pick-loc-select" type="submit">' . __('Select Location', 'vbs') . '</button>
+		    	<button class="act drop-loc-select" type="submit">' . __('Select Location', 'vbs') . '</button>
 		    </div>
 
 		    <div class="form-group">

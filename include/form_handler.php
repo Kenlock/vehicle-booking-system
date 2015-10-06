@@ -1,12 +1,13 @@
 <?php
 
-// Check is contestant already exists
 add_action('wp_ajax_get_cars', 'ajax_get_car_list');
 add_action('wp_ajax_nopriv_get_cars', 'ajax_get_car_list');
 function ajax_get_car_list() {
   $distance = ($_POST['distance'])/1000;
   $is_return = $_POST['return'];
   $date_pickup = $_POST['pickup_date'];
+  $start_location_id = $_POST['start_id'];
+  $end_location_id = $_POST['end_id'];
 
   $args = array(
     'posts_per_page' => -1,
@@ -24,7 +25,7 @@ function ajax_get_car_list() {
       foreach ($image as $img) {
         $src = $img['url'];
       }
-      $cost = calculateCost( get_the_ID(), $distance, $date_pickup );
+      $cost = calculateCost( get_the_ID(), $distance, $date_pickup, $start_location_id, $end_location_id );
       if( $is_return == '1' ) {
         $cost = $cost * 2;
       }

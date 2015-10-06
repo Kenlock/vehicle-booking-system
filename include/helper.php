@@ -63,4 +63,18 @@ function remove_redux_menu() {
   remove_submenu_page('tools.php','redux-about');
 }
 
+function get_locations() {
+  $select = '';
+  $args = array(
+    'posts_per_page' => -1,
+    'post_type'   => 'locations',
+    'post_status' => 'publish',
+  );
+  $query = get_posts( $args );
+  foreach ($query as $location) {
+    $select .= '<option value="' . get_post_meta($location->ID, 'vbs_address', true) . '" data-id="' . $location->ID . '">' . get_the_title($location->ID) . '</option>';
+  }
+  return $select;
+}
+
 ?>

@@ -101,6 +101,17 @@ function vbs_register_meta_boxes( $meta_boxes )
 				'address_field' => $prefix . 'address',
 			),
 			array(
+				'name'        => __( 'Surcharge type', 'vbs' ),
+				'id'          => $prefix . 'location_sur_type',
+				'type'        => 'select',
+				'options'     => array(
+					'fixed' 	=> __( 'Fixed Amount', 'vbs' ),
+					'percent' => __( 'Percentage', 'vbs' ),
+				),
+				'std'         => 'paypal',
+				'placeholder' => __( 'Select surcharge type', 'vbs' ),
+			),
+			array(
 				'id'   => $prefix . 'location_charge',
 				'name' => __( 'Surcharge', 'vbs' ),
 				'type' => 'number',
