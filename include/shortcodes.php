@@ -73,6 +73,9 @@ function booking_form() {
 		    </div>
 
 		    <div class="form-group" id="route-info" style="display: none;"></div>
+			  <div id="route_map" style="display: none;">
+			  	<div id="map-canvas" style="width: 500px !important; height: 500px !important;"></div>
+			  </div>
 
 		    <div id="validation"></div>
 
@@ -159,7 +162,6 @@ function booking_form() {
 
 		  </div> <!-- step4 end -->
 
-		  <div id="map-canvas" style="display: none;"></div>
 		  <input type="hidden" name="security" id="security" value="' . wp_create_nonce( "booking-nonce" ) .'" />
 		  <input type="hidden" name="base_location" id="base_location" value="' . $booking['base_location'] . '" />
 

@@ -2,38 +2,46 @@ var map;
 var route;
 
 jQuery(document).ready(function($) {
-  //console.log( "ready!" );
 
 	$('#vbs_dist-button').on("click", function(e) {
 	  e.preventDefault();
+    map.removeRoutes();
+    var waypts = [];
+    waypts.push({
+      location: "Formionos 63, Athens, Greece",
+      stopover: false
+    })
 	  map.getRoutes({
 		  origin: $('#vbs_pickup').val(),
 		  destination: $('#vbs_dropoff').val(),
+      waypoints: waypts,
 		  travelMode: 'driving',
 		  callback: function(e){
 		    routes = e;
-		    //alert(routes[0].legs[0].distance.value);
-		    $('#vbs_distance').val(((routes[0].legs[0].distance.value)/1000).toFixed(2))
+		    $('#vbs_distance').val(((routes[0].legs[0].distance.value)/1000).toFixed(2));
+        alert("Route Calclulated");
 		  }
 		});
-	  //$('#vbs_distance').val(distance);
 	});
 
 	$('#vbs_cost-button').on("click", function(e) {
 	  e.preventDefault();
-	  var car = $('#vbs_car').val();
-	  $('#vbs_car_id').val(car);
-	  var distance = $('#vbs_distance').val();
+
 	  $.ajax({
       url: ajaxurl,
       type: 'post',
+      responseType: 'json',
+      dataType: 'json',
+      cache: false,
       data: {
-      	action : 'get_meta',
-      	postid: car,
-      	field: 'vbs_cost_dist',
+      	action : 'get_cost',
+      	carid: $('#vbs_car').val(),
+        total_distance: $('#vbs_distance').val(),
+        date: $('input[name=vbs_pickup_date]').val(),
       },
       success: function(response){
-	  		$('#vbs_cost').val(distance * response);
+	  		$('#vbs_cost').val(response);
+        alert("Cost Updated");
       }
     });
 	});

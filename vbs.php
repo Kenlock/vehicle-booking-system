@@ -69,6 +69,7 @@ function add_scripts() {
   wp_enqueue_style( 'font-awesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css' );
   wp_enqueue_style( 'datetime-css', PLUGIN_DIR_URL . 'css/jquery.datetimepicker.css' );
   wp_enqueue_style( 'qtip2-css', 'http://cdn.jsdelivr.net/qtip2/2.2.1/jquery.qtip.min.css' );
+  wp_enqueue_style( 'fancybox-css', PLUGIN_DIR_URL . 'css/jquery.fancybox.css' );
 
   // Scripts
   wp_enqueue_script( 'google-map', 'http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places', true );
@@ -85,6 +86,8 @@ function add_scripts() {
   wp_localize_script( 'form', 'booking', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
 
   wp_enqueue_script( 'qtip2', 'http://cdn.jsdelivr.net/qtip2/2.2.1/jquery.qtip.min.js', array('jquery','validate'), '2.2.1', true);
+
+  wp_enqueue_script( 'fancybox-js', PLUGIN_DIR_URL . 'js/jquery.fancybox.pack.js', array('jquery'), '2.1.5', true );
 }
 
 // Add columns to custom post type edit screen

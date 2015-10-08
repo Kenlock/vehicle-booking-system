@@ -4,11 +4,7 @@ add_action('wp_ajax_get_cost', 'ajax_calculateCost');
 add_action('wp_ajax_nopriv_get_cost', 'ajax_calculateCost');
 function ajax_calculateCost(){
 
-  $car_id = $_POST['carid'];
-  $distace = $_POST['distance'];
-  $date = $_POST['date'];
-
-  $cost = calculateCost($car_id, $distance, $date, '0', '0');
+  $cost = calculateCost($_POST['carid'], $_POST['total_distance'], $_POST['date'], '0', '0');
 
   echo json_encode( $cost );
   exit;

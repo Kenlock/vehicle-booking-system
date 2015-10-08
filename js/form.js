@@ -13,6 +13,19 @@ jQuery(document).ready(function($) {
 
   flush(); // Remove for pruduction
 
+  $(".modal").fancybox({
+    maxWidth  : 500,
+    maxHeight : 570,
+    fitToView : false,
+    width     : '70%',
+    height    : '70%',
+    autoSize  : false,
+    closeClick  : false,
+    openEffect  : 'none',
+    closeEffect : 'none',
+    padding   : 0
+  });
+
   $.validator.addMethod("notEqual", function(value, element, param) {
     return this.optional(element) || value != param;
   }, "The pickup and dropoff points cannot be the same");
@@ -147,6 +160,7 @@ jQuery(document).ready(function($) {
     lng: -77.028333,
     zoom: 16,
     height: '500px',
+    width: '500px'
   });
 
   // Geocomplete address fields
@@ -256,7 +270,32 @@ jQuery(document).ready(function($) {
         routes = results;
         distance = routes[0].legs[0].distance.value;
         set('dist', distance);
-        $("#route-info").html( '<i class="fa fa-map-o"></i> ' + routes[0].legs[0].distance.text + ' (aprox. ' + routes[0].legs[0].duration.text + ')' );
+
+        map.drawRoute({
+          origin: $('#base_location').val(),
+          destination: selected_destination,
+          waypoints: waypts,
+          travelMode: 'driving',
+          strokeColor: '#131540',
+          strokeOpacity: 0.6,
+          strokeWeight: 6
+        });
+
+        GMaps.geocode({
+          address: selected_pickup,
+          callback: function(results, status) {
+            if (status == 'OK') {
+              var latlng = results[0].geometry.location;
+              map.setCenter(latlng.lat(), latlng.lng());
+              map.addMarker({
+                lat: latlng.lat(),
+                lng: latlng.lng()
+              });
+            }
+          }
+        });
+
+        $("#route-info").html( '<i class="fa fa-map-o"></i> ' + routes[0].legs[0].distance.text + ' (aprox. ' + routes[0].legs[0].duration.text + ')' + ' <a class="modal" href="#route_map"><i class="fa fa-map-signs"></i></a>' );
       }
     });
   })
