@@ -135,9 +135,9 @@ function add_post_types() {
   $args_book = array(
     'labels'        => $labels_book,
     'description'   => __('Holds our Bookings specific data', 'vbs'),
-    'public'        => true,
+    'public'        => false,
     'supports'      => array( 'title' ),
-    'has_archive'   => true,
+    'has_archive'   => false,
     'menu_icon'     => 'dashicons-calendar-alt',
     'show_ui'       => true,
     'show_in_menu'  => 'vbs_admin_menu',

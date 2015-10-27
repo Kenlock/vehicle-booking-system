@@ -262,6 +262,8 @@ function user_bookings() {
 								</div>';
 		}
 		return $entries;
+	} else {
+		return "You must be logged in to see your bookings";
 	}
 }
 add_shortcode('my_bookings', 'user_bookings');
