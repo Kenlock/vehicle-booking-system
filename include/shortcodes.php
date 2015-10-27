@@ -224,7 +224,7 @@ function user_bookings() {
 		$args = array(
 			'post_type' 	=> 'bookings',
 			'post_status' => 'publish',
-			'limit'				=> -1,
+			'posts_per_page'				=> -1,
 			'meta_query' => array(
 				array(
 					'key' => 'vbs_email',
