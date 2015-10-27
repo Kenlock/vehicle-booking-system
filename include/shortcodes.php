@@ -83,11 +83,11 @@ function booking_form() {
 
 		  </div> <!-- step1 end -->
 
-		  </form>
+		</form>
 
 
 
-		  <form id="bookingForm" class="formStep2" method="POST" enctype="multipart/form-data">
+		<form id="bookingForm" class="formStep2" method="POST" enctype="multipart/form-data">
 
 		  <div class="step2" style="display: none;">
 
@@ -98,11 +98,47 @@ function booking_form() {
 
 		  </div> <!-- step2 end -->
 
-	  </form>
+	  </form>';
 
+	  if( is_user_logged_in() ) {
+	  	$user = wp_get_current_user();
 
+	  	$html .= '<form id="bookingForm" class="formStep3" method="POST" enctype="multipart/form-data">
 
-	  <form id="bookingForm" class="formStep3" method="POST" enctype="multipart/form-data">
+		  <div class="step3" style="display: none;">
+
+		  	<div class="info">
+
+		  		<h3 class="section">' . __('Contact info:', 'vbs') . '</h3>
+		      <div class="form-group">
+		        <input readonly type="text" name="first_name" id="first_name" class="required" value="'. $user->user_firstname .'" />
+		        <input readonly type="text" name="last_name" id="last_name" class="required" value="' . $user->user_lastname . '" />
+		      </div>
+
+		      <div class="form-group">
+		        <input readonly type="text" name="email" id="email" class="required" value="' . $user->user_email . '" />
+		        <input type="text" name="phone" id="phone" class="required" placeholder="' . __('Phone', 'vbs') . '" />
+		      </div>
+
+		      <div class="form-group wide">
+		        <textarea name="comments" id="comments">' . __('Message to driver', 'vbs') . '</textarea>
+		      </div>
+
+		      <div class="form-group">
+		        <h3 class="section">' . __('Payment Method:', 'vbs') . '</h3>
+		        Paypal <input type="radio" name="payment" id="payment" class="required" value="paypal" />
+		        Cash <input type="radio" name="payment" id="payment" class="required" value="cash" />
+		      </div>
+
+		  	</div>
+
+		  	<button class="btn" data-goto="4" type="submit"><i class="fa fa-arrow-right"></i> ' . __('Summary', 'vbs') . '</button>
+
+		  </div> <!-- step3 end -->
+
+	  </form>';
+		} else {
+			$html .= '<form id="bookingForm" class="formStep3" method="POST" enctype="multipart/form-data">
 
 		  <div class="step3" style="display: none;">
 
@@ -135,9 +171,10 @@ function booking_form() {
 
 		  </div> <!-- step3 end -->
 
-	  </form>
+	  </form>';
+		}
 
-	  <form id="bookingForm" class="formStep4" method="POST" enctype="multipart/form-data">
+	  $html .= '<form id="bookingForm" class="formStep4" method="POST" enctype="multipart/form-data">
 
 		  <div class="step4" style="display: none;">
 
@@ -179,4 +216,53 @@ return $html;
 }
 add_shortcode('bookingform', 'booking_form');
 
+function user_bookings() {
+	if( is_user_logged_in() ) {
+		global $booking;
+		$current_user = wp_get_current_user();
+
+		$args = array(
+			'post_type' 	=> 'bookings',
+			'post_status' => 'publish',
+			'limit'				=> -1,
+			'meta_query' => array(
+				array(
+					'key' => 'vbs_email',
+					'value' => $current_user->user_email,
+				)
+			)
+		);
+
+		$usr_bookings = get_posts( $args );
+		$entries = '';
+		foreach ($usr_bookings as $bookings) {
+			$entries .= '<div class="booking_entry">
+									<h4>#'. get_the_title($bookings->ID) .'</h4>
+									<div class="info">
+										<div class="pickup">
+											<span>From</span>
+											<p>'. get_post_meta($bookings->ID, 'vbs_pickup', true) .'</p>
+										</div>
+										<div class="dropoff">
+											<span>To</span>
+											<p>'. get_post_meta($bookings->ID, 'vbs_dropoff', true) .'</p>
+										</div>
+									</div>
+									<div class="details">
+										<div class="route">
+											<p>Date: '. get_post_meta($bookings->ID, 'vbs_pickup_date', true) .' @ '. get_post_meta($bookings->ID, 'vbs_pickup_time', true) .'</p>
+											<p>Return: '. get_post_meta($bookings->ID, 'vbs_return_date', true) .' @ '. get_post_meta($bookings->ID, 'vbs_return_time', true) .'</p>
+											<p>Car: '. get_the_title( get_post_meta($bookings->ID, 'vbs_car', true) ) .'</p>
+											<p>Cost: '. $booking['currency_symbol'] . get_post_meta($bookings->ID, 'vbs_cost', true) . '</p>
+										</div>
+										<div class="status">
+											<span>'. get_post_meta($bookings->ID,'vbs_status',true) .'</span>
+										</div>
+									</div>
+								</div>';
+		}
+		return $entries;
+	}
+}
+add_shortcode('my_bookings', 'user_bookings');
 ?>

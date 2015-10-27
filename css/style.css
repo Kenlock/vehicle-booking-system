@@ -118,3 +118,71 @@
   width: 500px;
   height: 500px;
 }
+
+/* User bookings */
+.booking_entry {
+  padding: 5px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.booking_entry .info {
+  height: 50px;
+  border-bottom: 1px dotted #ccc;
+}
+
+.booking_entry .info .pickup {
+  width: 48%;
+  float: left;
+  padding-right: 2%;
+  height: 50px;
+}
+
+.booking_entry .info .dropoff {
+  width: 48%;
+  float: right;
+  height: 50px
+}
+
+.booking_entry .info p {
+  font-size: 0.8em;
+}
+
+.booking_entry .info span {
+  display: block;
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.booking_entry .details {
+  height: 90px;
+  padding-top: 20px;
+}
+
+.booking_entry .details .route {
+  font-size: 0.9em;
+  line-height: 0px;
+  float: left;
+  width: 48%;
+  padding: 0 2% 0 0;
+}
+
+.booking_entry .details .status {
+  float: right;
+  width: 48%;
+  text-align: center;
+}
+
+.booking_entry .details .status span {
+  padding: 5px 10px;
+  background: #24890D none repeat scroll 0% 0%;
+  border-radius: 3px;
+  font-size: 1.4em;
+  display: block;
+  margin-top: 10%;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 0.8em;
+  font-weight: 900;
+}
