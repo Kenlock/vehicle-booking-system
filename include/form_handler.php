@@ -117,6 +117,12 @@ function ajax_create_booking() {
     }
     update_post_meta($post, 'vbs_status', "pending");
 
+    // Add base location (if available)
+    global $booking;
+    if( $booking['use_base'] ) {
+      update_post_meta($post, 'vbs_base', $booking['base_location']);
+    }
+
     // Send email
     $send = send_email( $email, $full_name, $post );
     if( $send ) {

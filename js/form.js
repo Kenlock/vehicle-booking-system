@@ -256,48 +256,88 @@ jQuery(document).ready(function($) {
       selected_destination = $("#dropoff").val();
     }
 
-    waypts.push({
-      location: selected_pickup,
-      stopover: false
-    })
-    map.removeRoutes();
-    map.getRoutes({
-      origin: $('#base_location').val(),
-      destination: selected_destination,
-      waypoints: waypts,
-      travelMode: 'driving',
-      callback: function(results){
-        routes = results;
-        distance = routes[0].legs[0].distance.value;
-        set('dist', distance);
+    if( $("#base_location").val() != '' ) {
+      waypts.push({
+        location: selected_pickup,
+        stopover: false
+      })
+      map.removeRoutes();
+      map.getRoutes({
+        origin: $('#base_location').val(),
+        destination: selected_destination,
+        waypoints: waypts,
+        travelMode: 'driving',
+        callback: function(results){
+          routes = results;
+          distance = routes[0].legs[0].distance.value;
+          set('dist', distance);
 
-        map.drawRoute({
-          origin: $('#base_location').val(),
-          destination: selected_destination,
-          waypoints: waypts,
-          travelMode: 'driving',
-          strokeColor: '#131540',
-          strokeOpacity: 0.6,
-          strokeWeight: 6
-        });
+          map.drawRoute({
+            origin: $('#base_location').val(),
+            destination: selected_destination,
+            waypoints: waypts,
+            travelMode: 'driving',
+            strokeColor: '#131540',
+            strokeOpacity: 0.6,
+            strokeWeight: 6
+          });
 
-        GMaps.geocode({
-          address: selected_pickup,
-          callback: function(results, status) {
-            if (status == 'OK') {
-              var latlng = results[0].geometry.location;
-              map.setCenter(latlng.lat(), latlng.lng());
-              map.addMarker({
-                lat: latlng.lat(),
-                lng: latlng.lng()
-              });
+          GMaps.geocode({
+            address: selected_pickup,
+            callback: function(results, status) {
+              if (status == 'OK') {
+                var latlng = results[0].geometry.location;
+                map.setCenter(latlng.lat(), latlng.lng());
+                map.addMarker({
+                  lat: latlng.lat(),
+                  lng: latlng.lng()
+                });
+              }
             }
-          }
-        });
+          });
 
-        $("#route-info").html( '<i class="fa fa-map-o"></i> ' + routes[0].legs[0].distance.text + ' (aprox. ' + routes[0].legs[0].duration.text + ')' + ' <a class="modal" href="#route_map"><i class="fa fa-map-signs"></i></a>' );
-      }
-    });
+          $("#route-info").html( '<i class="fa fa-map-o"></i> ' + routes[0].legs[0].distance.text + ' (aprox. ' + routes[0].legs[0].duration.text + ')' + ' <a class="modal" href="#route_map"><i class="fa fa-map-signs"></i></a>' );
+        }
+      });
+    } else {
+      map.removeRoutes();
+      map.getRoutes({
+        origin: selected_pickup,
+        destination: selected_destination,
+        travelMode: 'driving',
+        callback: function(results){
+          routes = results;
+          distance = routes[0].legs[0].distance.value;
+          set('dist', distance);
+
+          map.drawRoute({
+            origin: $('#base_location').val(),
+            destination: selected_destination,
+            waypoints: waypts,
+            travelMode: 'driving',
+            strokeColor: '#131540',
+            strokeOpacity: 0.6,
+            strokeWeight: 6
+          });
+
+          GMaps.geocode({
+            address: selected_pickup,
+            callback: function(results, status) {
+              if (status == 'OK') {
+                var latlng = results[0].geometry.location;
+                map.setCenter(latlng.lat(), latlng.lng());
+                map.addMarker({
+                  lat: latlng.lat(),
+                  lng: latlng.lng()
+                });
+              }
+            }
+          });
+
+          $("#route-info").html( '<i class="fa fa-map-o"></i> ' + routes[0].legs[0].distance.text + ' (aprox. ' + routes[0].legs[0].duration.text + ')' + ' <a class="modal" href="#route_map"><i class="fa fa-map-signs"></i></a>' );
+        }
+      });
+    }
   })
 
   // Ajax handler for all buttons

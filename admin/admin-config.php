@@ -129,6 +129,13 @@
         'icon'       => 'fa fa-cogs',
         'fields'     => array(
             array(
+                'id'       => 'use_base',
+                'type'     => 'switch',
+                'title'    => __('Use base Location', 'vbs'),
+                'default'  => true,
+            ),
+
+            array(
                 'id'       => 'base_location',
                 'type'     => 'text',
                 'title'    => __( 'Set your base location', 'vbs' ),

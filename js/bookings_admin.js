@@ -6,22 +6,35 @@ jQuery(document).ready(function($) {
 	$('#vbs_dist-button').on("click", function(e) {
 	  e.preventDefault();
     map.removeRoutes();
-    var waypts = [];
-    waypts.push({
-      location: "Formionos 63, Athens, Greece",
-      stopover: false
-    })
-	  map.getRoutes({
-		  origin: $('#vbs_pickup').val(),
-		  destination: $('#vbs_dropoff').val(),
-      waypoints: waypts,
-		  travelMode: 'driving',
-		  callback: function(e){
-		    routes = e;
-		    $('#vbs_distance').val(((routes[0].legs[0].distance.value)/1000).toFixed(2));
-        alert("Route Calclulated");
-		  }
-		});
+    if( $('#vbs_base').val() != '' ) {
+      var waypts = [];
+      waypts.push({
+        location: $('#vbs_pickup').val(),
+        stopover: false
+      })
+      map.getRoutes({
+        origin: $('#vbs_base').val(),
+        destination: $('#vbs_dropoff').val(),
+        waypoints: waypts,
+        travelMode: 'driving',
+        callback: function(e){
+          routes = e;
+          $('#vbs_distance').val(((routes[0].legs[0].distance.value)/1000).toFixed(2));
+          alert("Route Calclulated");
+        }
+      });
+    } else {
+      map.getRoutes({
+        origin: $('#vbs_pickup').val(),
+        destination: $('#vbs_dropoff').val(),
+        travelMode: 'driving',
+        callback: function(e){
+          routes = e;
+          $('#vbs_distance').val(((routes[0].legs[0].distance.value)/1000).toFixed(2));
+          alert("Route Calclulated");
+        }
+      });
+    }
 	});
 
 	$('#vbs_cost-button').on("click", function(e) {

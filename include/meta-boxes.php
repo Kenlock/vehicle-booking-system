@@ -129,6 +129,15 @@ function vbs_register_meta_boxes( $meta_boxes )
 		'pages'   => array( 'bookings' ),
 		'fields'  => array(
 
+			// Base location
+			array(
+				'name'  => __('Base Location', 'vbs'),
+				'id'    => $prefix . 'base',
+				'type'  => 'text',
+				'std'   => '',
+				'class' => 'hidden'
+			),
+
 			// Pick-up location
 			array(
 				'name'  => __('Pickup Location', 'vbs'),
@@ -257,13 +266,6 @@ function vbs_register_meta_boxes( $meta_boxes )
 					'post_status'    => 'publish',
 					'posts_per_page' => - 1,
 				)
-			),
-
-			// Holds the car id
-			array(
-				'id' => $prefix . 'car_id',
-				'type' => 'hidden',
-				'std' => __( '0', 'vbs' ),
 			),
 
 			// Cost calc button
