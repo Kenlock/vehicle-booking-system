@@ -77,16 +77,11 @@ function add_scripts() {
   wp_enqueue_script( 'geocomplete', PLUGIN_DIR_URL . 'js/jquery.geocomplete.min.js', array('jquery'), '1.4.0', true );
   wp_enqueue_script( 'validate', PLUGIN_DIR_URL . 'js/jquery.validate.min.js', array('jquery'), '1.14.0', true );
   wp_enqueue_script( 'jquery-form', array('jquery'), false, true );
-
   wp_enqueue_script( 'store', PLUGIN_DIR_URL . 'js/store.js', array(), '1.0', true );
-
   wp_enqueue_script( 'datetime-js', PLUGIN_DIR_URL . 'js/jquery.datetimepicker.full.min.js', array('jquery'), '2.4.5', true );
-
   wp_enqueue_script( 'form', PLUGIN_DIR_URL . 'js/form.js', array('jquery','jquery-form', 'validate'), '1.0.8', true );
   wp_localize_script( 'form', 'booking', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
-
   wp_enqueue_script( 'qtip2', 'http://cdn.jsdelivr.net/qtip2/2.2.1/jquery.qtip.min.js', array('jquery','validate'), '2.2.1', true);
-
   wp_enqueue_script( 'fancybox-js', PLUGIN_DIR_URL . 'js/jquery.fancybox.pack.js', array('jquery'), '2.1.5', true );
 }
 

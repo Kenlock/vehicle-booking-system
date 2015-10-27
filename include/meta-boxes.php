@@ -320,7 +320,6 @@ function vbs_register_meta_boxes( $meta_boxes )
 			),
 
 			// Payment details
-			// Status
 			array(
 				'name'        => __( 'Payment method', 'vbs' ),
 				'id'          => $prefix . 'payment',
