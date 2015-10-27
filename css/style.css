@@ -128,7 +128,7 @@
 }
 
 .booking_entry .info {
-  height: 50px;
+  height: 65px;
   border-bottom: 1px dotted #ccc;
 }
 
@@ -136,13 +136,11 @@
   width: 48%;
   float: left;
   padding-right: 2%;
-  height: 50px;
 }
 
 .booking_entry .info .dropoff {
   width: 48%;
   float: right;
-  height: 50px
 }
 
 .booking_entry .info p {
