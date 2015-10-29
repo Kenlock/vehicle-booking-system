@@ -77,4 +77,57 @@ function get_locations() {
   return $select;
 }
 
+// Add first and Last Name to the registration form
+add_action( 'register_form', 'add_fields_register_form', 10, 0 );
+function add_fields_register_form() {
+
+  echo '<p>
+  <label>First Name<br/>
+  <input type="text" name="first_name" id="first_name" class="input" value="' . esc_attr( $_POST['first_name'] ) . '" size="25" tabindex="30" />
+  </label>
+  </p>';
+
+  echo '<p>
+  <label>Last Name<br/>
+  <input type="text" name="last_name" id="last_name" class="input" value="' . esc_attr( $_POST['last_name'] ) .'" size="25" tabindex="40" />
+  </label>
+  </p>';
+
+}
+
+// Verify data
+add_filter( 'registration_errors', 'show_errors', 10, 3 );
+function show_errors( $errors, $login, $email ) {
+
+  if ( filter_input( INPUT_POST, 'first_name' ) == '' )
+      $errors->add( 'firstname_error', '<strong>ERROR:</strong> Please enter your First Name' );
+
+  if ( filter_input( INPUT_POST, 'last_name' ) == '' )
+      $errors->add( 'lastname_error', '<strong>ERROR:</strong> Please enter your Last Name' );
+
+  return $errors;
+
+}
+
+// Store Data
+add_action( 'user_register', 'user_register', 10, 1 );
+
+function user_register($user_id, $password='', $meta=array())  {
+
+    $userdata = array();
+    $userdata['ID'] = $user_id;
+    $userdata['first_name'] = $_POST['first_name'];
+    $userdata['last_name'] = $_POST['last_name'];
+
+    wp_update_user($userdata);
+    update_usermeta( $user_id, 'first_name', $_POST['first_name'] );
+    update_usermeta( $user_id, 'last_name', $_POST['last_name'] );
+
+}
+
+// Change Default user role to "Client"
+add_filter('pre_option_default_role', function($default_role){
+    return 'clients'; // This is changed
+});
+
 ?>
