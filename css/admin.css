@@ -7,3 +7,35 @@
 #driver-meta-general .rwmb-input input {
   width: 100%;
 }
+
+/* Help Page styling */
+#sections section {
+  float: left;
+  width: 75%;
+}
+
+#faq {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+#faq li span {
+  display: block;
+  font-size: 1.2em;
+  font-weight: 700;
+  padding: 0 0 10px 0;
+}
+
+#faq li {
+  padding: 10px 0;
+}
+
+#help_side {
+  float: right;
+  width: 250px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  padding: 10px;
+  margin-right: 20px;
+}

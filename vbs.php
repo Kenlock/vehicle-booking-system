@@ -59,6 +59,10 @@ function add_admin_scripts( $hook ) {
           wp_enqueue_script(  'bookings', PLUGIN_DIR_URL . 'js/bookings_admin.js', array('gmaps'), '1.0.0', true );
         }
     }
+
+    if( 'vehicle-booking_page_vbs-docs' == $hook ) {
+      wp_enqueue_style( 'admin-style', PLUGIN_DIR_URL . 'css/admin.css' );
+    }
 }
 
 //Register and add scripts
@@ -138,4 +142,9 @@ function handle_ipn_update( $posted ) {
 add_action( 'admin_menu', 'vbs_menu' );
 function vbs_menu() {
   add_menu_page( 'Vehicle Booking', 'Vehicle Booking', 'edit_others_posts', 'vbs_admin_menu', 'function()', 'dashicons-tickets-alt', 6 );
+  add_submenu_page( 'vbs_admin_menu', 'Help', 'Help', 'manage_options', 'vbs-docs', 'help_function' );
+}
+
+function help_function() {
+  include plugin_dir_path( __FILE__ ) . 'include/docs.php';
 }
