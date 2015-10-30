@@ -43,7 +43,7 @@
         'menu_icon'            => '',
         'last_tab'             => '',
         'page_icon'            => 'icon-themes',
-        'page_slug'            => '_options',
+        'page_slug'            => 'vbs_options',
         'save_defaults'        => true,
         'default_show'         => false,
         'default_mark'         => '',
