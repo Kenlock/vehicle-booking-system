@@ -78,7 +78,7 @@ function add_scripts() {
   wp_enqueue_style( 'fancybox-css', PLUGIN_DIR_URL . 'css/jquery.fancybox.css' );
 
   // Scripts
-  wp_enqueue_script( 'google-map', 'http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places', true );
+  wp_enqueue_script( 'google-map', 'http://maps.googleapis.com/maps/api/js?libraries=places', true );
   wp_enqueue_script( 'gmaps', PLUGIN_DIR_URL . 'js/gmaps.js', array('jquery','google-map'), '0.4.18', true );
   wp_enqueue_script( 'geocomplete', PLUGIN_DIR_URL . 'js/jquery.geocomplete.min.js', array('jquery'), '1.4.0', true );
   wp_enqueue_script( 'validate', PLUGIN_DIR_URL . 'js/jquery.validate.min.js', array('jquery'), '1.14.0', true );

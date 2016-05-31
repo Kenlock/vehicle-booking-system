@@ -13,19 +13,6 @@ jQuery(document).ready(function($) {
 
   flush(); // Remove for pruduction
 
-  $(".modal").fancybox({
-    maxWidth  : 500,
-    maxHeight : 570,
-    fitToView : false,
-    width     : '70%',
-    height    : '70%',
-    autoSize  : false,
-    closeClick  : false,
-    openEffect  : 'none',
-    closeEffect : 'none',
-    padding   : 0
-  });
-
   $.validator.addMethod("notEqual", function(value, element, param) {
     return this.optional(element) || value != param;
   }, "The pickup and dropoff points cannot be the same");
@@ -345,6 +332,20 @@ jQuery(document).ready(function($) {
       });
     }
   })
+
+  $(".modal").fancybox({
+    maxWidth  : 500,
+    maxHeight : 600,
+    fitToView : false,
+    width     : '70%',
+    height    : '80%',
+    autoSize  : true,
+    closeClick  : false,
+    openEffect  : 'none',
+    closeEffect : 'none',
+    padding   : 0,
+    hideContentOnClick: false
+  });
 
   // Ajax handler for all buttons
   $(".btn").on("click", function(e){
