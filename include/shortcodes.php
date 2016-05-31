@@ -258,7 +258,7 @@ function user_bookings() {
 											<p>Car: '. get_the_title( get_post_meta($bookings->ID, 'vbs_car', true) ) .'</p>
 											<p>Cost: '. $booking['currency_symbol'] . get_post_meta($bookings->ID, 'vbs_cost', true) . '</p>
 										</div>
-										<div class="status">
+										<div class="status '. get_post_meta($bookings->ID,'vbs_status',true) .'">
 											<span>'. get_post_meta($bookings->ID,'vbs_status',true) .'</span>
 										</div>
 									</div>

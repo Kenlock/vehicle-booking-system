@@ -162,8 +162,9 @@
   font-size: 0.9em;
   line-height: 0px;
   float: left;
-  width: 48%;
+  width: 50%;
   padding: 0 2% 0 0;
+  display: inline-block;
 }
 
 .booking_entry .details .status {
@@ -174,7 +175,6 @@
 
 .booking_entry .details .status span {
   padding: 5px 10px;
-  background: #24890D none repeat scroll 0% 0%;
   border-radius: 3px;
   font-size: 1.4em;
   display: block;
@@ -183,4 +183,16 @@
   text-transform: uppercase;
   font-size: 0.8em;
   font-weight: 900;
+}
+
+.booking_entry .details .confirmed span {
+  background: #24890D;
+}
+
+.booking_entry .details .pending span {
+  background: #779ECB;
+}
+
+.booking_entry .details .cancelled span {
+  background: #C23B22;
 }
