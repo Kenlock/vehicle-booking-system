@@ -164,8 +164,14 @@ jQuery(document).ready(function($) {
   });
 
   // Geocomplete address fields
-  $("#pickup").geocomplete();
-  $("#dropoff").geocomplete();
+  $("#pickup").geocomplete({
+    details: ".details",
+    detailsAttribute: "data-orig"
+  });
+  $("#dropoff").geocomplete({
+    details: ".details",
+    detailsAttribute: "data-dest"
+  });
 
   // Init for date-time fields
   $.datetimepicker.setLocale('en');
@@ -361,6 +367,9 @@ jQuery(document).ready(function($) {
         set( 'return_date', $("#date_return").val() );
         set( 'return_time', $("#time_return").val() );
       }
+      set( 'orig_zip', $('#orig_zip').val() );
+      set( 'dest_zip', $('#dest_zip').val() );
+
       // Form data
       var fd = new FormData();
       fd.append( "action", "get_cars" );
@@ -369,6 +378,8 @@ jQuery(document).ready(function($) {
       fd.append( "return", get('return') );
       fd.append( "start_id", get('start_location_id') );
       fd.append( "end_id", get('end_location_id') );
+      fd.append( "orig_zip", get('orig_zip') );
+      fd.append( "dest_zip", get('dest_zip') );
 
       // ajax call
       $.ajax({
