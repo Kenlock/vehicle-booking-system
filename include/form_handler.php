@@ -8,6 +8,8 @@ function ajax_get_car_list() {
   $date_pickup = $_POST['pickup_date'];
   $start_location_id = $_POST['start_id'];
   $end_location_id = $_POST['end_id'];
+  $orig_zip = str_replace(' ', '', $_POST['orig_zip']);
+  $dest_zip = str_replace(' ', '', $_POST['dest_zip']);
 
   $args = array(
     'posts_per_page' => -1,
@@ -25,7 +27,7 @@ function ajax_get_car_list() {
       foreach ($image as $img) {
         $src = $img['url'];
       }
-      $cost = calculateCost( get_the_ID(), $distance, $date_pickup, $start_location_id, $end_location_id );
+      $cost = calculateCost( get_the_ID(), $distance, $date_pickup, $start_location_id, $end_location_id, $orig_zip, $dest_zip );
       if( $is_return == '1' ) {
         $cost = $cost * 2;
       }

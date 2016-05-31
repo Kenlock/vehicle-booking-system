@@ -11,7 +11,7 @@ function ajax_calculateCost(){
 
 }
 
-function calculateCost( $car_id, $distance, $date, $start_id, $end_id ) {
+function calculateCost( $car_id, $distance, $date, $start_id, $end_id, $zip_start = nul, $zip_end = null ) {
 
   // Get pricing for selected car
   $pricing = get_post_meta( $car_id, 'vbs_pricing', true);
@@ -21,10 +21,10 @@ function calculateCost( $car_id, $distance, $date, $start_id, $end_id ) {
     }
   }
 
-  // Get any matching surcharges and add cost (fixed/percentage)
+  // Get any matching date surcharges and add cost (fixed/percentage)
   $args = array(
     'posts_per_page' => -1,
-    'post_type'   => 'surcharges',
+    'post_type'   => 'date_surcharges',
     'post_status' => 'publish',
   );
   $query = get_posts( $args );
@@ -50,6 +50,25 @@ function calculateCost( $car_id, $distance, $date, $start_id, $end_id ) {
           // Percentage
           $cost *= 1 + ( get_post_meta( $sur->ID, 'vbs_sur_amount', true) / 100 );
         }
+      }
+    }
+  }
+
+  // Get any matching postcode surcharges and add cost (fixed/percentage)
+  $args = array(
+    'posts_per_page' => -1,
+    'post_type'   => 'postcode_surcharges',
+    'post_status' => 'publish',
+  );
+  $query = get_posts( $args );
+  foreach( $query as $sur ) {
+    if( get_post_meta( $sur->ID, 'vbs_sur_postcode', true) == $zip_start || get_post_meta( $sur->ID, 'vbs_sur_postcode', true) == $zip_end ) {
+      if( get_post_meta( $sur->ID, 'vbs_po_sur_type', true) == 'fixed' ) {
+        // Fixed amount
+        $cost += get_post_meta( $sur->ID, 'vbs_po_sur_amount', true);
+      } else {
+        // Percentage
+        $cost *= 1 + ( get_post_meta( $sur->ID, 'vbs_po_sur_amount', true) / 100 );
       }
     }
   }

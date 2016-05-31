@@ -8,7 +8,7 @@ function vbs_register_meta_boxes( $meta_boxes )
 
 	// Cars Meta Box
 	$meta_boxes[] = array(
-		'id'			=> 'car-meta',
+		'id'	  => 'car-meta',
 		'title'   => __('Car Details', 'vbs'),
 		'pages'   => array( 'cars' ),
 		'context' => 'normal',
@@ -396,11 +396,11 @@ function vbs_register_meta_boxes( $meta_boxes )
 		)
 	);
 
-	// Surcharges meta box
+	// Date Surcharges meta box
 	$meta_boxes[] = array(
-		'id'			=> 'surcharges-meta',
+		'id'	  => 'surcharges-meta',
 		'title'   => __('Surcharge Details', 'vbs'),
-		'pages'   => array( 'surcharges' ),
+		'pages'   => array( 'date_surcharges' ),
 		'fields'  => array(
 
 			// Date Start
@@ -426,20 +426,58 @@ function vbs_register_meta_boxes( $meta_boxes )
 			),
 
 			// Surcharge Type
-      array(
-          'name'    => __( 'Surcharge type', 'vbs' ),
-          'id'      => $prefix . 'sur_type',
-          'type'    => 'radio',
-          'options' => array(
-              'fixed' => __( 'Fixed Amount', 'vbs' ),
-              'percent' => __( 'Percentage', 'vbs' ),
-          ),
-      ),
+		    array(
+		        'name'    => __( 'Surcharge type', 'vbs' ),
+		        'id'      => $prefix . 'sur_type',
+		        'type'    => 'radio',
+		        'options' => array(
+		            'fixed' => __( 'Fixed Amount', 'vbs' ),
+		            'percent' => __( 'Percentage', 'vbs' ),
+		        ),
+		    ),
 
 			// Amount
 			array(
 				'name'        => __( 'Surcharge', 'vbs' ),
 				'id'          => $prefix . 'sur_amount',
+				'type'        => 'number',
+				'step'        => 'any',
+				'min'         => 0,
+			),
+
+		)
+	);
+
+	// Postcode Surcharges meta box
+	$meta_boxes[] = array(
+		'id'	  => 'surcharges-meta-zip',
+		'title'   => __('Surcharge Details', 'vbs'),
+		'pages'   => array( 'postcode_surcharges' ),
+		'fields'  => array(
+
+			// Postcode
+			array(
+				'name' => __( 'Postcode', 'vbs' ),
+				'id'   => $prefix . 'sur_postcode',
+				'type' => 'text',
+				'std'  => ''
+			),
+
+			// Surcharge Type
+		    array(
+		        'name'    => __( 'Surcharge type', 'vbs' ),
+		        'id'      => $prefix . 'po_sur_type',
+		        'type'    => 'radio',
+		        'options' => array(
+		            'fixed' => __( 'Fixed Amount', 'vbs' ),
+		            'percent' => __( 'Percentage', 'vbs' ),
+		        ),
+		    ),
+
+			// Amount
+			array(
+				'name'        => __( 'Surcharge', 'vbs' ),
+				'id'          => $prefix . 'po_sur_amount',
 				'type'        => 'number',
 				'step'        => 'any',
 				'min'         => 0,

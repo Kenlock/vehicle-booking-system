@@ -30,9 +30,11 @@ if(isset($_REQUEST['action']) && $_REQUEST['action']=='ajaxFunctionMethod'){
 
 // Include the Redux files
 if ( !class_exists( 'ReduxFramework' ) && file_exists( dirname( __FILE__ ) . '/admin/framework.php' ) ) {
-    require_once PLUGIN_DIR . 'admin/framework.php';
+    require_once( dirname( __FILE__ ) . '/admin/framework.php' );
 }
-require_once (dirname(__FILE__) . '/admin/admin-config.php');
+if ( !isset( $redux_demo ) && file_exists( dirname( __FILE__ ) . '/admin/admin-config.php' ) ) {
+    require_once( dirname( __FILE__ ) . '/admin/admin-config.php' );
+}
 Redux::setExtensions( 'booking', dirname(__FILE__) . '/admin/vendor_support'  );
 
 if ( !class_exists( 'RW_Meta_Box' ) )

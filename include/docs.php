@@ -7,9 +7,41 @@
 <h2 class="nav-tab-wrapper">
   <a id="guide" class="nav-tab nav-tab-active" href="<?php echo admin_url() ?>/index.php?page=vbs-docs">Quick Guide</a>
   <a id="credits" class="nav-tab" href="<?php echo admin_url() ?>/index.php?page=vbs-docs">Credits</a>
+  <a id="faqtab" class="nav-tab" href="<?php echo admin_url() ?>/index.php?page=vbs-docs">FAQ</a>
 </h2>
 
 <div id="sections">
+  <section>
+    <h2>Usage</h2>
+    <p>Use one of the following available shortcodes to integrate the plugin with your theme.</p>
+    <ul id="usage">
+      <li><span>[carlist]</span>
+        Displays all cars currently in the system.
+      </li>
+      <li><span>[bookingform]</span>
+        Displays the multi-step ajax-powered booking form.
+      </li>
+      <li><span>[my_bookings]</span>
+        Displays the current logged in user's booking history.
+      </li>
+    </ul>
+  </section>
+  <section>
+    <h3>Third-party libraries</h3>
+    <ul id="third-party">
+      <li><a href="https://metabox.io/" target="_blank">Metabox</a></li>
+      <li><a href="https://hpneo.github.io/gmaps/" target="_blank">gmaps.js</a></li>
+      <li><a href="https://ubilabs.github.io/geocomplete/" target="_blank">$.geocomplete()</a></li>
+      <li><a href="http://fancyapps.com" target="_blank">Fancybox</a></li>
+      <li><a href="http://jqueryvalidation.org/" target="_blank">jQuery Validation Plugin</a></li>
+      <li><a href="https://reduxframework.com/" target="_blank">Redux Framework</a></li>
+    </ul>
+
+    <h3>People</h3>
+    <ul id="people">
+      <li><a href="http://interactive-design.gr" target="_blank">George Nikolopoulos</a></li>
+    </ul>
+  </section>
   <section>
     <h2>FAQ</h2>
     <ul id="faq">
@@ -43,19 +75,6 @@
       </li>
     </ul>
   </section>
-  <section>
-    <h3>Third-party libraries</h3>
-    <ul>
-      <li><a href="https://metabox.io/" target="_blank">Metabox</a></li>
-      <li><a href="https://hpneo.github.io/gmaps/" target="_blank">gmaps.js</a></li>
-      <li><a href="https://reduxframework.com/" target="_blank">Redux Framework</a></li>
-    </ul>
-
-    <h3>People</h3>
-    <ul>
-      <li>George Nikolopoulos</li>
-    </ul>
-  </section>
 </div>
 
 <div id="help_side">
@@ -67,7 +86,7 @@
 <script type="text/javascript">
 (function($) {
 
-  $('section').eq(1).hide();
+  $('section').not(':eq(0)').hide();
 
   $(document).on( 'click', '.nav-tab-wrapper a', function() {
     $('section').hide();

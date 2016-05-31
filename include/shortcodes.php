@@ -37,68 +37,71 @@ function booking_form() {
 
 			<div class="step1">
 
-		    <div class="form-group narrow">
-		      <input type="text" name="pickup" id="pickup" class="required" placeholder="' . __('Pickup Location', 'vbs') . '" />
-		      <select style="display: none;" id="pickup_location" name="pickup_location">
-		      	<option value="">' . __('Select location...', 'vbs') . '</option>
-		      	' . get_locations() . '
-		      </select>
+			    <div class="form-group narrow">
+			      <input type="text" name="pickup" id="pickup" class="required" placeholder="' . __('Pickup Location', 'vbs') . '" />
+			      <select style="display: none;" id="pickup_location" name="pickup_location">
+			      	<option value="">' . __('Select location...', 'vbs') . '</option>
+			      	' . get_locations() . '
+			      </select>
 
-		      <input type="text" name="dropoff" id="dropoff" class="required" placeholder="' . __('Dropoff Location', 'vbs') . '" />
-		      <select style="display: none;" id="dropoff_location" name="dropoff_location">
-		      	<option value="">' . __('Select location...', 'vbs') . '</option>
-		      	' . get_locations() . '
-		      </select>
+			      <input type="text" name="dropoff" id="dropoff" class="required" placeholder="' . __('Dropoff Location', 'vbs') . '" />
+			      <select style="display: none;" id="dropoff_location" name="dropoff_location">
+			      	<option value="">' . __('Select location...', 'vbs') . '</option>
+			      	' . get_locations() . '
+			      </select>
 
-		      <button class="act route" type="submit">' . __('Route!', 'vbs') . '</button>
-		    </div>
+			      <button class="act route" type="submit">' . __('Route!', 'vbs') . '</button>
+			    </div>
 
-		    <div class="form-group narrow selection">
-		    	<button class="act pick-loc-select" type="submit">' . __('Select Location', 'vbs') . '</button>
-		    	<button class="act drop-loc-select" type="submit">' . __('Select Location', 'vbs') . '</button>
-		    </div>
+			    <div class="form-group narrow selection">
+			    	<button class="act pick-loc-select" type="submit">' . __('Select Location', 'vbs') . '</button>
+			    	<button class="act drop-loc-select" type="submit">' . __('Select Location', 'vbs') . '</button>
+			    </div>
 
-		    <div class="form-group">
-		    	<input type="text" name="date_pickup" id="date_pickup" class="required" />
-		    	<input type="text" name="time_pickup" id="time_pickup" class="required" />
-		    </div>
+			    <div class="form-group">
+			    	<input type="text" name="date_pickup" id="date_pickup" class="required" />
+			    	<input type="text" name="time_pickup" id="time_pickup" class="required" />
+			    </div>
 
-		    <div class="form-group wide">
-		    	<label for="return">' . __('Return trip required?', 'vbs') . '</label> <input type="checkbox" name="return" id="return" />
-		    </div>
+			    <div class="form-group wide">
+			    	<label for="return">' . __('Return trip required?', 'vbs') . '</label> <input type="checkbox" name="return" id="return" />
+			    </div>
 
-		    <div class="form-group return_group" style="display: none;">
-		    	<input type="text" name="date_return" id="date_return" />
-		    	<input type="text" name="time_return" id="time_return" />
-		    </div>
+			    <div class="form-group return_group" style="display: none;">
+			    	<input type="text" name="date_return" id="date_return" />
+			    	<input type="text" name="time_return" id="time_return" />
+			    </div>
 
-		    <div class="form-group" id="route-info" style="display: none;"></div>
-			  <div id="route_map" style="display: none;">
-			  	<div id="map-canvas" style="width: 500px !important; height: 500px !important;"></div>
-			  </div>
+			    <div class="form-group" id="route-info" style="display: none;"></div>
+				  <div id="route_map" style="display: none;">
+				  	<div id="map-canvas" style="width: 500px !important; height: 500px !important;"></div>
+				  </div>
 
-		    <div id="validation"></div>
+			    <div id="validation"></div>
 
-		    <button class="btn" data-goto="2" type="submit"><i class="fa fa-arrow-right"></i> ' . __('Select Car', 'vbs') . '</button>
+			    <button class="btn" data-goto="2" type="submit"><i class="fa fa-arrow-right"></i> ' . __('Select Car', 'vbs') . '</button>
 
-		  </div> <!-- step1 end -->
+			    <div style="display: none;" class="details">
+			    	<input type="hidden" id="orig_zip" name="orig_zip" data-orig="postal_code" value="" />
+			    	<input type="hidden" id="dest_zip" name="dest_zip" data-dest="postal_code" value="" />
+			    </div>
+
+			</div> <!-- step1 end -->
 
 		</form>
 
-
-
 		<form id="bookingForm" class="formStep2" method="POST" enctype="multipart/form-data">
 
-		  <div class="step2" style="display: none;">
+			<div class="step2" style="display: none;">
 
-		  	<h3 class="section">' . __('Select car', 'vbs') . '</h3>
-		  	<div class="cars"></div>
+			  	<h3 class="section">' . __('Select car', 'vbs') . '</h3>
+			  	<div class="cars"></div>
 
-		  	<button class="btn" data-goto="3" type="submit"><i class="fa fa-arrow-right"></i> ' . __('Details', 'vbs') . '</button>
+			  	<button class="btn" data-goto="3" type="submit"><i class="fa fa-arrow-right"></i> ' . __('Details', 'vbs') . '</button>
 
-		  </div> <!-- step2 end -->
+			</div> <!-- step2 end -->
 
-	  </form>';
+	  	</form>';
 
 	  if( is_user_logged_in() ) {
 	  	$user = wp_get_current_user();
@@ -110,25 +113,25 @@ function booking_form() {
 		  	<div class="info">
 
 		  		<h3 class="section">' . __('Contact info:', 'vbs') . '</h3>
-		      <div class="form-group">
-		        <input readonly type="text" name="first_name" id="first_name" class="required" value="'. $user->user_firstname .'" />
-		        <input readonly type="text" name="last_name" id="last_name" class="required" value="' . $user->user_lastname . '" />
-		      </div>
+			    <div class="form-group">
+			    	<input readonly type="text" name="first_name" id="first_name" class="required" value="'. $user->user_firstname .'" />
+			        <input readonly type="text" name="last_name" id="last_name" class="required" value="' . $user->user_lastname . '" />
+			    </div>
 
-		      <div class="form-group">
-		        <input readonly type="text" name="email" id="email" class="required" value="' . $user->user_email . '" />
-		        <input type="text" name="phone" id="phone" class="required" placeholder="' . __('Phone', 'vbs') . '" />
-		      </div>
+			    <div class="form-group">
+			        <input readonly type="text" name="email" id="email" class="required" value="' . $user->user_email . '" />
+			        <input type="text" name="phone" id="phone" class="required" placeholder="' . __('Phone', 'vbs') . '" />
+			    </div>
 
-		      <div class="form-group wide">
-		        <textarea name="comments" id="comments">' . __('Message to driver', 'vbs') . '</textarea>
-		      </div>
+		        <div class="form-group wide">
+		        	<textarea name="comments" id="comments">' . __('Message to driver', 'vbs') . '</textarea>
+		        </div>
 
-		      <div class="form-group">
-		        <h3 class="section">' . __('Payment Method:', 'vbs') . '</h3>
-		        Paypal <input type="radio" name="payment" id="payment" class="required" value="paypal" />
-		        Cash <input type="radio" name="payment" id="payment" class="required" value="cash" />
-		      </div>
+		        <div class="form-group">
+			        <h3 class="section">' . __('Payment Method:', 'vbs') . '</h3>
+			        Paypal <input type="radio" name="payment" id="payment" class="required" value="paypal" />
+			        Cash <input type="radio" name="payment" id="payment" class="required" value="cash" />
+		        </div>
 
 		  	</div>
 
@@ -136,73 +139,73 @@ function booking_form() {
 
 		  </div> <!-- step3 end -->
 
-	  </form>';
+	  	</form>';
 		} else {
 			$html .= '<form id="bookingForm" class="formStep3" method="POST" enctype="multipart/form-data">
 
-		  <div class="step3" style="display: none;">
+		    <div class="step3" style="display: none;">
 
-		  	<div class="info">
+			  	<div class="info">
 
-		  		<h3 class="section">' . __('Contact info:', 'vbs') . '</h3>
-		      <div class="form-group">
-		        <input type="text" name="first_name" id="first_name" class="required" placeholder="' . __('First name', 'vbs') . '" />
-		        <input type="text" name="last_name" id="last_name" class="required" placeholder="' . __('Last name', 'vbs') . '" />
-		      </div>
+			  		<h3 class="section">' . __('Contact info:', 'vbs') . '</h3>
+			        <div class="form-group">
+			        	<input type="text" name="first_name" id="first_name" class="required" placeholder="' . __('First name', 'vbs') . '" />
+			        	<input type="text" name="last_name" id="last_name" class="required" placeholder="' . __('Last name', 'vbs') . '" />
+			        </div>
 
-		      <div class="form-group">
-		        <input type="text" name="email" id="email" class="required" placeholder="' . __('Email', 'vbs') . '" />
-		        <input type="text" name="phone" id="phone" class="required" placeholder="' . __('Phone', 'vbs') . '" />
-		      </div>
+			      	<div class="form-group">
+			        	<input type="text" name="email" id="email" class="required" placeholder="' . __('Email', 'vbs') . '" />
+			        	<input type="text" name="phone" id="phone" class="required" placeholder="' . __('Phone', 'vbs') . '" />
+			        </div>
 
-		      <div class="form-group wide">
-		        <textarea name="comments" id="comments">' . __('Message to driver', 'vbs') . '</textarea>
-		      </div>
+			      	<div class="form-group wide">
+			        	<textarea name="comments" id="comments">' . __('Message to driver', 'vbs') . '</textarea>
+			      	</div>
 
-		      <div class="form-group">
-		        <h3 class="section">' . __('Payment Method:', 'vbs') . '</h3>
-		        Paypal <input type="radio" name="payment" id="payment" class="required" value="paypal" />
-		        Cash <input type="radio" name="payment" id="payment" class="required" value="cash" />
-		      </div>
+			      	<div class="form-group">
+			        	<h3 class="section">' . __('Payment Method:', 'vbs') . '</h3>
+			        	Paypal <input type="radio" name="payment" id="payment" class="required" value="paypal" />
+			        	Cash <input type="radio" name="payment" id="payment" class="required" value="cash" />
+			      	</div>
 
-		  	</div>
+			  	</div>
 
-		  	<button class="btn" data-goto="4" type="submit"><i class="fa fa-arrow-right"></i> ' . __('Summary', 'vbs') . '</button>
+		  		<button class="btn" data-goto="4" type="submit"><i class="fa fa-arrow-right"></i> ' . __('Summary', 'vbs') . '</button>
 
 		  </div> <!-- step3 end -->
 
-	  </form>';
+		</form>';
 		}
 
 	  $html .= '<form id="bookingForm" class="formStep4" method="POST" enctype="multipart/form-data">
 
-		  <div class="step4" style="display: none;">
+		<div class="step4" style="display: none;">
 
 		  	<h3 class="section">' . __('Booking Summary', 'vbs') . '</h3>
 		  	<ul class="summary">
-	        <li><b>Full Name: </b><span id="s_full-name"></span></li>
-	        <li><b>Email: </b><span id="s_email"></span></li>
-	        <li><b>Phone: </b><span id="s_phone"></span></li>
-	        <li><b>Comments: </b><span id="s_comments"></span></li>
-	        <li><br /></li>
-	        <li><b>Pickup Location: </b><span id="s_pickup"></span></li>
-	        <li><b>Dropoff location: </b><span id="s_dropoff"></span></li>
-	        <li><b>Date &amp; Time: </b><span id="s_date-pickup"></span></li>
-	        <li><b>Return Journey: </b><span id="s_return"></span></li>
-	        <li><b>Return Date &amp; Time: </b><span id="s_date-return"></span></li>
-	        <li><br /></li>
-	        <li><b>Total Cost: </b>' . $booking['currency_symbol'] . '<span id="s_cost"></span></li>
-	        <li><b>Payment method: </b><span id="s_payment"></span></li>
-	      </ul>
+		        <li><b>Full Name: </b><span id="s_full-name"></span></li>
+		        <li><b>Email: </b><span id="s_email"></span></li>
+		        <li><b>Phone: </b><span id="s_phone"></span></li>
+		        <li><b>Comments: </b><span id="s_comments"></span></li>
+		        <li><br /></li>
+		        <li><b>Pickup Location: </b><span id="s_pickup"></span></li>
+		        <li><b>Dropoff location: </b><span id="s_dropoff"></span></li>
+		        <li><b>Date &amp; Time: </b><span id="s_date-pickup"></span></li>
+		        <li><b>Return Journey: </b><span id="s_return"></span></li>
+		        <li><b>Return Date &amp; Time: </b><span id="s_date-return"></span></li>
+		        <li><br /></li>
+		        <li><b>Total Cost: </b>' . $booking['currency_symbol'] . '<span id="s_cost"></span></li>
+		        <li><b>Payment method: </b><span id="s_payment"></span></li>
+		    </ul>
 
 		  	<button class="btn" data-goto="end" type="submit"><i class="fa fa-arrow-right"></i> ' . __('Book!', 'vbs') . '</button>
 
-		  </div> <!-- step4 end -->
+		</div> <!-- step4 end -->
 
-		  <input type="hidden" name="security" id="security" value="' . wp_create_nonce( "booking-nonce" ) .'" />
-		  <input type="hidden" name="base_location" id="base_location" value="' . $booking['base_location'] . '" />
+		<input type="hidden" name="security" id="security" value="' . wp_create_nonce( "booking-nonce" ) .'" />
+		<input type="hidden" name="base_location" id="base_location" value="' . $booking['base_location'] . '" />
 
-		</form>
+	</form>
 
 		<div class="final" style="display: none;">
 
@@ -222,10 +225,10 @@ function user_bookings() {
 		$current_user = wp_get_current_user();
 
 		$args = array(
-			'post_type' 	=> 'bookings',
-			'post_status' => 'publish',
-			'posts_per_page'				=> -1,
-			'meta_query' => array(
+			'post_type'   		=> 'bookings',
+			'post_status' 		=> 'publish',
+			'posts_per_page'	=> -1,
+			'meta_query' 		=> array(
 				array(
 					'key' => 'vbs_email',
 					'value' => $current_user->user_email,

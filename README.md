@@ -12,7 +12,14 @@ Features:
 * Date based surcharges (fixed or percentage based)
 * Locations can have extra charges
 
+Usage
+This plugin uses 3 main shortcodes:
+* [carlist] - Displays all cars currently in the system.
+* [bookingform] - Displays the multi-step ajax-powered booking form.
+* [my_bookings] - Displays the current logged in user's booking history.
+
 TODO:
+* More shortcodes
 * More plugin options
 * Better metabox handling
 * Better admin styling

@@ -14,21 +14,31 @@
   width: 75%;
 }
 
-#faq {
+#faq,
+#usage {
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 3px;
 }
 
-#faq li span {
+#faq li span,
+#usage li span {
   display: block;
   font-size: 1.2em;
   font-weight: 700;
   padding: 0 0 10px 0;
 }
 
-#faq li {
+#faq li,
+#usage li {
   padding: 10px 0;
+}
+
+#third-party li,
+#people li {
+  list-style-type: disc;
+  padding: 0 0 0 5px;
+  margin-left: 20px;
 }
 
 #help_side {

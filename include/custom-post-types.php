@@ -60,25 +60,25 @@ function add_post_types() {
   );
   register_post_type( 'drivers', $args_dri );
 
-  // Surcharges Post Type
+  // Date Surcharges Post Type
   $labels_sur = array(
-    'name'               => _x( 'Surcharges', 'post type general name' ),
-    'singular_name'      => _x( 'Surcharge', 'post type singular name' ),
+    'name'               => _x( 'Date Surcharges', 'post type general name' ),
+    'singular_name'      => _x( 'Date Surcharge', 'post type singular name' ),
     'add_new'            => _x( 'Add New', 'surcharge' ),
-    'add_new_item'       => __( 'Add New Surcharge', 'vbs' ),
-    'edit_item'          => __( 'Edit Surcharge', 'vbs' ),
-    'new_item'           => __( 'New Surcharge', 'vbs' ),
-    'all_items'          => __( 'Surcharges', 'vbs' ),
-    'view_item'          => __( 'View Surcharges', 'vbs' ),
-    'search_items'       => __( 'Search Surcharges', 'vbs' ),
-    'not_found'          => __( 'No surcharges found', 'vbs' ),
-    'not_found_in_trash' => __( 'No surcharges found in the Trash', 'vbs' ),
+    'add_new_item'       => __( 'Add New Date Surcharge', 'vbs' ),
+    'edit_item'          => __( 'Edit Date Surcharge', 'vbs' ),
+    'new_item'           => __( 'New Date Surcharge', 'vbs' ),
+    'all_items'          => __( 'Date Surcharges', 'vbs' ),
+    'view_item'          => __( 'View Date Surcharges', 'vbs' ),
+    'search_items'       => __( 'Search Date Surcharges', 'vbs' ),
+    'not_found'          => __( 'No date surcharges found', 'vbs' ),
+    'not_found_in_trash' => __( 'No date surcharges found in the Trash', 'vbs' ),
     'parent_item_colon'  => '',
-    'menu_name'          => __('Surcharges', 'vbs')
+    'menu_name'          => __('Date Surcharges', 'vbs')
   );
   $args_sur = array(
     'labels'        => $labels_sur,
-    'description'   => __('Holds our Surcharge specific data', 'vbs'),
+    'description'   => __('Holds our Date Surcharge specific data', 'vbs'),
     'public'        => false,
     'supports'      => array( 'title' ),
     'has_archive'   => false,
@@ -86,7 +86,35 @@ function add_post_types() {
     'show_ui'       => true,
     'show_in_menu'  => 'vbs_admin_menu',
   );
-  register_post_type( 'surcharges', $args_sur );
+  register_post_type( 'date_surcharges', $args_sur );
+
+  // Postcode Surcharges Post Type
+  $labels_sur = array(
+    'name'               => _x( 'Postcode Surcharges', 'post type general name' ),
+    'singular_name'      => _x( 'Postcode Surcharge', 'post type singular name' ),
+    'add_new'            => _x( 'Add New', 'surcharge' ),
+    'add_new_item'       => __( 'Add New Postcode Surcharge', 'vbs' ),
+    'edit_item'          => __( 'Edit Postcode Surcharge', 'vbs' ),
+    'new_item'           => __( 'New Postcode Surcharge', 'vbs' ),
+    'all_items'          => __( 'Postcode Surcharges', 'vbs' ),
+    'view_item'          => __( 'View Postcode Surcharges', 'vbs' ),
+    'search_items'       => __( 'Search Postcode Surcharges', 'vbs' ),
+    'not_found'          => __( 'No postcode surcharges found', 'vbs' ),
+    'not_found_in_trash' => __( 'No postcode surcharges found in the Trash', 'vbs' ),
+    'parent_item_colon'  => '',
+    'menu_name'          => __('Postcode Surcharges', 'vbs')
+  );
+  $args_sur = array(
+    'labels'        => $labels_sur,
+    'description'   => __('Holds our Postcode Surcharge specific data', 'vbs'),
+    'public'        => false,
+    'supports'      => array( 'title' ),
+    'has_archive'   => false,
+    'menu_icon'     => 'dashicons-flag',
+    'show_ui'       => true,
+    'show_in_menu'  => 'vbs_admin_menu',
+  );
+  register_post_type( 'postcode_surcharges', $args_sur );
 
   // Locations Post Type
   $labels_loc = array(
