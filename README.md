@@ -13,6 +13,7 @@ Features:
 * Locations can have extra charges
 
 Usage
+
 This plugin uses 3 main shortcodes:
 * [carlist] - Displays all cars currently in the system.
 * [bookingform] - Displays the multi-step ajax-powered booking form.
