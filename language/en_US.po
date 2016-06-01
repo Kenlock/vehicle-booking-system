@@ -1,0 +1,603 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: VBS v.1.0.1\n"
+"POT-Creation-Date: 2016-06-01 00:22+0300\n"
+"PO-Revision-Date: 2016-06-01 00:22+0300\n"
+"Last-Translator: \n"
+"Language-Team: Interactive Design <info@interactive-design.gr>\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: _e;__\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: admin\n"
+"X-Poedit-SearchPathExcluded-1: include/meta-box\n"
+"X-Poedit-SearchPathExcluded-2: include/phpmailer\n"
+"X-Poedit-SearchPathExcluded-3: include/tgm\n"
+
+#: include/custom-post-types.php:12
+msgid "Add New Car"
+msgstr ""
+
+#: include/custom-post-types.php:13
+msgid "Edit Car"
+msgstr ""
+
+#: include/custom-post-types.php:14
+msgid "New Car"
+msgstr ""
+
+#: include/custom-post-types.php:15 include/custom-post-types.php:21
+msgid "Cars"
+msgstr ""
+
+#: include/custom-post-types.php:16
+msgid "View Cars"
+msgstr ""
+
+#: include/custom-post-types.php:17
+msgid "Search Cars"
+msgstr ""
+
+#: include/custom-post-types.php:18
+msgid "No cars found"
+msgstr ""
+
+#: include/custom-post-types.php:19
+msgid "No cars found in the Trash"
+msgstr ""
+
+#: include/custom-post-types.php:25
+msgid "Holds our Cars specific data"
+msgstr ""
+
+#: include/custom-post-types.php:40
+msgid "Add New Driver"
+msgstr ""
+
+#: include/custom-post-types.php:41
+msgid "Edit Driver"
+msgstr ""
+
+#: include/custom-post-types.php:42
+msgid "New Driver"
+msgstr ""
+
+#: include/custom-post-types.php:43 include/custom-post-types.php:49
+msgid "Drivers"
+msgstr ""
+
+#: include/custom-post-types.php:44
+msgid "View Drivers"
+msgstr ""
+
+#: include/custom-post-types.php:45
+msgid "Search Drivers"
+msgstr ""
+
+#: include/custom-post-types.php:46
+msgid "No drivers found"
+msgstr ""
+
+#: include/custom-post-types.php:47
+msgid "No drivers found in the Trash"
+msgstr ""
+
+#: include/custom-post-types.php:53
+msgid "Holds our Drivers specific data"
+msgstr ""
+
+#: include/custom-post-types.php:68
+msgid "Add New Date Surcharge"
+msgstr ""
+
+#: include/custom-post-types.php:69
+msgid "Edit Date Surcharge"
+msgstr ""
+
+#: include/custom-post-types.php:70
+msgid "New Date Surcharge"
+msgstr ""
+
+#: include/custom-post-types.php:71 include/custom-post-types.php:77
+msgid "Date Surcharges"
+msgstr ""
+
+#: include/custom-post-types.php:72
+msgid "View Date Surcharges"
+msgstr ""
+
+#: include/custom-post-types.php:73
+msgid "Search Date Surcharges"
+msgstr ""
+
+#: include/custom-post-types.php:74
+msgid "No date surcharges found"
+msgstr ""
+
+#: include/custom-post-types.php:75
+msgid "No date surcharges found in the Trash"
+msgstr ""
+
+#: include/custom-post-types.php:81
+msgid "Holds our Date Surcharge specific data"
+msgstr ""
+
+#: include/custom-post-types.php:96
+msgid "Add New Postcode Surcharge"
+msgstr ""
+
+#: include/custom-post-types.php:97
+msgid "Edit Postcode Surcharge"
+msgstr ""
+
+#: include/custom-post-types.php:98
+msgid "New Postcode Surcharge"
+msgstr ""
+
+#: include/custom-post-types.php:99 include/custom-post-types.php:105
+msgid "Postcode Surcharges"
+msgstr ""
+
+#: include/custom-post-types.php:100
+msgid "View Postcode Surcharges"
+msgstr ""
+
+#: include/custom-post-types.php:101
+msgid "Search Postcode Surcharges"
+msgstr ""
+
+#: include/custom-post-types.php:102
+msgid "No postcode surcharges found"
+msgstr ""
+
+#: include/custom-post-types.php:103
+msgid "No postcode surcharges found in the Trash"
+msgstr ""
+
+#: include/custom-post-types.php:109
+msgid "Holds our Postcode Surcharge specific data"
+msgstr ""
+
+#: include/custom-post-types.php:124
+msgid "Add New Location"
+msgstr ""
+
+#: include/custom-post-types.php:125
+msgid "Edit Location"
+msgstr ""
+
+#: include/custom-post-types.php:126
+msgid "New Location"
+msgstr ""
+
+#: include/custom-post-types.php:127 include/custom-post-types.php:133
+msgid "Locations"
+msgstr ""
+
+#: include/custom-post-types.php:128
+msgid "View Locations"
+msgstr ""
+
+#: include/custom-post-types.php:129
+msgid "Search Locations"
+msgstr ""
+
+#: include/custom-post-types.php:130
+msgid "No locations found"
+msgstr ""
+
+#: include/custom-post-types.php:131
+msgid "No locations found in the Trash"
+msgstr ""
+
+#: include/custom-post-types.php:137
+msgid "Holds our Locations specific data"
+msgstr ""
+
+#: include/custom-post-types.php:152
+msgid "Add New Booking"
+msgstr ""
+
+#: include/custom-post-types.php:153
+msgid "Edit Booking"
+msgstr ""
+
+#: include/custom-post-types.php:154
+msgid "New Booking"
+msgstr ""
+
+#: include/custom-post-types.php:155 include/custom-post-types.php:161
+msgid "Bookings"
+msgstr ""
+
+#: include/custom-post-types.php:156
+msgid "View Bookings"
+msgstr ""
+
+#: include/custom-post-types.php:157
+msgid "Search Bookings"
+msgstr ""
+
+#: include/custom-post-types.php:158
+msgid "No bookings found"
+msgstr ""
+
+#: include/custom-post-types.php:159
+msgid "No bookings found in the Trash"
+msgstr ""
+
+#: include/custom-post-types.php:165
+msgid "Holds our Bookings specific data"
+msgstr ""
+
+#: include/form_handler.php:46
+msgid "Select"
+msgstr ""
+
+#: include/meta-boxes.php:12
+msgid "Car Details"
+msgstr ""
+
+#: include/meta-boxes.php:20
+msgid "Passengers"
+msgstr ""
+
+#: include/meta-boxes.php:29
+msgid "Luggage capacity"
+msgstr ""
+
+#: include/meta-boxes.php:38
+msgid "Handbag capacity"
+msgstr ""
+
+#: include/meta-boxes.php:47
+msgid "Child Seats available"
+msgstr ""
+
+#: include/meta-boxes.php:56
+msgid "Car Image"
+msgstr ""
+
+#: include/meta-boxes.php:67
+msgid "Pricing Table"
+msgstr ""
+
+#: include/meta-boxes.php:72
+msgid "Pricing"
+msgstr ""
+
+#: include/meta-boxes.php:76
+msgid "Distance from"
+msgstr ""
+
+#: include/meta-boxes.php:77
+msgid "Distance to"
+msgstr ""
+
+#: include/meta-boxes.php:78
+msgid "Cost"
+msgstr ""
+
+#: include/meta-boxes.php:87
+msgid "Location Details"
+msgstr ""
+
+#: include/meta-boxes.php:92
+msgid "Address"
+msgstr ""
+
+#: include/meta-boxes.php:98 include/meta-boxes.php:152
+#: include/meta-boxes.php:170
+msgid "Location"
+msgstr ""
+
+#: include/meta-boxes.php:104 include/meta-boxes.php:430
+#: include/meta-boxes.php:468
+msgid "Surcharge type"
+msgstr ""
+
+#: include/meta-boxes.php:108 include/meta-boxes.php:434
+#: include/meta-boxes.php:472
+msgid "Fixed Amount"
+msgstr ""
+
+#: include/meta-boxes.php:109 include/meta-boxes.php:435
+#: include/meta-boxes.php:473
+msgid "Percentage"
+msgstr ""
+
+#: include/meta-boxes.php:112
+msgid "Select surcharge type"
+msgstr ""
+
+#: include/meta-boxes.php:116 include/meta-boxes.php:441
+#: include/meta-boxes.php:479
+msgid "Surcharge"
+msgstr ""
+
+#: include/meta-boxes.php:128
+msgid "Booking Details"
+msgstr ""
+
+#: include/meta-boxes.php:134
+msgid "Base Location"
+msgstr ""
+
+#: include/meta-boxes.php:143 include/shortcodes.php:41
+msgid "Pickup Location"
+msgstr ""
+
+#: include/meta-boxes.php:161
+msgid "Drop-off location"
+msgstr ""
+
+#: include/meta-boxes.php:180
+msgid "Date"
+msgstr ""
+
+#: include/meta-boxes.php:192
+msgid "Time"
+msgstr ""
+
+#: include/meta-boxes.php:204
+msgid "Return Date"
+msgstr ""
+
+#: include/meta-boxes.php:216
+msgid "Return Time"
+msgstr ""
+
+#: include/meta-boxes.php:227
+msgid "Distance"
+msgstr ""
+
+#: include/meta-boxes.php:243
+msgid "Car"
+msgstr ""
+
+#: include/meta-boxes.php:249
+msgid "Select a Car"
+msgstr ""
+
+#: include/meta-boxes.php:258
+msgid "Driver"
+msgstr ""
+
+#: include/meta-boxes.php:264
+msgid "Select a Driver"
+msgstr ""
+
+#: include/meta-boxes.php:280
+msgid "Notes"
+msgstr ""
+
+#: include/meta-boxes.php:284
+msgid "Information intended for the driver"
+msgstr ""
+
+#: include/meta-boxes.php:295
+msgid "Customer Details"
+msgstr ""
+
+#: include/meta-boxes.php:303
+msgid "Full Name"
+msgstr ""
+
+#: include/meta-boxes.php:311 include/shortcodes.php:157
+msgid "Email"
+msgstr ""
+
+#: include/meta-boxes.php:319 include/shortcodes.php:123
+#: include/shortcodes.php:158
+msgid "Phone"
+msgstr ""
+
+#: include/meta-boxes.php:326
+msgid "Payment method"
+msgstr ""
+
+#: include/meta-boxes.php:330
+msgid "PayPal"
+msgstr ""
+
+#: include/meta-boxes.php:331
+msgid "Cash"
+msgstr ""
+
+#: include/meta-boxes.php:335
+msgid "Select payment method"
+msgstr ""
+
+#: include/meta-boxes.php:341
+msgid "Total cost"
+msgstr ""
+
+#: include/meta-boxes.php:348 include/meta-boxes.php:542
+msgid "Status"
+msgstr ""
+
+#: include/meta-boxes.php:352
+msgid "Pending"
+msgstr ""
+
+#: include/meta-boxes.php:353
+msgid "Confirmed"
+msgstr ""
+
+#: include/meta-boxes.php:354
+msgid "Cancelled"
+msgstr ""
+
+#: include/meta-boxes.php:358
+msgid "Select status"
+msgstr ""
+
+#: include/meta-boxes.php:367
+msgid "Payment Details"
+msgstr ""
+
+#: include/meta-boxes.php:375
+msgid "PayPal Transaction ID"
+msgstr ""
+
+#: include/meta-boxes.php:383
+msgid "Payer Email"
+msgstr ""
+
+#: include/meta-boxes.php:391
+msgid "Payment amount"
+msgstr ""
+
+#: include/meta-boxes.php:402 include/meta-boxes.php:454
+msgid "Surcharge Details"
+msgstr ""
+
+#: include/meta-boxes.php:408
+msgid "Date From"
+msgstr ""
+
+#: include/meta-boxes.php:419
+msgid "Date To"
+msgstr ""
+
+#: include/meta-boxes.php:460
+msgid "Postcode"
+msgstr ""
+
+#: include/meta-boxes.php:492
+msgid "Driver Personal Details"
+msgstr ""
+
+#: include/meta-boxes.php:500
+msgid "Driver Address"
+msgstr ""
+
+#: include/meta-boxes.php:508
+msgid "Driver Phone Number"
+msgstr ""
+
+#: include/meta-boxes.php:516
+msgid "Driver Email"
+msgstr ""
+
+#: include/meta-boxes.php:524
+msgid "Driver NIN"
+msgstr ""
+
+#: include/meta-boxes.php:532
+msgid "Driver Date of Birth"
+msgstr ""
+
+#: include/meta-boxes.php:546
+msgid "Active"
+msgstr ""
+
+#: include/meta-boxes.php:547
+msgid "Inactive"
+msgstr ""
+
+#: include/meta-boxes.php:558
+msgid "Driver Insurance Details"
+msgstr ""
+
+#: include/meta-boxes.php:565
+msgid "Insurance Expiry Date"
+msgstr ""
+
+#: include/meta-boxes.php:576
+msgid "MOT Expiry Date"
+msgstr ""
+
+#: include/meta-boxes.php:586
+msgid "Driver Insurance Notes"
+msgstr ""
+
+#: include/meta-boxes.php:600
+msgid "Driver Licence Details"
+msgstr ""
+
+#: include/meta-boxes.php:607
+msgid "Driver Taxi/PH Licence Number"
+msgstr ""
+
+#: include/meta-boxes.php:614
+msgid "Driver Taxi/PH Licence Expiry Date"
+msgstr ""
+
+#: include/meta-boxes.php:625
+msgid "Driver Vehicle Licence Plate"
+msgstr ""
+
+#: include/meta-boxes.php:632
+msgid "Vehicle Licence Plate Expiry Date"
+msgstr ""
+
+#: include/shortcodes.php:43 include/shortcodes.php:49
+msgid "Select location..."
+msgstr ""
+
+#: include/shortcodes.php:47
+msgid "Dropoff Location"
+msgstr ""
+
+#: include/shortcodes.php:53
+msgid "Route!"
+msgstr ""
+
+#: include/shortcodes.php:57 include/shortcodes.php:58
+msgid "Select Location"
+msgstr ""
+
+#: include/shortcodes.php:67
+msgid "Return trip required?"
+msgstr ""
+
+#: include/shortcodes.php:82
+msgid "Select Car"
+msgstr ""
+
+#: include/shortcodes.php:97
+msgid "Select car"
+msgstr ""
+
+#: include/shortcodes.php:100
+msgid "Details"
+msgstr ""
+
+#: include/shortcodes.php:115 include/shortcodes.php:150
+msgid "Contact info:"
+msgstr ""
+
+#: include/shortcodes.php:127 include/shortcodes.php:162
+msgid "Message to driver"
+msgstr ""
+
+#: include/shortcodes.php:131 include/shortcodes.php:166
+msgid "Payment Method:"
+msgstr ""
+
+#: include/shortcodes.php:138 include/shortcodes.php:173
+msgid "Summary"
+msgstr ""
+
+#: include/shortcodes.php:152
+msgid "First name"
+msgstr ""
+
+#: include/shortcodes.php:153
+msgid "Last name"
+msgstr ""
+
+#: include/shortcodes.php:184
+msgid "Booking Summary"
+msgstr ""
+
+#: include/shortcodes.php:201
+msgid "Book!"
+msgstr ""
