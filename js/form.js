@@ -445,6 +445,8 @@ jQuery(document).ready(function($) {
       //set('car_luggage', $("input[name=cost]:checked").data("luggage") );
       //set('car_hand', $("input[name=cost]:checked").data("hand") );
 
+      $("#total_cost").html( get('cost') );
+
       // Toggle
       $(".step2, .step3").slideToggle();
 
@@ -600,7 +602,35 @@ jQuery(document).ready(function($) {
     } else {
       $(".lead_passenger").hide();
     }
-  });
+  })
+
+  $("#adults, #kids, #luggage, #hand").change(function () {
+    if( this.value ) {
+      var passenger_data = new FormData();
+      passenger_data.append( "cost", get('cost') );
+      passenger_data.append( 'adults', $('#adults').val() );
+      passenger_data.append( 'kids', $('#kids').val() );
+      passenger_data.append( 'luggage', $('#luggage').val() );
+      passenger_data.append( 'hand', $('#hand').val() );
+      passenger_data.append( "car", get('car') );
+      passenger_data.append( "action", "recalculate_cost" );
+
+      // Ajax call to re-calculate cost based on passenger info
+      $.ajax({
+        url: booking.ajax_url,
+        processData: false,
+        contentType: false,
+        data: passenger_data,
+        type: 'POST',
+        responseType: 'html',
+        dataType: 'html',
+        success: function( cost_responce ) {
+          $('#total_cost').html( cost_responce );
+          set('cost', cost_response);
+        }
+      })
+    }
+  })
 
 });
 

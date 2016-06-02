@@ -21,7 +21,7 @@
     $args = array(
         'opt_name'             => $opt_name,
         'display_name'         => 'Vehicle Booking System',
-        'display_version'      => '1.0.0',
+        'display_version'      => '1.0.2',
         'menu_type'            => 'submenu',
         'allow_sub_menu'       => false,
         'menu_title'           => __( 'VBS Options', 'vbs' ),
@@ -148,6 +148,43 @@
                 'title'    => __( 'Set Currency symbol', 'vbs' ),
                 'default'  => '€',
             ),
+        )
+    ) );
+
+    Redux::setSection( $opt_name, array(
+        'title'      => __( 'Pricing Calclulation', 'vbs' ),
+        'id'         => 'opt-pricing',
+        'icon'       => 'fa fa-usd',
+        'fields'     => array(
+
+            array(
+                'id'       => 'adults_included',
+                'type'     => 'text',
+                'title'    => __( 'How many adults are included in the price of each vehicle?', 'vbs' ),
+                'default'  => '1',
+            ),
+
+            array(
+                'id'       => 'kids_included',
+                'type'     => 'text',
+                'title'    => __( 'How many children are included in the price of each vehicle?', 'vbs' ),
+                'default'  => '0',
+            ),
+
+            array(
+                'id'       => 'luggage_included',
+                'type'     => 'text',
+                'title'    => __( 'How many luggage pieces are included in the price of each vehicle?', 'vbs' ),
+                'default'  => '1',
+            ),
+
+            array(
+                'id'       => 'handbags_included',
+                'type'     => 'text',
+                'title'    => __( 'How many handbag pieces are included in the price of each vehicle?', 'vbs' ),
+                'default'  => '1',
+            ),
+
         )
     ) );
 

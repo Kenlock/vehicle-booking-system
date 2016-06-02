@@ -1,5 +1,46 @@
 <?php
 
+add_action('wp_ajax_recalculate_cost', 'ajax_recalculate_cost');
+add_action('wp_ajax_nopriv_recalculate_cost', 'ajax_recalculate_cost');
+function ajax_recalculate_cost() {
+
+  global $booking;
+
+  // Get surcharges for selected car
+  $adult_surcharge = get_post_meta( $_POST['car'], 'vbs_surcharge_adult', true);
+  $kids_surcharge = get_post_meta( $_POST['car'], 'vbs_surcharge_child', true);
+  $luggage_surcharge = get_post_meta( $_POST['car'], 'vbs_surcharge_luggage', true);
+  $handbag_surcharge = get_post_meta( $_POST['car'], 'vbs_surcharge_handbag', true);
+
+  // Passenger info
+  $adults = $_POST['adults'];
+  $kids = $_POST['kids'];
+  $luggage = $_POST['luggage'];
+  $handbags = $_POST['hand'];
+
+  // Original cost
+  $cost = $_POST['cost'];
+
+  if($adult_surcharge > 0 && $adults > $booking['adults_included']) {
+    $cost += ($adults-$booking['adults_included'])*$adult_surcharge;
+  }
+
+  if($kids_surcharge > 0 && $kids > $booking['kids_included']) {
+    $cost += ($kids-$booking['kids_included'])*$kids_surcharge;
+  }
+
+  if($luggage_surcharge > 0 && $luggage > $booking['luggage_included']) {
+    $cost += ($luggage-$booking['luggage_included'])*$luggage_surcharge;
+  }
+
+  if($handbag_surcharge > 0 && $handbags > $booking['handbags_included']) {
+    $cost += ($handbags-$booking['handbags_included'])*$handbag_surcharge;
+  }
+
+  echo $cost;
+
+}
+
 add_action('wp_ajax_get_cost', 'ajax_calculateCost');
 add_action('wp_ajax_nopriv_get_cost', 'ajax_calculateCost');
 function ajax_calculateCost(){

@@ -81,6 +81,53 @@ function vbs_register_meta_boxes( $meta_boxes )
 		)
 	);
 
+	// Cars Passengers Surcharge Box
+	$meta_boxes[] = array(
+		'id'	  => 'car-surcharge-meta',
+		'title'   => __('Extra Surcharges', 'vbs'),
+		'pages'   => array( 'cars' ),
+		'context' => 'normal',
+		'priority'=> 'high',
+		'fields'  => array(
+
+			// Adult Passengers
+			array(
+				'name'        => __( 'Additional cost per Adult Passenger', 'vbs' ),
+				'id'          => $prefix . 'surcharge_adult',
+				'type'        => 'number',
+				'step'        => 'any',
+				'min'         => 0,
+			),
+
+			// Child Passenger
+			array(
+				'name'        => __( 'Additional cost per Child Passenger', 'vbs' ),
+				'id'          => $prefix . 'surcharge_child',
+				'type'        => 'number',
+				'step'        => 'any',
+				'min'         => 0,
+			),
+
+			// Handbag
+			array(
+				'name'        => __( 'Additional cost per Handbag', 'vbs' ),
+				'id'          => $prefix . 'surcharge_handbag',
+				'type'        => 'number',
+				'step'        => 'any',
+				'min'         => 0,
+			),
+
+			// Luggage
+			array(
+				'name'        => __( 'Additional cost per Luggage', 'vbs' ),
+				'id'          => $prefix . 'surcharge_luggage',
+				'type'        => 'number',
+				'step'        => 'any',
+				'min'         => 0,
+			),
+		)
+	);
+
 	// Locations Meta Box
 	$meta_boxes[] = array(
 		'id'	  => 'loc-meta',
@@ -294,7 +341,7 @@ function vbs_register_meta_boxes( $meta_boxes )
 				'name'  => __('No. of Adults', 'vbs'),
 				'id'    => $prefix . 'adults',
 				'type'  => 'number',
-				'step'  => 'any',
+				'step'  => 1,
 				'min'   => 1,
 			),
 
@@ -303,7 +350,7 @@ function vbs_register_meta_boxes( $meta_boxes )
 				'name'  => __('No. of Children', 'vbs'),
 				'id'    => $prefix . 'kids',
 				'type'  => 'number',
-				'step'  => 'any',
+				'step'  => 1,
 				'min'   => 0,
 			),
 
@@ -312,7 +359,7 @@ function vbs_register_meta_boxes( $meta_boxes )
 				'name'  => __('No. of Luggage', 'vbs'),
 				'id'    => $prefix . 'luggage',
 				'type'  => 'number',
-				'step'  => 'any',
+				'step'  => 1,
 				'min'   => 0,
 			),
 
@@ -321,7 +368,7 @@ function vbs_register_meta_boxes( $meta_boxes )
 				'name'  => __('No. of Handbags', 'vbs'),
 				'id'    => $prefix . 'handbags',
 				'type'  => 'number',
-				'step'  => 'any',
+				'step'  => 1,
 				'min'   => 0,
 			),
 

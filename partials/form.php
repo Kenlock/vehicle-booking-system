@@ -114,15 +114,17 @@
 
 			    <h3 class="section"><?php _e('Passengers info:', 'vbs'); ?></h3>
 			    <div class="form-group">
-			        <input type="text" name="adults" id="adults" class="required" value="<?php _e('Adults', 'vbs'); ?>" />
-			        <input type="text" name="kids" id="kids" class="required" placeholder="<?php _e('Children', 'vbs'); ?>" />
-			        <input type="text" name="luggage" id="luggage" class="required" placeholder="<?php _e('Luggage', 'vbs'); ?>" />
-			        <input type="text" name="hand" id="hand" class="required" placeholder="<?php _e('Handbags', 'vbs'); ?>" />
+			        <input type="text" min="1" name="adults" id="adults" class="required" value="1" placeholder="<?php _e('Adults', 'vbs'); ?>" />
+			        <input type="text" min="0" name="kids" id="kids" class="" placeholder="<?php _e('Children', 'vbs'); ?>" />
+			        <input type="text" min="0" name="luggage" id="luggage" class="" placeholder="<?php _e('Luggage', 'vbs'); ?>" />
+			        <input type="text" min="0" name="hand" id="hand" class="" placeholder="<?php _e('Handbags', 'vbs'); ?>" />
 			    </div>
 
 		        <div class="form-group wide">
 		        	<textarea name="comments" id="comments"><?php _e('Message to driver', 'vbs'); ?></textarea>
 		        </div>
+
+		        <h3 class="section"><?php _e('Total Cost:', 'vbs'); ?> <?php echo $booking['currency_symbol']; ?><span id="total_cost"></span></h3>
 
 		        <h3 class="section"><?php _e('Payment Method:', 'vbs'); ?></h3>
 		        <div class="form-group">
@@ -178,15 +180,17 @@
 
 		        <h3 class="section"><?php _e('Passengers info:', 'vbs'); ?></h3>
 			    <div class="form-group 4col">
-			        <input type="number" name="adults" id="adults" class="required" value="<?php _e('Adults', 'vbs'); ?>" />
-			        <input type="number" name="kids" id="kids" class="" placeholder="<?php _e('Children', 'vbs'); ?>" />
-			        <input type="number" name="luggage" id="luggage" class="required" placeholder="<?php _e('Luggage', 'vbs'); ?>" />
-			        <input type="number" name="hand" id="hand" class="" placeholder="<?php _e('Handbags', 'vbs'); ?>" />
+			        <input type="number" min="1" name="adults" id="adults" class="required" value="1" placeholder="<?php _e('Adults', 'vbs'); ?>" />
+			        <input type="number" min="0" name="kids" id="kids" class="" placeholder="<?php _e('Children', 'vbs'); ?>" />
+			        <input type="number" min="0" name="luggage" id="luggage" class="" placeholder="<?php _e('Luggage', 'vbs'); ?>" />
+			        <input type="number" min="0" name="hand" id="hand" class="" placeholder="<?php _e('Handbags', 'vbs'); ?>" />
 			    </div>
 
 		      	<div class="form-group wide">
 		        	<textarea name="comments" id="comments"><?php _e('Message to driver', 'vbs'); ?></textarea>
 		      	</div>
+
+		      	<h3 class="section"><?php _e('Total Cost:', 'vbs'); ?> <?php echo $booking['currency_symbol']; ?><span id="total_cost"></span></h3>
 
 		      	<h3 class="section"><?php _e('Payment Method:', 'vbs'); ?></h3>
 		        <div class="form-group">

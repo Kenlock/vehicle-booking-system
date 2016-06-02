@@ -3,7 +3,7 @@
 * Plugin Name: Vehicle Booking System
 * Plugin URI: http://interactive-design.gr
 * Description: A vehicle booking system for Cab rentals
-* Version: 1.0
+* Version: 1.0.2
 * Author: George Nikolopoulos
 * Author URI: http://interactive-design.gr
 **/
