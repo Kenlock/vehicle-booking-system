@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: VBS v.1.0.1\n"
-"POT-Creation-Date: 2016-06-01 00:22+0300\n"
-"PO-Revision-Date: 2016-06-01 00:22+0300\n"
-"Last-Translator: \n"
+"POT-Creation-Date: 2016-06-02 11:00+0200\n"
+"PO-Revision-Date: 2016-06-02 11:00+0200\n"
+"Last-Translator: George Nikolopoulos <georgen@interactive-design.gr>\n"
 "Language-Team: Interactive Design <info@interactive-design.gr>\n"
 "Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.7.1\n"
+"X-Generator: Poedit 1.6.10\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -288,316 +288,489 @@ msgstr ""
 msgid "Location Details"
 msgstr ""
 
-#: include/meta-boxes.php:92
+#: include/meta-boxes.php:91
+msgid "Location type"
+msgstr ""
+
+#: include/meta-boxes.php:95
+msgid "Airport"
+msgstr ""
+
+#: include/meta-boxes.php:96
+msgid "Train Station"
+msgstr ""
+
+#: include/meta-boxes.php:97
+msgid "Bus Station"
+msgstr ""
+
+#: include/meta-boxes.php:98
+msgid "Ship Port"
+msgstr ""
+
+#: include/meta-boxes.php:99
+msgid "Other"
+msgstr ""
+
+#: include/meta-boxes.php:102
+msgid "Select location type"
+msgstr ""
+
+#: include/meta-boxes.php:106
 msgid "Address"
 msgstr ""
 
-#: include/meta-boxes.php:98 include/meta-boxes.php:152
-#: include/meta-boxes.php:170
+#: include/meta-boxes.php:112 include/meta-boxes.php:166
+#: include/meta-boxes.php:184
 msgid "Location"
 msgstr ""
 
-#: include/meta-boxes.php:104 include/meta-boxes.php:430
-#: include/meta-boxes.php:468
+#: include/meta-boxes.php:118 include/meta-boxes.php:515
+#: include/meta-boxes.php:553
 msgid "Surcharge type"
 msgstr ""
 
-#: include/meta-boxes.php:108 include/meta-boxes.php:434
-#: include/meta-boxes.php:472
+#: include/meta-boxes.php:122 include/meta-boxes.php:519
+#: include/meta-boxes.php:557
 msgid "Fixed Amount"
 msgstr ""
 
-#: include/meta-boxes.php:109 include/meta-boxes.php:435
-#: include/meta-boxes.php:473
+#: include/meta-boxes.php:123 include/meta-boxes.php:520
+#: include/meta-boxes.php:558
 msgid "Percentage"
 msgstr ""
 
-#: include/meta-boxes.php:112
+#: include/meta-boxes.php:126
 msgid "Select surcharge type"
 msgstr ""
 
-#: include/meta-boxes.php:116 include/meta-boxes.php:441
-#: include/meta-boxes.php:479
+#: include/meta-boxes.php:130 include/meta-boxes.php:526
+#: include/meta-boxes.php:564
 msgid "Surcharge"
 msgstr ""
 
-#: include/meta-boxes.php:128
+#: include/meta-boxes.php:142
 msgid "Booking Details"
 msgstr ""
 
-#: include/meta-boxes.php:134
+#: include/meta-boxes.php:148
 msgid "Base Location"
 msgstr ""
 
-#: include/meta-boxes.php:143 include/shortcodes.php:41
+#: include/meta-boxes.php:157 partials/form.php:8
 msgid "Pickup Location"
 msgstr ""
 
-#: include/meta-boxes.php:161
+#: include/meta-boxes.php:175
 msgid "Drop-off location"
 msgstr ""
 
-#: include/meta-boxes.php:180
+#: include/meta-boxes.php:194
 msgid "Date"
 msgstr ""
 
-#: include/meta-boxes.php:192
+#: include/meta-boxes.php:206
 msgid "Time"
 msgstr ""
 
-#: include/meta-boxes.php:204
+#: include/meta-boxes.php:218
 msgid "Return Date"
 msgstr ""
 
-#: include/meta-boxes.php:216
+#: include/meta-boxes.php:230
 msgid "Return Time"
 msgstr ""
 
-#: include/meta-boxes.php:227
+#: include/meta-boxes.php:241
 msgid "Distance"
 msgstr ""
 
-#: include/meta-boxes.php:243
+#: include/meta-boxes.php:257
 msgid "Car"
 msgstr ""
 
-#: include/meta-boxes.php:249
+#: include/meta-boxes.php:263
 msgid "Select a Car"
 msgstr ""
 
-#: include/meta-boxes.php:258
+#: include/meta-boxes.php:272
 msgid "Driver"
 msgstr ""
 
-#: include/meta-boxes.php:264
+#: include/meta-boxes.php:278
 msgid "Select a Driver"
 msgstr ""
 
-#: include/meta-boxes.php:280
-msgid "Notes"
-msgstr ""
-
-#: include/meta-boxes.php:284
-msgid "Information intended for the driver"
-msgstr ""
-
-#: include/meta-boxes.php:295
-msgid "Customer Details"
+#: include/meta-boxes.php:294
+msgid "No. of Adults"
 msgstr ""
 
 #: include/meta-boxes.php:303
-msgid "Full Name"
+msgid "No. of Children"
 msgstr ""
 
-#: include/meta-boxes.php:311 include/shortcodes.php:157
-msgid "Email"
+#: include/meta-boxes.php:312
+msgid "No. of Luggage"
 msgstr ""
 
-#: include/meta-boxes.php:319 include/shortcodes.php:123
-#: include/shortcodes.php:158
-msgid "Phone"
-msgstr ""
-
-#: include/meta-boxes.php:326
-msgid "Payment method"
+#: include/meta-boxes.php:321
+msgid "No. of Handbags"
 msgstr ""
 
 #: include/meta-boxes.php:330
+msgid "Notes"
+msgstr ""
+
+#: include/meta-boxes.php:334
+msgid "Information intended for the driver"
+msgstr ""
+
+#: include/meta-boxes.php:345
+msgid "Customer Details"
+msgstr ""
+
+#: include/meta-boxes.php:353 include/meta-boxes.php:425
+msgid "Full Name"
+msgstr ""
+
+#: include/meta-boxes.php:361 include/meta-boxes.php:433 partials/form.php:110
+#: partials/form.php:156 partials/form.php:174
+msgid "Email"
+msgstr ""
+
+#: include/meta-boxes.php:369 include/meta-boxes.php:441 partials/form.php:93
+#: partials/form.php:111 partials/form.php:157 partials/form.php:175
+msgid "Phone"
+msgstr ""
+
+#: include/meta-boxes.php:376
+msgid "Payment method"
+msgstr ""
+
+#: include/meta-boxes.php:380
 msgid "PayPal"
 msgstr ""
 
-#: include/meta-boxes.php:331
+#: include/meta-boxes.php:381 partials/form.php:130 partials/form.php:194
 msgid "Cash"
 msgstr ""
 
-#: include/meta-boxes.php:335
+#: include/meta-boxes.php:385
 msgid "Select payment method"
 msgstr ""
 
-#: include/meta-boxes.php:341
+#: include/meta-boxes.php:391
 msgid "Total cost"
 msgstr ""
 
-#: include/meta-boxes.php:348 include/meta-boxes.php:542
+#: include/meta-boxes.php:398 include/meta-boxes.php:627
 msgid "Status"
 msgstr ""
 
-#: include/meta-boxes.php:352
+#: include/meta-boxes.php:402
 msgid "Pending"
 msgstr ""
 
-#: include/meta-boxes.php:353
+#: include/meta-boxes.php:403
 msgid "Confirmed"
 msgstr ""
 
-#: include/meta-boxes.php:354
+#: include/meta-boxes.php:404
 msgid "Cancelled"
 msgstr ""
 
-#: include/meta-boxes.php:358
+#: include/meta-boxes.php:408
 msgid "Select status"
 msgstr ""
 
-#: include/meta-boxes.php:367
+#: include/meta-boxes.php:417
+msgid "Lead Passenger Details"
+msgstr ""
+
+#: include/meta-boxes.php:452
 msgid "Payment Details"
 msgstr ""
 
-#: include/meta-boxes.php:375
+#: include/meta-boxes.php:460
 msgid "PayPal Transaction ID"
 msgstr ""
 
-#: include/meta-boxes.php:383
+#: include/meta-boxes.php:468
 msgid "Payer Email"
 msgstr ""
 
-#: include/meta-boxes.php:391
+#: include/meta-boxes.php:476
 msgid "Payment amount"
 msgstr ""
 
-#: include/meta-boxes.php:402 include/meta-boxes.php:454
+#: include/meta-boxes.php:487 include/meta-boxes.php:539
 msgid "Surcharge Details"
 msgstr ""
 
-#: include/meta-boxes.php:408
+#: include/meta-boxes.php:493
 msgid "Date From"
 msgstr ""
 
-#: include/meta-boxes.php:419
+#: include/meta-boxes.php:504
 msgid "Date To"
 msgstr ""
 
-#: include/meta-boxes.php:460
+#: include/meta-boxes.php:545
 msgid "Postcode"
 msgstr ""
 
-#: include/meta-boxes.php:492
+#: include/meta-boxes.php:577
 msgid "Driver Personal Details"
 msgstr ""
 
-#: include/meta-boxes.php:500
+#: include/meta-boxes.php:585
 msgid "Driver Address"
 msgstr ""
 
-#: include/meta-boxes.php:508
+#: include/meta-boxes.php:593
 msgid "Driver Phone Number"
 msgstr ""
 
-#: include/meta-boxes.php:516
+#: include/meta-boxes.php:601
 msgid "Driver Email"
 msgstr ""
 
-#: include/meta-boxes.php:524
+#: include/meta-boxes.php:609
 msgid "Driver NIN"
 msgstr ""
 
-#: include/meta-boxes.php:532
+#: include/meta-boxes.php:617
 msgid "Driver Date of Birth"
 msgstr ""
 
-#: include/meta-boxes.php:546
+#: include/meta-boxes.php:631
 msgid "Active"
 msgstr ""
 
-#: include/meta-boxes.php:547
+#: include/meta-boxes.php:632
 msgid "Inactive"
 msgstr ""
 
-#: include/meta-boxes.php:558
+#: include/meta-boxes.php:643
 msgid "Driver Insurance Details"
 msgstr ""
 
-#: include/meta-boxes.php:565
+#: include/meta-boxes.php:650
 msgid "Insurance Expiry Date"
 msgstr ""
 
-#: include/meta-boxes.php:576
+#: include/meta-boxes.php:661
 msgid "MOT Expiry Date"
 msgstr ""
 
-#: include/meta-boxes.php:586
+#: include/meta-boxes.php:671
 msgid "Driver Insurance Notes"
 msgstr ""
 
-#: include/meta-boxes.php:600
+#: include/meta-boxes.php:685
 msgid "Driver Licence Details"
 msgstr ""
 
-#: include/meta-boxes.php:607
+#: include/meta-boxes.php:692
 msgid "Driver Taxi/PH Licence Number"
 msgstr ""
 
-#: include/meta-boxes.php:614
+#: include/meta-boxes.php:699
 msgid "Driver Taxi/PH Licence Expiry Date"
 msgstr ""
 
-#: include/meta-boxes.php:625
+#: include/meta-boxes.php:710
 msgid "Driver Vehicle Licence Plate"
 msgstr ""
 
-#: include/meta-boxes.php:632
+#: include/meta-boxes.php:717
 msgid "Vehicle Licence Plate Expiry Date"
 msgstr ""
 
-#: include/shortcodes.php:43 include/shortcodes.php:49
+#: partials/form.php:10 partials/form.php:16
 msgid "Select location..."
 msgstr ""
 
-#: include/shortcodes.php:47
+#: partials/form.php:14
 msgid "Dropoff Location"
 msgstr ""
 
-#: include/shortcodes.php:53
+#: partials/form.php:20
 msgid "Route!"
 msgstr ""
 
-#: include/shortcodes.php:57 include/shortcodes.php:58
+#: partials/form.php:24 partials/form.php:25
 msgid "Select Location"
 msgstr ""
 
-#: include/shortcodes.php:67
+#: partials/form.php:29
+msgid "Pickup Date"
+msgstr ""
+
+#: partials/form.php:30
+msgid "Pickup Time"
+msgstr ""
+
+#: partials/form.php:34
 msgid "Return trip required?"
 msgstr ""
 
-#: include/shortcodes.php:82
+#: partials/form.php:38
+msgid "Dropoff Date"
+msgstr ""
+
+#: partials/form.php:39
+msgid "Dropoff Time"
+msgstr ""
+
+#: partials/form.php:50
 msgid "Select Car"
 msgstr ""
 
-#: include/shortcodes.php:97
+#: partials/form.php:65
 msgid "Select car"
 msgstr ""
 
-#: include/shortcodes.php:100
+#: partials/form.php:68
 msgid "Details"
 msgstr ""
 
-#: include/shortcodes.php:115 include/shortcodes.php:150
+#: partials/form.php:85 partials/form.php:149
 msgid "Contact info:"
 msgstr ""
 
-#: include/shortcodes.php:127 include/shortcodes.php:162
-msgid "Message to driver"
+#: partials/form.php:96 partials/form.php:160
+msgid "I am booking for:"
 msgstr ""
 
-#: include/shortcodes.php:131 include/shortcodes.php:166
-msgid "Payment Method:"
+#: partials/form.php:98 partials/form.php:162
+msgid "Myself"
 msgstr ""
 
-#: include/shortcodes.php:138 include/shortcodes.php:173
-msgid "Summary"
+#: partials/form.php:99 partials/form.php:163
+msgid "Someone else"
 msgstr ""
 
-#: include/shortcodes.php:152
+#: partials/form.php:103 partials/form.php:167
+msgid "Lead Passenger info:"
+msgstr ""
+
+#: partials/form.php:105 partials/form.php:151 partials/form.php:169
 msgid "First name"
 msgstr ""
 
-#: include/shortcodes.php:153
+#: partials/form.php:106 partials/form.php:152 partials/form.php:170
 msgid "Last name"
 msgstr ""
 
-#: include/shortcodes.php:184
+#: partials/form.php:115 partials/form.php:179
+msgid "Passengers info:"
+msgstr ""
+
+#: partials/form.php:117 partials/form.php:181
+msgid "Adults"
+msgstr ""
+
+#: partials/form.php:118 partials/form.php:182
+msgid "Children"
+msgstr ""
+
+#: partials/form.php:119 partials/form.php:183
+msgid "Luggage"
+msgstr ""
+
+#: partials/form.php:120 partials/form.php:184
+msgid "Handbags"
+msgstr ""
+
+#: partials/form.php:124 partials/form.php:188
+msgid "Message to driver"
+msgstr ""
+
+#: partials/form.php:127 partials/form.php:191
+msgid "Payment Method:"
+msgstr ""
+
+#: partials/form.php:129 partials/form.php:193
+msgid "Paypal"
+msgstr ""
+
+#: partials/form.php:135 partials/form.php:199
+msgid "Summary"
+msgstr ""
+
+#: partials/form.php:211
 msgid "Booking Summary"
 msgstr ""
 
-#: include/shortcodes.php:201
+#: partials/form.php:213 partials/form.php:219
+msgid "Full Name:"
+msgstr ""
+
+#: partials/form.php:214 partials/form.php:220
+msgid "Email:"
+msgstr ""
+
+#: partials/form.php:215 partials/form.php:221
+msgid "Phone:"
+msgstr ""
+
+#: partials/form.php:216
+msgid "Comments:"
+msgstr ""
+
+#: partials/form.php:218
+msgid "Lead passenger info:"
+msgstr ""
+
+#: partials/form.php:223
+msgid "Paggengers info:"
+msgstr ""
+
+#: partials/form.php:224
+msgid "Adults:"
+msgstr ""
+
+#: partials/form.php:225
+msgid "Children:"
+msgstr ""
+
+#: partials/form.php:226
+msgid "Luggage:"
+msgstr ""
+
+#: partials/form.php:227
+msgid "Handbags:"
+msgstr ""
+
+#: partials/form.php:229
+msgid "Pickup Location:"
+msgstr ""
+
+#: partials/form.php:230
+msgid "Dropoff location:"
+msgstr ""
+
+#: partials/form.php:231
+msgid "Date &amp; Time:"
+msgstr ""
+
+#: partials/form.php:232
+msgid "Return Journey:"
+msgstr ""
+
+#: partials/form.php:233
+msgid "Return Date &amp; Time:"
+msgstr ""
+
+#: partials/form.php:235
+msgid "Total Cost:"
+msgstr ""
+
+#: partials/form.php:236
+msgid "Payment method:"
+msgstr ""
+
+#: partials/form.php:239
 msgid "Book!"
 msgstr ""

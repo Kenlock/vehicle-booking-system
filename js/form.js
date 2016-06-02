@@ -191,11 +191,11 @@ jQuery(document).ready(function($) {
   // Geocomplete address fields
   $("#pickup").geocomplete({
     details: ".details",
-    detailsAttribute: "data-orig"
+    detailsAttribute: "data-orig",
   });
   $("#dropoff").geocomplete({
     details: ".details",
-    detailsAttribute: "data-dest"
+    detailsAttribute: "data-dest",
   });
 
   // Init for date-time fields
