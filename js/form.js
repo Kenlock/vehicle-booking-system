@@ -624,9 +624,10 @@ jQuery(document).ready(function($) {
         type: 'POST',
         responseType: 'html',
         dataType: 'html',
-        success: function( cost_responce ) {
-          $('#total_cost').html( cost_responce );
+        success: function( cost_response ) {
+          $('#total_cost').html( cost_response );
           set('cost', cost_response);
+          console.log( get('cost') );
         }
       })
     }
