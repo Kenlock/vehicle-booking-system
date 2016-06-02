@@ -19,7 +19,7 @@ function add_roles_on_plugin_activation() {
 register_activation_hook( __FILE__, 'add_roles_on_plugin_activation' );
 
 function vbs_load_plugin_textdomain() {
-  load_plugin_textdomain( 'vbs', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
+  load_plugin_textdomain( 'vbs', FALSE, basename( dirname( __FILE__ ) ) . '/language/' );
 }
 add_action( 'plugins_loaded', 'vbs_load_plugin_textdomain' );
 
