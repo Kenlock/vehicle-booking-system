@@ -113,6 +113,10 @@
   width: 23%;
 }
 
+#bookingForm .four_col input[type="number"] {
+  width: 24.5%;
+}
+
 /* Map options */
 #bookingForm #map-canvas {
   width: 500px;

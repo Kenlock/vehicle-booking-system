@@ -75,6 +75,16 @@ function ajax_create_booking() {
   $full_name    = $_POST['full_name'];
   $phone        = $_POST['phone'];
   $email        = $_POST['email'];
+  $lead         = $_POST['lead'];
+  if( $lead != 'self' ) {
+    $lead_full_name = $_POST['lead_full_name'];
+    $lead_email     = $_POST['lead_email'];
+    $lead_phone     = $_POST['lead_phone'];
+  }
+  $adults       = $_POST['adults'];
+  $kids         = $_POST['kids'];
+  $luggage      = $_POST['luggage'];
+  $handbags     = $_POST['hand'];
   $notes        = $_POST['notes'];
   $payment      = $_POST['payment'];
 
@@ -109,6 +119,19 @@ function ajax_create_booking() {
     update_post_meta($post, "vbs_full_name", $full_name);
     update_post_meta($post, 'vbs_email', $email);
     update_post_meta($post, 'vbs_phone', $phone);
+
+    // Lead passenger details
+    if( $lead != 'self' ) {
+      update_post_meta($post, "vbs_lead_full_name", $lead_full_name );
+      update_post_meta($post, "vbs_lead_email", $lead_email);
+      update_post_meta($post, "vbs_lead_phone", $lead_phone);
+    }
+
+    update_post_meta($post, "vbs_adults", $adults );
+    update_post_meta($post, "vbs_kids", $kids);
+    update_post_meta($post, "vbs_luggage", $luggage);
+    update_post_meta($post, "vbs_handbags", $handbags);
+
     update_post_meta($post, 'vbs_payment', $payment);
     update_post_meta($post, 'vbs_cost', $cost);
 

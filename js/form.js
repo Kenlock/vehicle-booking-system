@@ -17,6 +17,10 @@ jQuery(document).ready(function($) {
     return this.optional(element) || value != param;
   }, "The pickup and dropoff points cannot be the same");
 
+  $.validator.addMethod('minStrict', function (value, el, param) {
+    return value >= param;
+  });
+
   $(".formStep1").validate({
     rules: {
       pickup: {
@@ -91,6 +95,23 @@ jQuery(document).ready(function($) {
       phone: {
         required: true
       },
+      lead: {
+        required: true
+      },
+      adults: {
+        required: true,
+        minStrict: 1,
+        number: true
+      },
+      kids: {
+        number: true
+      },
+      luggage: {
+        number: true
+      },
+      hand: {
+        number: true
+      },
       payment: {
         required: true
       }
@@ -107,6 +128,23 @@ jQuery(document).ready(function($) {
       },
       phone: {
         required: "Enter a contact phone"
+      },
+      lead: {
+        required: "Please select if this booking is for you or others"
+      },
+      adults: {
+        required: "Please enter number of adults",
+        minStrict: "You cannot have less than 1 adults",
+        number: "Only numbers are accepted"
+      },
+      kids: {
+        number: "Only numbers are accepted"
+      },
+      luggage: {
+        number: "Only numbers are accepted"
+      },
+      hand: {
+        number: "Only numbers are accepted"
       },
       payment: {
         required: "Please select a payment method"
@@ -401,6 +439,12 @@ jQuery(document).ready(function($) {
       $(this).html('<i class="fa fa-spinner fa-pulse"></i> Working...');
       set('cost', $("input[name=cost]:checked").val() );
       set('car', $("input[name=cost]:checked").data("id") );
+
+      //set('car_adults', $("input[name=cost]:checked").data("adults") );
+      //set('car_kids', $("input[name=cost]:checked").data("kids") );
+      //set('car_luggage', $("input[name=cost]:checked").data("luggage") );
+      //set('car_hand', $("input[name=cost]:checked").data("hand") );
+
       // Toggle
       $(".step2, .step3").slideToggle();
 
@@ -412,6 +456,18 @@ jQuery(document).ready(function($) {
       set( 'last_name', $("#last_name").val() );
       set( 'email', $("#email").val() );
       set( 'phone', $("#phone").val() );
+
+      set( 'lead', $("input[name=lead]:checked").val() );
+      set( 'lead_first_name', $('#lead_first_name').val() );
+      set( 'lead_last_name', $('#lead_last_name').val() );
+      set( 'lead_email', $('#lead_email').val() );
+      set( 'lead_phone', $('#lead_phone').val() );
+
+      set( 'adults', $('#adults').val() );
+      set( 'kids', $('#kids').val() );
+      set( 'luggage', $('#luggage').val() );
+      set( 'hand', $('#hand').val() );
+
       set( 'notes', $("#comments").val() );
       set( 'payment', $("input[name=payment]:checked").val() );
 
@@ -424,12 +480,26 @@ jQuery(document).ready(function($) {
       $("#s_pickup").html( get('start') );
       $("#s_dropoff").html( get('end') );
 
+      if( get('lead') != 'self' ) {
+        $('#lp_full-name').html( get('lead_first_name') + ' ' + get('lead_last_name') );
+        $("#lp_email").html( get('lead_email') );
+        $("#lp_phone").html( get('lead_phone') );
+      } else {
+        $('.summary .lp').hide();
+      }
+
+      $("#s_adults").html( get('adults') );
+      $("#s_kids").html( get('kids') );
+      $("#s_luggage").html( get('luggage') );
+      $("#s_hand").html( get('hand') );
+
       $("#s_date-pickup").html( get('pickup_date') + ' - ' + get('pickup_time') );
 
       if( get('return') == '1' ) {
         $("#s_return").html( 'Yes' );
         $("#s_date-return").html( get('return_date') + ' - ' + get('return_time') );
       } else {
+        $(".summary .round-trip").hide();
         $("#s_return").html( 'No' );
         $("#s_date-return").html( 'N/A' );
       }
@@ -453,6 +523,17 @@ jQuery(document).ready(function($) {
       fd.append( "full_name", get('first_name') + ' ' + get('last_name') );
       fd.append( "email", get('email') );
       fd.append( "phone", get('phone') );
+
+      fd.append( 'lead', get('lead') );
+      fd.append( 'lead_full_name', get('lead_first_name') + ' ' + get('lead_last_name') );
+      fd.append( 'lead_email', get('lead_email') );
+      fd.append( 'lead_phone', get('lead_phone') );
+
+      fd.append( 'adults', get('adults') );
+      fd.append( 'kids', get('kids') );
+      fd.append( 'luggage', get('luggage') );
+      fd.append( 'hand', get('hand') );
+
       fd.append( "payment", get('payment') );
       fd.append( "notes", get('notes') );
       fd.append( "cost", get('cost') );
@@ -483,7 +564,7 @@ jQuery(document).ready(function($) {
           var booking_id = booking_response['id'];
           var booking_code = booking_response['code'];
           $(".step4, .final").slideToggle();
-          console.log( booking_response['email'] );
+          //console.log( booking_response['email'] );
           if( get('payment') == 'paypal' ) {
             var payment_data = new FormData();
             payment_data.append( "cost", get('cost') );
@@ -512,6 +593,14 @@ jQuery(document).ready(function($) {
 
     }
   })
+
+  $('input[type=radio][name=lead]').change(function () {
+    if( this.value != 'self' ) {
+      $(".lead_passenger").show();
+    } else {
+      $(".lead_passenger").hide();
+    }
+  });
 
 });
 

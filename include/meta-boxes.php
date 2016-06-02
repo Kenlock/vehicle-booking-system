@@ -63,7 +63,7 @@ function vbs_register_meta_boxes( $meta_boxes )
 
 	// Car Pricing Meta Box
 	$meta_boxes[] = array(
-		'id'			=> 'price-meta',
+		'id'	  => 'price-meta',
 		'title'   => __('Pricing Table', 'vbs'),
 		'pages'   => array( 'cars' ),
 		'fields'  => array(
@@ -73,7 +73,7 @@ function vbs_register_meta_boxes( $meta_boxes )
 				'type'    => 'text_list',
 				'clone' => true,
 				'options' => array(
-					'0' => __( 'Distance from', 'vbs' ),
+					'0'  => __( 'Distance from', 'vbs' ),
 					'50' => __( 'Distance to', 'vbs' ),
 					'10' => __( 'Cost', 'vbs' )
 				),
@@ -83,10 +83,24 @@ function vbs_register_meta_boxes( $meta_boxes )
 
 	// Locations Meta Box
 	$meta_boxes[] = array(
-		'id'			=> 'loc-meta',
+		'id'	  => 'loc-meta',
 		'title'   => __('Location Details', 'vbs'),
 		'pages'   => array( 'locations' ),
 		'fields'  => array(
+			array(
+				'name'        => __( 'Location type', 'vbs' ),
+				'id'          => $prefix . 'location_type',
+				'type'        => 'select',
+				'options'     => array(
+					'airport' 	=> __( 'Airport', 'vbs' ),
+					'train' 	=> __( 'Train Station', 'vbs' ),
+					'bus'		=> __( 'Bus Station', 'vbs' ),
+					'port'		=> __( 'Ship Port', 'vbs' ),
+					'other'		=> __( 'Other', 'vbs' )
+				),
+				'std'         => '',
+				'placeholder' => __( 'Select location type', 'vbs' ),
+			),
 			array(
 				'id'   => $prefix . 'address',
 				'name' => __( 'Address', 'vbs' ),
@@ -105,7 +119,7 @@ function vbs_register_meta_boxes( $meta_boxes )
 				'id'          => $prefix . 'location_sur_type',
 				'type'        => 'select',
 				'options'     => array(
-					'fixed' 	=> __( 'Fixed Amount', 'vbs' ),
+					'fixed'   => __( 'Fixed Amount', 'vbs' ),
 					'percent' => __( 'Percentage', 'vbs' ),
 				),
 				'std'         => 'paypal',
@@ -124,7 +138,7 @@ function vbs_register_meta_boxes( $meta_boxes )
 
 	// Bookings Meta Box
 	$meta_boxes[] = array(
-		'id'			=> 'book-meta',
+		'id'	  => 'book-meta',
 		'title'   => __('Booking Details', 'vbs'),
 		'pages'   => array( 'bookings' ),
 		'fields'  => array(
@@ -275,6 +289,42 @@ function vbs_register_meta_boxes( $meta_boxes )
 				'name' => 'Get Cost', // Empty name will "align" the button to all field inputs
 			),
 
+			// Adults
+			array(
+				'name'  => __('No. of Adults', 'vbs'),
+				'id'    => $prefix . 'adults',
+				'type'  => 'number',
+				'step'  => 'any',
+				'min'   => 1,
+			),
+
+			// Kids
+			array(
+				'name'  => __('No. of Children', 'vbs'),
+				'id'    => $prefix . 'kids',
+				'type'  => 'number',
+				'step'  => 'any',
+				'min'   => 0,
+			),
+
+			// Luggage
+			array(
+				'name'  => __('No. of Luggage', 'vbs'),
+				'id'    => $prefix . 'luggage',
+				'type'  => 'number',
+				'step'  => 'any',
+				'min'   => 0,
+			),
+
+			// Kids
+			array(
+				'name'  => __('No. of Handbags', 'vbs'),
+				'id'    => $prefix . 'handbags',
+				'type'  => 'number',
+				'step'  => 'any',
+				'min'   => 0,
+			),
+
 			// Notes
 			array(
 				'name'        => __( 'Notes', 'vbs' ),
@@ -291,7 +341,7 @@ function vbs_register_meta_boxes( $meta_boxes )
 
 	// Booking client Data Meta Box
 	$meta_boxes[] = array(
-		'id'			=> 'booking-client-meta',
+		'id'	  => 'booking-client-meta',
 		'title'   => __('Customer Details', 'vbs'),
 		'pages'   => array( 'bookings' ),
 		'context' => 'side',
@@ -361,9 +411,44 @@ function vbs_register_meta_boxes( $meta_boxes )
 		)
 	);
 
-	// Booking client Data Meta Box
+	// Booking Lead Paggenter Data Meta Box
 	$meta_boxes[] = array(
-		'id'			=> 'booking-payment-meta',
+		'id'	  => 'booking-lead-meta',
+		'title'   => __('Lead Passenger Details', 'vbs'),
+		'pages'   => array( 'bookings' ),
+		'context' => 'side',
+		'fields'  => array(
+
+			// Full Name
+			array(
+				'id'   => $prefix . 'lead_full_name',
+				'name' => __( 'Full Name', 'vbs' ),
+				'type' => 'text',
+				'std'  => '',
+			),
+
+			// Email
+			array(
+				'id'   => $prefix . 'lead_email',
+				'name' => __( 'Email', 'vbs' ),
+				'type' => 'text',
+				'std'  => '',
+			),
+
+			// Phone
+			array(
+				'id'   => $prefix . 'lead_phone',
+				'name' => __( 'Phone', 'vbs' ),
+				'type' => 'text',
+				'std'  => '',
+			),
+
+		)
+	);
+
+	// Booking Payment Data Meta Box
+	$meta_boxes[] = array(
+		'id'	  => 'booking-payment-meta',
 		'title'   => __('Payment Details', 'vbs'),
 		'pages'   => array( 'bookings' ),
 		'context' => 'side',
