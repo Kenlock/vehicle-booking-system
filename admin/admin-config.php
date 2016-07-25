@@ -152,6 +152,27 @@
     ) );
 
     Redux::setSection( $opt_name, array(
+        'title'      => __( 'Google Maps', 'vbs' ),
+        'id'         => 'opt-maps',
+        'icon'       => 'fa fa-map',
+        'fields'     => array(
+            array(
+                'id'       => 'include_maps',
+                'type'     => 'switch',
+                'title'    => __('Include Google Maps API?', 'vbs'),
+                'default'  => true,
+            ),
+
+            array(
+                'id'       => 'google_api_key',
+                'type'     => 'text',
+                'title'    => __( 'Google Maps API Key', 'vbs' ),
+                'default'  => '',
+            ),
+        )
+    ) );
+
+    Redux::setSection( $opt_name, array(
         'title'      => __( 'Pricing Calclulation', 'vbs' ),
         'id'         => 'opt-pricing',
         'icon'       => 'fa fa-usd',
