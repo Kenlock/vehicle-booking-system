@@ -4,6 +4,7 @@ add_filter( 'rwmb_meta_boxes', 'vbs_register_meta_boxes' );
 
 function vbs_register_meta_boxes( $meta_boxes )
 {
+	global $booking;
 	$prefix = 'vbs_';
 
 	// Cars Meta Box
@@ -158,6 +159,7 @@ function vbs_register_meta_boxes( $meta_boxes )
 				'id'   => $prefix . 'map',
 				'name' => __( 'Location', 'vbs' ),
 				'type' => 'map',
+				'api_key' => $booking['google_api_key'],
 				'std'  => '-6.233406,-35.049906,15',
 				'address_field' => $prefix . 'address',
 			),

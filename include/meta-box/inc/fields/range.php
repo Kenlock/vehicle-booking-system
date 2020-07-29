@@ -1,28 +1,31 @@
 <?php
 /**
+ * The HTML5 range field.
+ *
+ * @package Meta Box
+ */
+
+/**
  * HTML5 range field class.
  */
-class RWMB_Range_Field extends RWMB_Number_Field
-{
+class RWMB_Range_Field extends RWMB_Number_Field {
 	/**
-	 * Get field HTML
+	 * Get field HTML.
 	 *
-	 * @param mixed $meta
-	 * @param array $field
+	 * @param mixed $meta  Meta value.
+	 * @param array $field Field parameters.
 	 * @return string
 	 */
-	static function html( $meta, $field )
-	{
+	public static function html( $meta, $field ) {
 		$output  = parent::html( $meta, $field );
 		$output .= sprintf( '<span class="rwmb-output">%s</span>', $meta );
 		return $output;
 	}
 
 	/**
-	 * Enqueue styles
+	 * Enqueue styles.
 	 */
-	static function admin_enqueue_scripts()
-	{
+	public static function admin_enqueue_scripts() {
 		wp_enqueue_style( 'rwmb-range', RWMB_CSS_URL . 'range.css', array(), RWMB_VER );
 		wp_enqueue_script( 'rwmb-range', RWMB_JS_URL . 'range.js', array(), RWMB_VER, true );
 	}
@@ -30,64 +33,41 @@ class RWMB_Range_Field extends RWMB_Number_Field
 	/**
 	 * Normalize parameters for field.
 	 *
-	 * @param array $field
-	 *
+	 * @param array $field Field parameters.
 	 * @return array
 	 */
-	static function normalize( $field )
-	{
-		$field = wp_parse_args( $field, array(
-			'min'  => 0,
-			'max'  => 10,
-			'step' => 1,
-		) );
-
+	public static function normalize( $field ) {
+		$field = wp_parse_args(
+			$field,
+			array(
+				'max' => 10,
+			)
+		);
 		$field = parent::normalize( $field );
-
 		return $field;
-	}
-
-	/**
-	 * Get the attributes for a field
-	 *
-	 * @param array $field
-	 * @param mixed $value
-	 *
-	 * @return array
-	 */
-	static function get_attributes( $field, $value = null )
-	{
-		$attributes = parent::get_attributes( $field, $value );
-		$attributes['type'] = 'range';
-
-		return $attributes;
 	}
 
 	/**
 	 * Ensure number in range.
 	 *
-	 * @param mixed $new
-	 * @param mixed $old
-	 * @param int   $post_id
-	 * @param array $field
+	 * @param mixed $new     The submitted meta value.
+	 * @param mixed $old     The existing meta value.
+	 * @param int   $post_id The post ID.
+	 * @param array $field   The field parameters.
 	 *
 	 * @return int
 	 */
-	static function value( $new, $old, $post_id, $field )
-	{
+	public static function value( $new, $old, $post_id, $field ) {
 		$new = intval( $new );
 		$min = intval( $field['min'] );
 		$max = intval( $field['max'] );
 
-		if ( $new < $min )
-		{
+		if ( $new < $min ) {
 			return $min;
 		}
-		elseif ( $new > $max )
-		{
+		if ( $new > $max ) {
 			return $max;
 		}
-
 		return $new;
 	}
 }

@@ -7,67 +7,43 @@
  * meta value. Briefly:
  * - If field is cloneable, value is saved as a single entry in the database
  * - Otherwise value is saved as multiple entries
+ *
+ * @package Meta Box
  */
-abstract class RWMB_Multiple_Values_Field extends RWMB_Field
-{
+
+/**
+ * Multiple values field class.
+ */
+abstract class RWMB_Multiple_Values_Field extends RWMB_Field {
 	/**
-	 * Normalize parameters for field
+	 * Normalize parameters for field.
 	 *
-	 * @param array $field
+	 * @param array $field Field parameters.
 	 *
 	 * @return array
 	 */
-	static function normalize( $field )
-	{
+	public static function normalize( $field ) {
 		$field               = parent::normalize( $field );
 		$field['multiple']   = true;
 		$field['field_name'] = $field['id'];
-		if ( ! $field['clone'] )
+		if ( ! $field['clone'] ) {
 			$field['field_name'] .= '[]';
+		}
 
 		return $field;
 	}
 
 	/**
-	 * Output the field value
-	 * Display option name instead of option value
+	 * Format a single value for the helper functions. Sub-fields should overwrite this method if necessary.
 	 *
-	 * @param  array    $field   Field parameters
-	 * @param  array    $args    Additional arguments. Not used for these fields.
-	 * @param  int|null $post_id Post ID. null for current post. Optional.
+	 * @param array    $field   Field parameters.
+	 * @param string   $value   The value.
+	 * @param array    $args    Additional arguments. Rarely used. See specific fields for details.
+	 * @param int|null $post_id Post ID. null for current post. Optional.
 	 *
-	 * @return mixed Field value
+	 * @return string
 	 */
-	static function the_value( $field, $args = array(), $post_id = null )
-	{
-		$value = self::get_value( $field, $args, $post_id );
-		if ( ! $value )
-			return '';
-
-		$output = '<ul>';
-		if ( $field['clone'] )
-		{
-			foreach ( $value as $subvalue )
-			{
-				$output .= '<li>';
-				$output .= '<ul>';
-				foreach ( $subvalue as $option )
-				{
-					$output .= '<li>' . $field['options'][$option] . '</li>';
-				}
-				$output .= '</ul>';
-				$output .= '</li>';
-			}
-		}
-		else
-		{
-			foreach ( $value as $option )
-			{
-				$output .= '<li>' . $field['options'][$option] . '</li>';
-			}
-		}
-		$output .= '</ul>';
-
-		return $output;
+	public static function format_single_value( $field, $value, $args, $post_id ) {
+		return $field['options'][ $value ];
 	}
 }

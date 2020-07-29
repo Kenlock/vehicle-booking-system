@@ -1,96 +1,96 @@
 <?php
 /**
- * Input list field.
+ * The input list field which displays choices in a list of inputs.
+ *
+ * @package Meta Box
  */
-class RWMB_Input_List_Field extends RWMB_Choice_Field
-{
+
+/**
+ * Input list field class.
+ */
+class RWMB_Input_List_Field extends RWMB_Choice_Field {
 	/**
 	 * Enqueue scripts and styles
 	 */
-	public static function admin_enqueue_scripts()
-	{
+	public static function admin_enqueue_scripts() {
 		wp_enqueue_style( 'rwmb-input-list', RWMB_CSS_URL . 'input-list.css', array(), RWMB_VER );
 		wp_enqueue_script( 'rwmb-input-list', RWMB_JS_URL . 'input-list.js', array(), RWMB_VER, true );
 	}
 
 	/**
-	 * Walk options
+	 * Get field HTML.
 	 *
-	 * @param mixed $meta
-	 * @param array $field
-	 * @param mixed $options
-	 * @param mixed $db_fields
-	 *
+	 * @param mixed $meta  Meta value.
+	 * @param array $field Field parameters.
 	 * @return string
 	 */
-	public static function walk( $options, $db_fields, $meta, $field )
-	{
-		$walker = new RWMB_Input_List_Walker( $db_fields, $field, $meta );
-		$output = sprintf( '<ul class="rwmb-input-list %s %s">',
-			$field['collapse'] ? 'collapse' : '',
-		 	$field['inline']   ? 'inline'   : ''
+	public static function html( $meta, $field ) {
+		$options = self::transform_options( $field['options'] );
+		$walker  = new RWMB_Walker_Input_List( $field, $meta );
+		$output  = self::get_select_all_html( $field );
+		$output .= sprintf(
+			'<ul class="rwmb-input-list%s%s">',
+			$field['collapse'] ? ' rwmb-collapse' : '',
+			$field['inline'] ? ' rwmb-inline' : ''
 		);
-		$output .= $walker->walk( $options, $field['flatten'] ? - 1 : 0 );
+		$output .= $walker->walk( $options, $field['flatten'] ? -1 : 0 );
 		$output .= '</ul>';
 
 		return $output;
 	}
 
 	/**
-	 * Normalize parameters for field
+	 * Normalize parameters for field.
 	 *
-	 * @param array $field
+	 * @param array $field Field parameters.
 	 * @return array
 	 */
-	public static function normalize( $field )
-	{
+	public static function normalize( $field ) {
 		$field = $field['multiple'] ? RWMB_Multiple_Values_Field::normalize( $field ) : $field;
 		$field = RWMB_Input_Field::normalize( $field );
 		$field = parent::normalize( $field );
-		$field = wp_parse_args( $field, array(
-			'collapse' => true,
-			'inline'   => null,
-		) );
+		$field = wp_parse_args(
+			$field,
+			array(
+				'collapse'        => true,
+				'inline'          => null,
+				'select_all_none' => false,
+			)
+		);
 
 		$field['flatten'] = $field['multiple'] ? $field['flatten'] : true;
-		$field['inline'] = ! $field['multiple'] && ! isset( $field['inline'] ) ? true : $field['inline'];
+		$field['inline']  = ! $field['multiple'] && ! isset( $field['inline'] ) ? true : $field['inline'];
 
 		return $field;
 	}
 
 	/**
-	 * Get the attributes for a field
+	 * Get the attributes for a field.
 	 *
-	 * @param array $field
-	 * @param mixed $value
+	 * @param array $field Field parameters.
+	 * @param mixed $value Meta value.
 	 *
 	 * @return array
 	 */
-	public static function get_attributes( $field, $value = null )
-	{
-		$attributes           = RWMB_Input_Field::get_attributes( $field, $value );
-		$attributes['id']     = false;
-		$attributes['type']   = $field['multiple'] ? 'checkbox' : 'radio';
-		$attributes['value']  = $value;
+	public static function get_attributes( $field, $value = null ) {
+		$attributes          = RWMB_Input_Field::get_attributes( $field, $value );
+		$attributes['id']    = false;
+		$attributes['type']  = $field['multiple'] ? 'checkbox' : 'radio';
+		$attributes['value'] = $value;
 
 		return $attributes;
 	}
 
 	/**
-	 * Output the field value
-	 * Display option name instead of option value
+	 * Get html for select all|none for multiple checkbox.
 	 *
-	 * @use self::meta()
-	 *
-	 * @param  array    $field   Field parameters
-	 * @param  array    $args    Additional arguments. Rarely used. See specific fields for details
-	 * @param  int|null $post_id Post ID. null for current post. Optional.
-	 *
-	 * @return mixed Field value
+	 * @param array $field Field parameters.
+	 * @return string
 	 */
-	public static function the_value( $field, $args = array(), $post_id = null )
-	{
-		$value = parent::get_value( $field, $args, $post_id );
-		return empty( $value ) ? '' : $field['options'][$value];
+	public static function get_select_all_html( $field ) {
+		if ( $field['multiple'] && $field['select_all_none'] ) {
+			return sprintf( '<p class="rwmb-toggle-all-wrapper"><button class="rwmb-input-list-select-all-none button" data-name="%s">%s</button></p>', $field['id'], __( 'Toggle All', 'meta-box' ) );
+		}
+		return '';
 	}
 }
