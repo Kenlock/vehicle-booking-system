@@ -327,7 +327,7 @@ jQuery(document).ready(function($) {
             }
           });
 
-          $("#route-info").html( '<i class="fa fa-map-o"></i> ' + routes[0].legs[0].distance.text + ' (aprox. ' + routes[0].legs[0].duration.text + ')' + ' <a class="modal" href="#route_map"><i class="fa fa-map-signs"></i></a>' );
+          $("#route-info").html( '<i class="fa fa-map-o"></i> ' + routes[0].legs[0].distance.text + ' (aprox. ' + routes[0].legs[0].duration.text + ')' + ' <a data-fancybox data-src="#route_map" href="javascript:;"><i class="fa fa-map-signs"></i></a>' );
         }
       });
     } else {
@@ -365,24 +365,10 @@ jQuery(document).ready(function($) {
             }
           });
 
-          $("#route-info").html( '<i class="fa fa-map-o"></i> ' + routes[0].legs[0].distance.text + ' (aprox. ' + routes[0].legs[0].duration.text + ')' + ' <a class="modal" href="#route_map"><i class="fa fa-map-signs"></i></a>' );
+          $("#route-info").html( '<i class="fa fa-map-o"></i> ' + routes[0].legs[0].distance.text + ' (aprox. ' + routes[0].legs[0].duration.text + ')' + ' <a data-fancybox data-src="#route_map" href="javascript:;"><i class="fa fa-map-signs"></i></a>' );
         }
       });
     }
-  })
-
-  $(".modal").fancybox({
-    maxWidth  : 500,
-    maxHeight : 600,
-    fitToView : false,
-    width     : '70%',
-    height    : '80%',
-    autoSize  : true,
-    closeClick  : false,
-    openEffect  : 'none',
-    closeEffect : 'none',
-    padding   : 0,
-    hideContentOnClick: false
   });
 
   // Ajax handler for all buttons
