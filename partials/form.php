@@ -63,13 +63,15 @@
 
 		    <div class="form-group row" id="route-info" style="display: none;"></div>
 
-			<div id="route_map row" style="display: none;">
+			<div id="route_map" style="display: none;">
 		  		<div id="map-canvas" class="col-sm-12" style="width: 500px !important; height: 500px !important;"></div>
 		  	</div>
 
 		    <div id="validation"></div>
 
-		    <button class="btn btn-success" data-goto="2" type="submit"><i class="fa fa-arrow-right"></i> <?php _e('Select Car', 'vbs'); ?></button>
+		    <div class="row">
+		    	<button class="btn btn-success" data-goto="2" type="submit"><i class="fa fa-arrow-right"></i> <?php _e('Select Car', 'vbs'); ?></button>
+		    </div>
 
 		    <div style="display: none;" class="details">
 		    	<input type="hidden" id="orig_zip" name="orig_zip" data-orig="postal_code" value="" />
@@ -84,10 +86,17 @@
 
 		<div class="step2 container" style="display: none;">
 
-		  	<h3 class="section"><?php _e('Select car', 'vbs'); ?></h3>
-		  	<div class="cars col-sm-12 p-0"></div>
+			<div class="row">
+		  		<h3 class="col-sm-12 section"><?php _e('Select car', 'vbs'); ?></h3>
+		  	</div>
 
-		  	<button class="btn btn-success" data-goto="3" type="submit"><i class="fa fa-arrow-right"></i> <?php _e('Details', 'vbs'); ?></button>
+		  	<div class="row">
+		  		<div class="cars col-sm-12 p-0"></div>
+		  	</div>
+
+		  	<div class="row">
+		  		<button class="btn btn-success" data-goto="3" type="submit"><i class="fa fa-arrow-right"></i> <?php _e('Details', 'vbs'); ?></button>
+		  	</div>
 
 		</div> <!-- step2 end -->
 
@@ -97,7 +106,7 @@
 
 		<div class="step3 container" style="display: none;">
 
-		  	<div class="info">
+		  	<div class="info mb-3">
 		  		<div class="row">
 		  			<h3 class="col-sm-12 section"><?php _e('Contact info:', 'vbs'); ?></h3>
 		  		</div>
@@ -179,7 +188,7 @@
 
 				    <div class="form-group row">
 				    	<div class="col-sm-12 p-0">
-				        	<input readonly type="text" name="lead_email" id="lead_email" class="required form-control" value="<?php _e('Email', 'vbs'); ?>" />
+				        	<input type="text" name="lead_email" id="lead_email" class="required form-control" value="<?php _e('Email', 'vbs'); ?>" />
 				        </div>
 
 				        <div class="col-sm-12 p-0">
@@ -193,19 +202,19 @@
 			    </div>
 			    <div class="form-group row">
 			    	<div class="col-sm-12 p-0">
-			        	<input type="text" min="1" name="adults" id="adults" class="required form-control" value="1" placeholder="<?php _e('Adults', 'vbs'); ?>" />
+			        	<input type="number" min="1" name="adults" id="adults" class="required form-control" value="1" placeholder="<?php _e('Adults', 'vbs'); ?>" />
 			        </div>
 
 			        <div class="col-sm-12 p-0">
-			        	<input type="text" min="0" name="kids" id="kids" class="form-control" placeholder="<?php _e('Children', 'vbs'); ?>" />
+			        	<input type="number" min="0" name="kids" id="kids" class="form-control" placeholder="<?php _e('Children', 'vbs'); ?>" />
 			        </div>
 
 			        <div class="col-sm-12 p-0">
-			        	<input type="text" min="0" name="luggage" id="luggage" class="form-control" placeholder="<?php _e('Luggage', 'vbs'); ?>" />
+			        	<input type="number" min="0" name="luggage" id="luggage" class="form-control" placeholder="<?php _e('Luggage', 'vbs'); ?>" />
 			        </div>
 
 			        <div class="col-sm-12 p-0">
-			        	<input type="text" min="0" name="hand" id="hand" class="form-control" placeholder="<?php _e('Handbags', 'vbs'); ?>" />
+			        	<input type="number" min="0" name="hand" id="hand" class="form-control" placeholder="<?php _e('Handbags', 'vbs'); ?>" />
 			        </div>
 			    </div>
 
@@ -229,12 +238,14 @@
 
 			    <div class="form-check row">
 			        <input type="radio" name="payment" id="cash" class="required form-check-input" value="cash" />
-			        <label class="form-check-label" for="paypal"><?php _e('Cash', 'vbs'); ?></label>
+			        <label class="form-check-label" for="cash"><?php _e('Cash', 'vbs'); ?></label>
 		        </div>
 
 		  	</div>
 
-		  	<button class="btn btn-success" data-goto="4" type="submit"><i class="fa fa-arrow-right"></i> <?php _e('Summary', 'vbs'); ?></button>
+		  	<div class="row">
+		  		<button class="btn btn-success" data-goto="4" type="submit"><i class="fa fa-arrow-right"></i> <?php _e('Summary', 'vbs'); ?></button>
+		  	</div>
 
 		</div> <!-- step3 end -->
 
@@ -274,7 +285,9 @@
 		        <li><b><?php _e('Payment method:', 'vbs'); ?> </b><span id="s_payment"></span></li>
 		    </ul>
 
-		  	<button class="btn btn-success" data-goto="end" type="submit"><i class="fa fa-arrow-right"></i> <?php _e('Book!', 'vbs'); ?></button>
+		    <div class="row">
+		  		<button class="btn btn-success" data-goto="end" type="submit"><i class="fa fa-arrow-right"></i> <?php _e('Book!', 'vbs'); ?></button>
+		  	</div>
 
 		</div> <!-- step4 end -->
 
