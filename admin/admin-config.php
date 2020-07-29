@@ -224,6 +224,12 @@
                 ),
                 'default' => 'stacked'
             ),
+            array(
+                'id'       => 'include_bootstrap',
+                'type'     => 'switch',
+                'title'    => __('Include Bootstrap?', 'vbs'),
+                'default'  => true,
+            ),
         )
     ) );
 

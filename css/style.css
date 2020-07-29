@@ -1,67 +1,6 @@
 /* Basic form elements */
 
 /* Buttons */
-#bookingForm .btn,
-#bookingForm .act {
-  display: block;
-  margin: 30px auto 0;
-  background-color: #24890D;
-  border: 0px none;
-  border-radius: 2px;
-  color: #FFF;
-  font-size: 12px;
-  font-weight: 700;
-  padding: 10px 30px 11px;
-  text-transform: uppercase;
-  vertical-align: bottom;
-}
-
-#bookingForm .btn:hover,
-#bookingForm .act:hover {
-  background-color: #41A62A;
-}
-
-#bookingForm select {
-  padding: 4px 10px;
-}
-
-#bookingForm .form-group {
-  padding: 2px 0;
-}
-
-#bookingForm .form-group input,
-#bookingForm .form-group textarea, {
-  width: 49.5%;
-}
-
-#bookingForm .wide input,
-#bookingForm .wide textarea {
-  width: 100%;
-}
-
-#bookingForm .narrow input,
-#bookingForm .narrow select {
-  width: 40%;
-}
-
-#bookingForm .narrow button {
-  width: 18%;
-  display: inline;
-}
-
-#bookingForm .selection button {
-  width: 40%;
-  margin: 0px auto 0px;
-}
-
-#bookingForm .locations button {
-  margin: 0px auto 0px;
-}
-
-#bookingForm .form-group input[type="checkbox"],
-#bookingForm .form-group input[type="radio"] {
-  width: 20%;
-}
 
 /* Text styles */
 #bookingForm .section {

@@ -1,53 +1,75 @@
 <?php // Form renderer ?>
 <div id="bookingForm">
 	<form class="formStep1" method="POST" enctype="multipart/form-data">
+		<div class="step1 container">
+		    <div class="form-group row">
+		    	<div class="col-sm-5 pl-0">
+				    <input type="text" name="pickup" id="pickup" class="required form-control" placeholder="<?php _e('Pickup Location', 'vbs'); ?>" />
+				    <select style="display: none;" id="pickup_location" class="form-control" name="pickup_location">
+				      	<option value=""><?php _e('Select location...', 'vbs'); ?></option>
+				      	<?php echo get_locations(); ?>
+				    </select>
+				</div>
 
-		<div class="step1">
+				<div class="col-sm-5 pl-0">
+				    <input type="text" name="dropoff" id="dropoff" class="required form-control" placeholder="<?php _e('Dropoff Location', 'vbs'); ?>" />
+				    <select style="display: none;" id="dropoff_location" class="form-control" name="dropoff_location">
+				      	<option value=""><?php _e('Select location...', 'vbs'); ?></option>
+				      	<?php echo get_locations(); ?>
+				    </select>
+				</div>
 
-		    <div class="form-group narrow">
-			    <input type="text" name="pickup" id="pickup" class="required" placeholder="<?php _e('Pickup Location', 'vbs'); ?>" />
-			    <select style="display: none;" id="pickup_location" name="pickup_location">
-			      	<option value=""><?php _e('Select location...', 'vbs'); ?></option>
-			      	<?php echo get_locations(); ?>
-			    </select>
-
-			    <input type="text" name="dropoff" id="dropoff" class="required" placeholder="<?php _e('Dropoff Location', 'vbs'); ?>" />
-			    <select style="display: none;" id="dropoff_location" name="dropoff_location">
-			      	<option value=""><?php _e('Select location...', 'vbs'); ?></option>
-			      	<?php echo get_locations(); ?>
-			    </select>
-
-			    <button class="act route" type="submit"><?php _e('Route!', 'vbs'); ?></button>
+				<div class="col-sm-2 p-0">
+			    	<button class="btn btn-success route" type="submit"><?php _e('Route!', 'vbs'); ?></button>
+			    </div>
 			</div>
 
-		    <div class="form-group narrow selection">
-		    	<button class="act pick-loc-select" type="submit"><?php _e('Select Location', 'vbs'); ?></button>
-		    	<button class="act drop-loc-select" type="submit"><?php _e('Select Location', 'vbs'); ?></button>
+		    <div class="form-group row selection">
+		    	<div class="col-sm-5 pl-0">
+		    		<button class="btn btn-success btn-block pick-loc-select" type="submit"><?php _e('Select Location', 'vbs'); ?></button>
+		    	</div>
+
+		    	<div class="col-sm-5 pl-0">
+		    		<button class="btn btn-success btn-block drop-loc-select" type="submit"><?php _e('Select Location', 'vbs'); ?></button>
+		    	</div>
 		    </div>
 
-		    <div class="form-group">
-		    	<input type="text" name="date_pickup" id="date_pickup" class="required" placeholder="<?php _e('Pickup Date', 'vbs'); ?>" />
-		    	<input type="text" name="time_pickup" id="time_pickup" class="required" placeholder="<?php _e('Pickup Time', 'vbs'); ?>" />
+		    <div class="form-group row">
+		    	<div class="col-sm-6 pl-0">
+		    		<input type="text" name="date_pickup" id="date_pickup" class="required form-control" placeholder="<?php _e('Pickup Date', 'vbs'); ?>" />
+		    	</div>
+
+		    	<div class="col-sm-6 p-0">
+		    		<input type="text" name="time_pickup" id="time_pickup" class="required form-control" placeholder="<?php _e('Pickup Time', 'vbs'); ?>" />
+		    	</div>
 		    </div>
 
-		    <div class="form-group wide">
-		    	<label for="return"><?php _e('Return trip required?', 'vbs'); ?></label> <input type="checkbox" name="return" id="return" />
+		    <div class="form-group form-check row">
+		    	<div class="col-sm-12 p-0">
+		    		<input type="checkbox" name="return" class="form-check-input" id="return" />
+		    		<label for="return" class="form-check-label"><?php _e('Return trip required?', 'vbs'); ?></label>
+		    	</div>
 		    </div>
 
-		    <div class="form-group return_group" style="display: none;">
-		    	<input type="text" name="date_return" id="date_return" placeholder="<?php _e('Dropoff Date', 'vbs'); ?>" />
-		    	<input type="text" name="time_return" id="time_return" placeholder="<?php _e('Dropoff Time', 'vbs'); ?>" />
+		    <div class="form-group row return_group" style="display: none;">
+		    	<div class="col-sm-6 pl-0">
+		    		<input class="form-control" type="text" name="date_return" id="date_return" placeholder="<?php _e('Dropoff Date', 'vbs'); ?>" />
+		    	</div>
+
+		    	<div class="col-sm-6 pl-0">
+		    		<input class="form-control" type="text" name="time_return" id="time_return" placeholder="<?php _e('Dropoff Time', 'vbs'); ?>" />
+		    	</div>
 		    </div>
 
-		    <div class="form-group" id="route-info" style="display: none;"></div>
+		    <div class="form-group row" id="route-info" style="display: none;"></div>
 
-			<div id="route_map" style="display: none;">
-		  		<div id="map-canvas" style="width: 500px !important; height: 500px !important;"></div>
+			<div id="route_map row" style="display: none;">
+		  		<div id="map-canvas" class="col-sm-12" style="width: 500px !important; height: 500px !important;"></div>
 		  	</div>
 
 		    <div id="validation"></div>
 
-		    <button class="btn" data-goto="2" type="submit"><i class="fa fa-arrow-right"></i> <?php _e('Select Car', 'vbs'); ?></button>
+		    <button class="btn btn-success" data-goto="2" type="submit"><i class="fa fa-arrow-right"></i> <?php _e('Select Car', 'vbs'); ?></button>
 
 		    <div style="display: none;" class="details">
 		    	<input type="hidden" id="orig_zip" name="orig_zip" data-orig="postal_code" value="" />
@@ -60,159 +82,171 @@
 
 	<form id="bookingForm" class="formStep2" method="POST" enctype="multipart/form-data">
 
-		<div class="step2" style="display: none;">
+		<div class="step2 container" style="display: none;">
 
 		  	<h3 class="section"><?php _e('Select car', 'vbs'); ?></h3>
-		  	<div class="cars"></div>
+		  	<div class="cars col-sm-12 p-0"></div>
 
-		  	<button class="btn" data-goto="3" type="submit"><i class="fa fa-arrow-right"></i> <?php _e('Details', 'vbs'); ?></button>
+		  	<button class="btn btn-success" data-goto="3" type="submit"><i class="fa fa-arrow-right"></i> <?php _e('Details', 'vbs'); ?></button>
 
 		</div> <!-- step2 end -->
 
   	</form>
 
-	<?php
-		if( is_user_logged_in() ):
-	  		$user = wp_get_current_user();
-	?>
-
 	<form id="bookingForm" class="formStep3" method="POST" enctype="multipart/form-data">
 
-		<div class="step3" style="display: none;">
+		<div class="step3 container" style="display: none;">
 
 		  	<div class="info">
+		  		<div class="row">
+		  			<h3 class="col-sm-12 section"><?php _e('Contact info:', 'vbs'); ?></h3>
+		  		</div>
 
-		  		<h3 class="section"><?php _e('Contact info:', 'vbs'); ?></h3>
-			    <div class="form-group">
-			    	<input readonly type="text" name="first_name" id="first_name" class="required" value="<?php echo $user->user_firstname; ?>" />
-			        <input readonly type="text" name="last_name" id="last_name" class="required" value="<?php echo $user->user_lastname; ?>" />
+		  		<?php
+					if( is_user_logged_in() ):
+				  		$user = wp_get_current_user();
+				?>
+				    <div class="form-group row">
+				    	<div class="col-sm-6 pl-0">
+				    		<input readonly type="text" name="first_name" id="first_name" class="required form-control" value="<?php echo $user->user_firstname; ?>" />
+				    	</div>
+
+				    	<div class="col-sm-6 p-0">
+				        	<input readonly type="text" name="last_name" id="last_name" class="required form-control" value="<?php echo $user->user_lastname; ?>" />
+				        </div>
+				    </div>
+
+				    <div class="form-group row">
+				    	<div class="col-sm-12 p-0">
+				        	<input readonly type="text" name="email" id="email" class="required form-control" value="<?php echo $user->user_email; ?>" />
+				        </div>
+
+				        <div class="col-sm-12 p-0">
+				        	<input type="text" name="phone" id="phone" class="required form-control" placeholder="<?php _e('Phone', 'vbs'); ?>" />
+				        </div>
+				    </div>
+
+				<?php else: ?>
+
+					<div class="form-group row">
+				    	<div class="col-sm-6 pl-0">
+				    		<input type="text" name="first_name" id="first_name" class="required form-control" placeholder="<?php _e('First name', 'vbs'); ?>" />
+				    	</div>
+
+				    	<div class="col-sm-6 p-0">
+				        	<input type="text" name="last_name" id="last_name" class="required form-control" placeholder="<?php _e('Last name', 'vbs'); ?>" />
+				        </div>
+				    </div>
+
+				    <div class="form-group row">
+				    	<div class="col-sm-12 p-0">
+				        	<input type="text" name="email" id="email" class="required form-control" placeholder="<?php _e('Email', 'vbs'); ?>" />
+				        </div>
+
+				        <div class="col-sm-12 p-0">
+				        	<input type="text" name="phone" id="phone" class="required form-control" placeholder="<?php _e('Phone', 'vbs'); ?>" />
+				        </div>
+				    </div>
+
+				<?php endif; ?>
+
+			    <div class="row">
+			    	<h3 class="col-sm-12 section"><?php _e('I am booking for:', 'vbs'); ?></h3>
+			    </div>
+			    <div class="form-check row">
+			    	<input type="radio" name="lead" id="self" class="required form-check-input" value="self" />
+			        <label class="form-check-label" for="self"><?php _e( 'Myself', 'vbs'); ?></label>
 			    </div>
 
-			    <div class="form-group">
-			        <input readonly type="text" name="email" id="email" class="required" value="<?php echo $user->user_email; ?>" />
-			        <input type="text" name="phone" id="phone" class="required" placeholder="<?php _e('Phone', 'vbs'); ?>" />
-			    </div>
-
-			    <h3 class="section"><?php _e('I am booking for:', 'vbs'); ?></h3>
-			    <div class="form-group">
-			        <?php _e( 'Myself', 'vbs'); ?> <input type="radio" name="lead" id="lead" class="required" value="self" />
-			        <?php _e( 'Someone else', 'vbs'); ?> <input type="radio" name="lead" id="lead" class="required" value="else" />
+			    <div class="form-check row">
+			    	<input type="radio" name="lead" id="else" class="required form-check-input" value="else" />
+			    	<label class="form-check-label" for="else"><?php _e( 'Someone else', 'vbs'); ?></label>
 		        </div>
 
 		        <div class="lead_passenger" style="display: none;">
-		        	<h3 class="section"><?php _e('Lead Passenger info:', 'vbs'); ?></h3>
-				    <div class="form-group">
-				    	<input readonly type="text" name="lead_first_name" id="lead_first_name" class="required" value="<?php _e('First name', 'vbs'); ?>" />
-				        <input readonly type="text" name="lead_last_name" id="lead_last_name" class="required" value="<?php _e('Last name', 'vbs'); ?>" />
+		        	<div class="row">
+		        		<h3 class="col-sm-12 section"><?php _e('Lead Passenger info:', 'vbs'); ?></h3>
+		        	</div>
+				    <div class="form-group row">
+				    	<div class="col-sm-6 pl-0">
+				    		<input type="text" name="lead_first_name" id="lead_first_name" class="required form-control" value="<?php _e('First name', 'vbs'); ?>" />
+				    	</div>
+
+				    	<div class="col-sm-6 p-0">
+				        	<input type="text" name="lead_last_name" id="lead_last_name" class="required form-control" value="<?php _e('Last name', 'vbs'); ?>" />
+				        </div>
 				    </div>
 
-				    <div class="form-group">
-				        <input readonly type="text" name="lead_email" id="lead_email" class="required" value="<?php _e('Email', 'vbs'); ?>" />
-				        <input type="text" name="lead_phone" id="lead_phone" class="required" placeholder="<?php _e('Phone', 'vbs'); ?>" />
+				    <div class="form-group row">
+				    	<div class="col-sm-12 p-0">
+				        	<input readonly type="text" name="lead_email" id="lead_email" class="required form-control" value="<?php _e('Email', 'vbs'); ?>" />
+				        </div>
+
+				        <div class="col-sm-12 p-0">
+				        	<input type="text" name="lead_phone" id="lead_phone" class="required form-control" placeholder="<?php _e('Phone', 'vbs'); ?>" />
+				        </div>
 				    </div>
 		        </div>
 
-			    <h3 class="section"><?php _e('Passengers info:', 'vbs'); ?></h3>
-			    <div class="form-group">
-			        <input type="text" min="1" name="adults" id="adults" class="required" value="1" placeholder="<?php _e('Adults', 'vbs'); ?>" />
-			        <input type="text" min="0" name="kids" id="kids" class="" placeholder="<?php _e('Children', 'vbs'); ?>" />
-			        <input type="text" min="0" name="luggage" id="luggage" class="" placeholder="<?php _e('Luggage', 'vbs'); ?>" />
-			        <input type="text" min="0" name="hand" id="hand" class="" placeholder="<?php _e('Handbags', 'vbs'); ?>" />
+		        <div class="row">
+			    	<h3 class="col-sm-12 section"><?php _e('Passengers info:', 'vbs'); ?></h3>
+			    </div>
+			    <div class="form-group row">
+			    	<div class="col-sm-12 p-0">
+			        	<input type="text" min="1" name="adults" id="adults" class="required form-control" value="1" placeholder="<?php _e('Adults', 'vbs'); ?>" />
+			        </div>
+
+			        <div class="col-sm-12 p-0">
+			        	<input type="text" min="0" name="kids" id="kids" class="form-control" placeholder="<?php _e('Children', 'vbs'); ?>" />
+			        </div>
+
+			        <div class="col-sm-12 p-0">
+			        	<input type="text" min="0" name="luggage" id="luggage" class="form-control" placeholder="<?php _e('Luggage', 'vbs'); ?>" />
+			        </div>
+
+			        <div class="col-sm-12 p-0">
+			        	<input type="text" min="0" name="hand" id="hand" class="form-control" placeholder="<?php _e('Handbags', 'vbs'); ?>" />
+			        </div>
 			    </div>
 
-		        <div class="form-group wide">
-		        	<textarea name="comments" id="comments"><?php _e('Message to driver', 'vbs'); ?></textarea>
+		        <div class="form-group row">
+		        	<div class="col-sm-12 p-0">
+		        		<textarea name="comments" class="form-control" id="bookingcomments"><?php _e('Message to driver', 'vbs'); ?></textarea>
+		        	</div>
 		        </div>
 
-		        <h3 class="section"><?php _e('Total Cost:', 'vbs'); ?> <?php echo $booking['currency_symbol']; ?><span id="total_cost"></span></h3>
+		        <div class="row">
+		        	<h3 class="col-sm-12 section"><?php _e('Total Cost:', 'vbs'); ?> <?php echo $booking['currency_symbol']; ?><span id="total_cost"></span></h3>
+		        </div>
 
-		        <h3 class="section"><?php _e('Payment Method:', 'vbs'); ?></h3>
-		        <div class="form-group">
-			        <?php _e('Paypal', 'vbs'); ?> <input type="radio" name="payment" id="payment" class="required" value="paypal" />
-			        <?php _e('Cash', 'vbs'); ?> <input type="radio" name="payment" id="payment" class="required" value="cash" />
+		        <div class="row">
+		        	<h3 class="col-sm-12 section"><?php _e('Payment Method:', 'vbs'); ?></h3>
+		        </div>
+		        <div class="form-check row">
+		        	<input type="radio" name="payment" id="paypal" class="required form-check-input" value="paypal" />
+		        	<label class="form-check-label" for="paypal"><?php _e('Paypal', 'vbs'); ?></label>
+			    </div>
+
+			    <div class="form-check row">
+			        <input type="radio" name="payment" id="cash" class="required form-check-input" value="cash" />
+			        <label class="form-check-label" for="paypal"><?php _e('Cash', 'vbs'); ?></label>
 		        </div>
 
 		  	</div>
 
-		  	<button class="btn" data-goto="4" type="submit"><i class="fa fa-arrow-right"></i> <?php _e('Summary', 'vbs'); ?></button>
+		  	<button class="btn btn-success" data-goto="4" type="submit"><i class="fa fa-arrow-right"></i> <?php _e('Summary', 'vbs'); ?></button>
 
 		</div> <!-- step3 end -->
 
 	</form>
-
-	<?php else: ?>
-
-	<form id="bookingForm" class="formStep3" method="POST" enctype="multipart/form-data">
-
-		<div class="step3" style="display: none;">
-
-		 	<div class="info">
-
-		  		<h3 class="section"><?php _e('Contact info:', 'vbs'); ?></h3>
-		        <div class="form-group">
-		        	<input type="text" name="first_name" id="first_name" class="required" placeholder="<?php _e('First name', 'vbs'); ?>" />
-		        	<input type="text" name="last_name" id="last_name" class="required" placeholder="<?php _e('Last name', 'vbs'); ?>" />
-		        </div>
-
-		      	<div class="form-group">
-		        	<input type="text" name="email" id="email" class="required" placeholder="<?php _e('Email', 'vbs'); ?>" />
-		        	<input type="text" name="phone" id="phone" class="required" placeholder="<?php _e('Phone', 'vbs'); ?>" />
-		        </div>
-
-		        <h3 class="section"><?php _e('I am booking for:', 'vbs'); ?></h3>
-			    <div class="form-group">
-			        <?php _e( 'Myself', 'vbs'); ?> <input type="radio" name="lead" id="lead" class="required" checked="checked" value="self" />
-			        <?php _e( 'Someone else', 'vbs'); ?> <input type="radio" name="lead" id="lead" class="required" value="else" />
-		        </div>
-
-		        <div class="lead_passenger" style="display: none;">
-		        	<h3 class="section"><?php _e('Lead Passenger info:', 'vbs'); ?></h3>
-				    <div class="form-group">
-				    	<input type="text" name="lead_first_name" id="lead_first_name" class="required" value="<?php _e('First name', 'vbs'); ?>" />
-				        <input type="text" name="lead_last_name" id="lead_last_name" class="required" value="<?php _e('Last name', 'vbs'); ?>" />
-				    </div>
-
-				    <div class="form-group">
-				        <input type="text" name="lead_email" id="lead_email" class="required" value="<?php _e('Email', 'vbs'); ?>" />
-				        <input type="text" name="lead_phone" id="lead_phone" class="required" placeholder="<?php _e('Phone', 'vbs'); ?>" />
-				    </div>
-		        </div>
-
-		        <h3 class="section"><?php _e('Passengers info:', 'vbs'); ?></h3>
-			    <div class="form-group 4col">
-			        <input type="number" min="1" name="adults" id="adults" class="required" value="1" placeholder="<?php _e('Adults', 'vbs'); ?>" />
-			        <input type="number" min="0" name="kids" id="kids" class="" placeholder="<?php _e('Children', 'vbs'); ?>" />
-			        <input type="number" min="0" name="luggage" id="luggage" class="" placeholder="<?php _e('Luggage', 'vbs'); ?>" />
-			        <input type="number" min="0" name="hand" id="hand" class="" placeholder="<?php _e('Handbags', 'vbs'); ?>" />
-			    </div>
-
-		      	<div class="form-group wide">
-		        	<textarea name="comments" id="comments"><?php _e('Message to driver', 'vbs'); ?></textarea>
-		      	</div>
-
-		      	<h3 class="section"><?php _e('Total Cost:', 'vbs'); ?> <?php echo $booking['currency_symbol']; ?><span id="total_cost"></span></h3>
-
-		      	<h3 class="section"><?php _e('Payment Method:', 'vbs'); ?></h3>
-		        <div class="form-group">
-			        <?php _e('Paypal', 'vbs'); ?> <input type="radio" name="payment" id="payment" class="required" value="paypal" />
-			        <?php _e('Cash', 'vbs'); ?> <input type="radio" name="payment" id="payment" class="required" value="cash" />
-		        </div>
-
-			</div>
-
-		  	<button class="btn" data-goto="4" type="submit"><i class="fa fa-arrow-right"></i> <?php _e('Summary', 'vbs'); ?></button>
-
-		</div> <!-- step3 end -->
-
-	</form>
-	
-	<?php endif; ?>
 
 	<form id="bookingForm" class="formStep4" method="POST" enctype="multipart/form-data">
 
-		<div class="step4" style="display: none;">
+		<div class="step4 container" style="display: none;">
 
-		  	<h3 class="section"><?php _e('Booking Summary', 'vbs'); ?></h3>
+			<div class="row">
+		  		<h3 class="col-sm-12 section"><?php _e('Booking Summary', 'vbs'); ?></h3>
+		  	</div>
 		  	<ul class="summary">
 		        <li><b><?php _e('Full Name:', 'vbs'); ?> </b><span id="s_full-name"></span></li>
 		        <li><b><?php _e('Email:', 'vbs'); ?> </b><span id="s_email"></span></li>
@@ -240,7 +274,7 @@
 		        <li><b><?php _e('Payment method:', 'vbs'); ?> </b><span id="s_payment"></span></li>
 		    </ul>
 
-		  	<button class="btn" data-goto="end" type="submit"><i class="fa fa-arrow-right"></i> <?php _e('Book!', 'vbs'); ?></button>
+		  	<button class="btn btn-success" data-goto="end" type="submit"><i class="fa fa-arrow-right"></i> <?php _e('Book!', 'vbs'); ?></button>
 
 		</div> <!-- step4 end -->
 

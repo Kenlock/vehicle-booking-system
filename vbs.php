@@ -18,14 +18,16 @@ function add_roles_on_plugin_activation() {
 }
 register_activation_hook( __FILE__, 'add_roles_on_plugin_activation' );
 
+// Load plugin language text domain
 function vbs_load_plugin_textdomain() {
   load_plugin_textdomain( 'vbs', FALSE, basename( dirname( __FILE__ ) ) . '/language/' );
 }
 add_action( 'plugins_loaded', 'vbs_load_plugin_textdomain' );
 
-if(isset($_REQUEST['action']) && $_REQUEST['action']=='ajaxFunctionMethod'){
-        do_action( 'wp_ajax_' . $_REQUEST['action'] );
-        do_action( 'wp_ajax_nopriv_' . $_REQUEST['action'] );
+// Register AJAX actions
+if( isset($_REQUEST['action']) && $_REQUEST['action'] == 'ajaxFunctionMethod' ){
+  do_action( 'wp_ajax_' . $_REQUEST['action'] );
+  do_action( 'wp_ajax_nopriv_' . $_REQUEST['action'] );
 }
 
 // Include the Redux files
@@ -72,6 +74,11 @@ add_action( 'wp_enqueue_scripts', 'add_scripts' );
 function add_scripts() {
   global $booking;
   // Styles
+
+  if( $booking['include_bootstrap'] ) {
+    wp_enqueue_style( 'bootstrap-css', 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css' );
+  }
+
   wp_enqueue_style( 'style', PLUGIN_DIR_URL . 'css/style.css' );
   wp_enqueue_style( 'font-awesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css' );
   wp_enqueue_style( 'datetime-css', PLUGIN_DIR_URL . 'css/jquery.datetimepicker.css' );
