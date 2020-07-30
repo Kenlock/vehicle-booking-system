@@ -215,6 +215,7 @@ function vbs_register_meta_boxes( $meta_boxes )
 				'name' => __( 'Location', 'vbs' ),
 				'type' => 'map',
 				'std'  => '-6.233406,-35.049906,15',
+				'api_key' => $booking['google_api_key'],
 				'address_field' => $prefix . 'pickup',
 				'class' => 'hidden'
 			),
