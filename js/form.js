@@ -374,8 +374,9 @@ jQuery(document).ready(function($) {
   // Ajax handler for all buttons
   $(".btn").on("click", function(e){
     e.preventDefault();
+    var contents = $(this).html();
+    $(this).html('<i class="fa fa-spinner fa-pulse"></i> Working...');
     if( $(this).data("goto") == '2' && $(".formStep1").valid() ) {
-      $(this).html('<i class="fa fa-spinner fa-pulse"></i> Working...');
       if(pickup_loc == '1') {
         set( 'start', $("#pickup_location").val() );
       } else {
@@ -421,8 +422,6 @@ jQuery(document).ready(function($) {
         }
       })
     } else if ( $(this).data("goto") == '3' ) {
-
-      $(this).html('<i class="fa fa-spinner fa-pulse"></i> Working...');
       set('cost', $("input[name=cost]:checked").val() );
       set('car', $("input[name=cost]:checked").data("id") );
 
@@ -437,9 +436,6 @@ jQuery(document).ready(function($) {
       $(".step2, .step3").slideToggle();
 
     } else if ( $(this).data("goto") == '4' && $(".formStep3").valid() ) {
-
-      $(this).html('<i class="fa fa-spinner fa-pulse"></i> Working...');
-
       set( 'first_name', $("#first_name").val() );
       set( 'last_name', $("#last_name").val() );
       set( 'email', $("#email").val() );
@@ -503,9 +499,6 @@ jQuery(document).ready(function($) {
       $(".step3, .step4").slideToggle();
 
     } else if ( $(this).data("goto") == 'end' ) {
-
-      $(this).html('<i class="fa fa-spinner fa-pulse"></i> Working...');
-
       // Form data
       var fd = new FormData();
       fd.append( "full_name", get('first_name') + ' ' + get('last_name') );
@@ -580,6 +573,8 @@ jQuery(document).ready(function($) {
       })
 
     }
+
+    $(this).html(contents);
   })
 
   $('input[type=radio][name=lead]').change(function () {

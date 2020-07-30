@@ -95,7 +95,13 @@
 		  	</div>
 
 		  	<div class="row">
-		  		<button class="btn btn-success" data-goto="3" type="submit"><i class="fa fa-arrow-right"></i> <?php _e('Details', 'vbs'); ?></button>
+		  		<div class="col-sm-6 p-0">
+		  			<button class="btn btn-success float-left" data-goto="2" type="submit"><i class="fa fa-arrow-left"></i> <?php _e('Back', 'vbs'); ?></button>
+		  		</div>
+
+		  		<div class="col-sm-6 p-0">
+		  			<button class="btn btn-success float-right" data-goto="3" type="submit"><i class="fa fa-arrow-right"></i> <?php _e('Details', 'vbs'); ?></button>
+		  		</div>
 		  	</div>
 
 		</div> <!-- step2 end -->
@@ -302,7 +308,13 @@
 		    </ul>
 
 		    <div class="row">
-		  		<button class="btn btn-success" data-goto="end" type="submit"><i class="fa fa-arrow-right"></i> <?php _e('Book!', 'vbs'); ?></button>
+		    	<div class="col-sm-6 p-0">
+		  			<button class="btn btn-success float-left" data-goto="4" type="submit"><i class="fa fa-arrow-left"></i> <?php _e('Back', 'vbs'); ?></button>
+		  		</div>
+
+		  		<div class="col-sm-6 p-0">
+		  			<button class="btn btn-success float-right" data-goto="end" type="submit"><i class="fa fa-arrow-right"></i> <?php _e('Book!', 'vbs'); ?></button>
+		  		</div>
 		  	</div>
 
 		</div> <!-- step4 end -->
