@@ -230,6 +230,15 @@
                 'title'    => __('Include Bootstrap?', 'vbs'),
                 'default'  => true,
             ),
+            array(
+                'id'       => 'user_css',
+                'type'     => 'ace_editor',
+                'title'    => __('Custom CSS', 'vbs'),
+                'default'  => 'body {}',
+                'mode'     => 'css',
+                'theme'    => 'monokai',
+                'compiler' => true
+            ),
         )
     ) );
 
@@ -446,3 +455,25 @@
     /*
      * <--- END SECTIONS
      */
+
+
+    // Generate CSS based on plugin options
+    add_filter('redux/options/'.$opt_name.'/compiler', 'compiler_action', 10, 3);
+    function compiler_action($options, $css, $changed_values) {
+        $filename = PLUGIN_DIR . '/css/user_styles.css';
+
+        global $wp_filesystem;
+
+        if( empty( $wp_filesystem ) ) {
+            require_once( ABSPATH .'/wp-admin/includes/file.php' );
+            WP_Filesystem();
+        }
+
+        if( $wp_filesystem ) {
+            $wp_filesystem->put_contents(
+                $filename,
+                $options['user_css'],
+                FS_CHMOD_FILE // predefined mode settings for WP files
+            );
+        }
+    }

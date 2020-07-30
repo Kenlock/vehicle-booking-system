@@ -80,6 +80,7 @@ function add_scripts() {
   }
 
   wp_enqueue_style( 'style', PLUGIN_DIR_URL . 'css/style.css' );
+  wp_enqueue_style( 'user-css', PLUGIN_DIR_URL . 'css/user_styles.css' );
   wp_enqueue_style( 'font-awesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css' );
   wp_enqueue_style( 'datetime-css', PLUGIN_DIR_URL . 'css/jquery.datetimepicker.css' );
   wp_enqueue_style( 'qtip2-css', 'http://cdn.jsdelivr.net/qtip2/2.2.1/jquery.qtip.min.css' );
