@@ -123,20 +123,26 @@
 				?>
 				    <div class="form-group row">
 				    	<div class="col-sm-6 pl-0">
+				    		<label for="first_name" class="sr-only"><?php _e('First name', 'vbs'); ?></label>
 				    		<input readonly type="text" name="first_name" id="first_name" class="required form-control" value="<?php echo $user->user_firstname; ?>" />
 				    	</div>
 
 				    	<div class="col-sm-6 p-0">
+				    		<label for="last_name" class="sr-only"><?php _e('Last name', 'vbs'); ?></label>
 				        	<input readonly type="text" name="last_name" id="last_name" class="required form-control" value="<?php echo $user->user_lastname; ?>" />
 				        </div>
 				    </div>
 
 				    <div class="form-group row">
 				    	<div class="col-sm-12 p-0">
+				    		<label for="email" class="sr-only"><?php _e('Email', 'vbs'); ?></label>
 				        	<input readonly type="text" name="email" id="email" class="required form-control" value="<?php echo $user->user_email; ?>" />
 				        </div>
+				    </div>
 
+				    <div class="form-group row">
 				        <div class="col-sm-12 p-0">
+				        	<label for="phone" class="sr-only"><?php _e('Phone', 'vbs'); ?></label>
 				        	<input type="text" name="phone" id="phone" class="required form-control" placeholder="<?php _e('Phone', 'vbs'); ?>" />
 				        </div>
 				    </div>
@@ -145,20 +151,26 @@
 
 					<div class="form-group row">
 				    	<div class="col-sm-6 pl-0">
+				    		<label for="first_name" class="sr-only"><?php _e('First name', 'vbs'); ?></label>
 				    		<input type="text" name="first_name" id="first_name" class="required form-control" placeholder="<?php _e('First name', 'vbs'); ?>" />
 				    	</div>
 
 				    	<div class="col-sm-6 p-0">
+				    		<label for="last_name" class="sr-only"><?php _e('Last name', 'vbs'); ?></label>
 				        	<input type="text" name="last_name" id="last_name" class="required form-control" placeholder="<?php _e('Last name', 'vbs'); ?>" />
 				        </div>
 				    </div>
 
 				    <div class="form-group row">
 				    	<div class="col-sm-12 p-0">
+				    		<label for="email" class="sr-only"><?php _e('Email', 'vbs'); ?></label>
 				        	<input type="text" name="email" id="email" class="required form-control" placeholder="<?php _e('Email', 'vbs'); ?>" />
 				        </div>
+				    </div>
 
+				    <div class="form-group row">
 				        <div class="col-sm-12 p-0">
+				        	<label for="phone" class="sr-only"><?php _e('Phone', 'vbs'); ?></label>
 				        	<input type="text" name="phone" id="phone" class="required form-control" placeholder="<?php _e('Phone', 'vbs'); ?>" />
 				        </div>
 				    </div>
@@ -184,20 +196,26 @@
 		        	</div>
 				    <div class="form-group row">
 				    	<div class="col-sm-6 pl-0">
+				    		<label for="lead_first_name" class="sr-only"><?php _e('First name', 'vbs'); ?></label>
 				    		<input type="text" name="lead_first_name" id="lead_first_name" class="required form-control" value="<?php _e('First name', 'vbs'); ?>" />
 				    	</div>
 
 				    	<div class="col-sm-6 p-0">
+				    		<label for="lead_last_name" class="sr-only"><?php _e('Last name', 'vbs'); ?></label>
 				        	<input type="text" name="lead_last_name" id="lead_last_name" class="required form-control" value="<?php _e('Last name', 'vbs'); ?>" />
 				        </div>
 				    </div>
 
 				    <div class="form-group row">
 				    	<div class="col-sm-12 p-0">
+				    		<label for="lead_email" class="sr-only"><?php _e('Email', 'vbs'); ?></label>
 				        	<input type="text" name="lead_email" id="lead_email" class="required form-control" value="<?php _e('Email', 'vbs'); ?>" />
 				        </div>
+				    </div>
 
+				    <div class="form-group row">
 				        <div class="col-sm-12 p-0">
+				        	<label for="lead_phone" class="sr-only"><?php _e('Phone', 'vbs'); ?></label>
 				        	<input type="text" name="lead_phone" id="lead_phone" class="required form-control" placeholder="<?php _e('Phone', 'vbs'); ?>" />
 				        </div>
 				    </div>
