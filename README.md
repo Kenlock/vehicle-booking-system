@@ -1,32 +1,32 @@
 # Vehicle Booking System for Wordpress
-Taxi booking Plugin for Wordpress. Ideal for companies that calculate fares using route length.
+Taxi/Vehicle booking Plugin for Wordpress. Ideal for companies that calculate fares using route length.
 
 ## NOTE: Do not send emails asking for support, file an issue on github instead
 
-Features:
+### Features:
 * Google Maps API for distance calculation and Places
-* Redux Framework
+* Redux Framework for plugin options
 * Custom post types and Metaboxes
 * AJAX form handling
 * Simple multi-step form
 * qTip 2 tooltips for error messages
 * Car costs can be fixed or incremental
 * Date based surcharges (fixed or percentage based)
-* Locations can have extra charges
+* Locations can have extra charges (fixed or percentage based)
 
-###Usage
+### Usage
 This plugin uses 3 main shortcodes:
 * [carlist] - Displays all cars currently in the system.
 * [bookingform] - Displays the multi-step ajax-powered booking form.
 * [my_bookings] - Displays the current logged in user's booking history.
 
-###TODO
+### TODO
 * More shortcodes
 * More plugin options
 * Better metabox handling
 * Better admin styling
 
-###Basic Roubleshooting
+### Basic Roubleshooting
 If you face issues with the calculation of the total price, check the following:
 * Tier pricing for cars
 * Surcharges
