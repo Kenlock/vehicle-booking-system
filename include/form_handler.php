@@ -31,18 +31,18 @@ function ajax_get_car_list() {
       if( $is_return == '1' ) {
         $cost = $cost * 2;
       }
-      $car_html .= '<div class="car_data">';
-      $car_html .= '<div class="car_image"><img src="' . $src . '" /></div>';
-      $car_html .= '<div class="car_info_middle">';
+      $car_html .= '<div class="car_data row">';
+      $car_html .= '<div class="col-sm-2 p-0 car_image"><img class="img-responsive" src="' . $src . '" /></div>';
+      $car_html .= '<div class="col-sm-7 car_details">';
       $car_html .= '<h4 class="car_name">' . get_the_title() . '</h4>';
-      $car_html .= '<ul class="car_info">
-<li><i class="fa fa-male"></i> ' . rwmb_meta('vbs_passengers') . '</li>
-<li><i class="fa fa-suitcase"></i> ' . rwmb_meta('vbs_luggage') . '</li>
-<li><i class="fa fa-briefcase"></i> ' . rwmb_meta('vbs_handbag') . '</li>
-<li><i class="fa fa-child"></i> ' . rwmb_meta('vbs_child_seats') . '</li>
+      $car_html .= '<ul class="list-inline">
+<li class="list-inline-item"><i class="fa fa-male"></i> ' . rwmb_meta('vbs_passengers') . '</li>
+<li class="list-inline-item"><i class="fa fa-suitcase"></i> ' . rwmb_meta('vbs_luggage') . '</li>
+<li class="list-inline-item"><i class="fa fa-briefcase"></i> ' . rwmb_meta('vbs_handbag') . '</li>
+<li class="list-inline-item"><i class="fa fa-child"></i> ' . rwmb_meta('vbs_child_seats') . '</li>
       </ul>';
       $car_html .= '</div>';
-      $car_html .= '<div class="car_info_right"><h1 class="car_cost"><span class="currency">€</span><span class="cost">'. round($cost,2) .'</span></h1>';
+      $car_html .= '<div class="col-sm-3 p-0"><h1 class="car_cost"><span class="currency">€</span><span class="cost">'. round($cost,2) .'</span></h1>';
       $car_html .= '<input class="selection" type="radio" data-id="' . get_the_ID() . '" name="cost" value="' . round($cost,2) . '" /> ' . __('Select', 'vbs') . '</div>';
       $car_html .= '</div>';
     }

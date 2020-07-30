@@ -16,44 +16,10 @@
 /* Car data */
 #bookingForm .car_data {
   margin: 0 0 20px 0;
-  display: table;
   padding: 5px 10px;
   border: 1px solid rgb(204, 204, 204);
   border-radius: 3px;
   width: 100%;
-}
-
-#bookingForm .car_image {
-  float: left;
-  width: 100px;
-  vertical-align: middle;
-}
-
-#bookingForm .car_info_middle {
-  float: left;
-  width: 47%;
-  padding: 0 0 0 20px;
-}
-
-#bookingForm .car_info_middle .car_info {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-#bookingForm .car_info_middle .car_info li {
-  display: inline-block;
-  padding: 0 10px;
-}
-
-#bookingForm .car_info_right {
-  float: left;
-  padding: 3% 0px 0px 20px;
-  width: 23%;
-}
-
-#bookingForm .four_col input[type="number"] {
-  width: 24.5%;
 }
 
 /* Map options */
@@ -64,26 +30,13 @@
 
 /* User bookings */
 .booking_entry {
-  padding: 5px;
   margin: 10px 0;
   border: 1px solid #ccc;
   border-radius: 3px;
 }
 
 .booking_entry .info {
-  height: 65px;
   border-bottom: 1px dotted #ccc;
-}
-
-.booking_entry .info .pickup {
-  width: 48%;
-  float: left;
-  padding-right: 2%;
-}
-
-.booking_entry .info .dropoff {
-  width: 48%;
-  float: right;
 }
 
 .booking_entry .info p {

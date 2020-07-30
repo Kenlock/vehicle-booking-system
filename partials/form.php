@@ -3,7 +3,7 @@
 	<form class="formStep1" method="POST" enctype="multipart/form-data">
 		<div class="step1 container">
 		    <div class="form-group row">
-		    	<div class="col-sm-5 pl-0">
+		    	<div class="col-sm-5 pl-0 select_pickup">
 				    <input type="text" name="pickup" id="pickup" class="required form-control" placeholder="<?php _e('Pickup Location', 'vbs'); ?>" />
 				    <select style="display: none;" id="pickup_location" class="form-control" name="pickup_location">
 				      	<option value=""><?php _e('Select location...', 'vbs'); ?></option>
@@ -11,7 +11,7 @@
 				    </select>
 				</div>
 
-				<div class="col-sm-5 pl-0">
+				<div class="col-sm-5 pl-0 select_destination">
 				    <input type="text" name="dropoff" id="dropoff" class="required form-control" placeholder="<?php _e('Dropoff Location', 'vbs'); ?>" />
 				    <select style="display: none;" id="dropoff_location" class="form-control" name="dropoff_location">
 				      	<option value=""><?php _e('Select location...', 'vbs'); ?></option>
@@ -34,7 +34,7 @@
 		    	</div>
 		    </div>
 
-		    <div class="form-group row">
+		    <div class="form-group row select_date">
 		    	<div class="col-sm-6 pl-0">
 		    		<input type="text" name="date_pickup" id="date_pickup" class="required form-control" placeholder="<?php _e('Pickup Date', 'vbs'); ?>" />
 		    	</div>
@@ -162,12 +162,12 @@
 			    <div class="row">
 			    	<h3 class="col-sm-12 section"><?php _e('I am booking for:', 'vbs'); ?></h3>
 			    </div>
-			    <div class="form-check row">
+			    <div class="form-check form-check-inline row mr-4">
 			    	<input type="radio" name="lead" id="self" class="required form-check-input" value="self" />
 			        <label class="form-check-label" for="self"><?php _e( 'Myself', 'vbs'); ?></label>
 			    </div>
 
-			    <div class="form-check row">
+			    <div class="form-check form-check-inline row">
 			    	<input type="radio" name="lead" id="else" class="required form-check-input" value="else" />
 			    	<label class="form-check-label" for="else"><?php _e( 'Someone else', 'vbs'); ?></label>
 		        </div>
@@ -201,20 +201,30 @@
 			    	<h3 class="col-sm-12 section"><?php _e('Passengers info:', 'vbs'); ?></h3>
 			    </div>
 			    <div class="form-group row">
-			    	<div class="col-sm-12 p-0">
-			        	<input type="number" min="1" name="adults" id="adults" class="required form-control" value="1" placeholder="<?php _e('Adults', 'vbs'); ?>" />
+			    	<label for="adults" class="col-sm-9 col-form-label"><?php _e('Adults', 'vbs'); ?></label>
+			    	<div class="col-sm-3 p-0">
+			        	<input type="number" min="1" name="adults" id="adults" class="required form-control" value="1" />
 			        </div>
+			    </div>
 
-			        <div class="col-sm-12 p-0">
-			        	<input type="number" min="0" name="kids" id="kids" class="form-control" placeholder="<?php _e('Children', 'vbs'); ?>" />
+			    <div class="form-group row">
+			    	<label for="kids" class="col-sm-9 col-form-label"><?php _e('Children', 'vbs'); ?></label>
+			        <div class="col-sm-3 p-0">
+			        	<input type="number" min="0" name="kids" id="kids" class="form-control" value="0" />
 			        </div>
+			    </div>
 
-			        <div class="col-sm-12 p-0">
-			        	<input type="number" min="0" name="luggage" id="luggage" class="form-control" placeholder="<?php _e('Luggage', 'vbs'); ?>" />
+			    <div class="form-group row">
+			    	<label for="luggage" class="col-sm-9 col-form-label"><?php _e('Luggage', 'vbs'); ?></label>
+			        <div class="col-sm-3 p-0">
+			        	<input type="number" min="0" name="luggage" id="luggage" class="form-control" value="0" />
 			        </div>
+			    </div>
 
-			        <div class="col-sm-12 p-0">
-			        	<input type="number" min="0" name="hand" id="hand" class="form-control" placeholder="<?php _e('Handbags', 'vbs'); ?>" />
+			    <div class="form-group row">
+			    	<label for="hand" class="col-sm-9 col-form-label"><?php _e('Handbags', 'vbs'); ?></label>
+			        <div class="col-sm-3 p-0">
+			        	<input type="number" min="0" name="hand" id="hand" class="form-control" value="0" />
 			        </div>
 			    </div>
 
@@ -231,12 +241,12 @@
 		        <div class="row">
 		        	<h3 class="col-sm-12 section"><?php _e('Payment Method:', 'vbs'); ?></h3>
 		        </div>
-		        <div class="form-check row">
+		        <div class="form-check form-check-inline row mr-4">
 		        	<input type="radio" name="payment" id="paypal" class="required form-check-input" value="paypal" />
 		        	<label class="form-check-label" for="paypal"><?php _e('Paypal', 'vbs'); ?></label>
 			    </div>
 
-			    <div class="form-check row">
+			    <div class="form-check row form-check-inline">
 			        <input type="radio" name="payment" id="cash" class="required form-check-input" value="cash" />
 			        <label class="form-check-label" for="cash"><?php _e('Cash', 'vbs'); ?></label>
 		        </div>
@@ -244,7 +254,13 @@
 		  	</div>
 
 		  	<div class="row">
-		  		<button class="btn btn-success" data-goto="4" type="submit"><i class="fa fa-arrow-right"></i> <?php _e('Summary', 'vbs'); ?></button>
+		  		<div class="col-sm-6 p-0">
+		  			<button class="btn btn-success float-left" data-goto="3" type="submit"><i class="fa fa-arrow-left"></i> <?php _e('Back', 'vbs'); ?></button>
+		  		</div>
+
+		  		<div class="col-sm-6 p-0">
+		  			<button class="btn btn-success float-right" data-goto="4" type="submit"><i class="fa fa-arrow-right"></i> <?php _e('Summary', 'vbs'); ?></button>
+		  		</div>
 		  	</div>
 
 		</div> <!-- step3 end -->
