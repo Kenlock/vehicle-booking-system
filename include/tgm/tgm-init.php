@@ -16,11 +16,11 @@ function vbs_register_required_plugins() {
 	);
 
 	$config = array(
-		'domain'       				=> 'vbs',
-		'default_path' 				=> '',
-    'parent_slug'         => 'plugins.php',
-    'capability'          => 'manage_options',
-		'menu'         				=> 'install-required-plugins',
+		'domain'       			=> 'vbs',
+		'default_path' 			=> '',
+    	'parent_slug'         	=> 'plugins.php',
+    	'capability'          	=> 'manage_options',
+		'menu'         			=> 'install-required-plugins',
 		'has_notices'      		=> true,
 		'is_automatic'    		=> true,
 	);
