@@ -11,6 +11,7 @@ function vbs_register_required_plugins() {
 		array(
 			'name' 	   => 'PayPal IPN',
 			'slug' 	   => 'paypal-ipn',
+			'source'   => PLUGIN_DIR . '/plugins/paypal-ipn.zip',
 			'required' => true,
 		),
 	);
