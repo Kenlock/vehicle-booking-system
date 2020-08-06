@@ -6,6 +6,7 @@ function ajax_get_car_list() {
   $distance = ($_POST['distance'])/1000;
   $is_return = $_POST['return'];
   $date_pickup = $_POST['pickup_date'];
+  $time_pickup = $_POST['pickup_time'];
   $start_location_id = $_POST['start_id'];
   $end_location_id = $_POST['end_id'];
   $orig_zip = str_replace(' ', '', $_POST['orig_zip']);
@@ -21,8 +22,32 @@ function ajax_get_car_list() {
 
   $query = new WP_Query( $args );
   if( $query->have_posts() ){
-    while( $query->have_posts() ){
+    while( $query->have_posts() ) {
       $query->the_post();
+
+      $availability_args = array(
+        'posts_per_page' => -1,
+        'post_type'      => 'bookings',
+        'meta_query'     => array(
+          array(
+            'key' => 'vbs_pickup_date',
+            'value' => $date_pickup
+          ),
+          array(
+            'key'   => 'vbs_pickup_time',
+            'value' => $time_pickup
+          ),
+          array(
+            'key'   => 'vbs_car',
+            'value' => get_the_ID()
+          ),
+        )
+      );
+      $availability_query = new WP_Query( $availability_args );
+      if( $availability_query->found_posts >= rwmb_meta('vbs_fleet_availability') ) {
+        continue;
+      }
+
       $image = rwmb_meta('vbs_car-image', 'type=plupload_image&size=thumbnail');
       foreach ($image as $img) {
         $src = $img['url'];
@@ -36,11 +61,11 @@ function ajax_get_car_list() {
       $car_html .= '<div class="col-sm-7 car_details">';
       $car_html .= '<h4 class="car_name">' . get_the_title() . '</h4>';
       $car_html .= '<ul class="list-inline">
-<li class="list-inline-item"><i class="fa fa-male"></i> ' . rwmb_meta('vbs_passengers') . '</li>
-<li class="list-inline-item"><i class="fa fa-suitcase"></i> ' . rwmb_meta('vbs_luggage') . '</li>
-<li class="list-inline-item"><i class="fa fa-briefcase"></i> ' . rwmb_meta('vbs_handbag') . '</li>
-<li class="list-inline-item"><i class="fa fa-child"></i> ' . rwmb_meta('vbs_child_seats') . '</li>
-      </ul>';
+          <li class="list-inline-item"><i class="fa fa-male"></i> ' . rwmb_meta('vbs_passengers') . '</li>
+          <li class="list-inline-item"><i class="fa fa-suitcase"></i> ' . rwmb_meta('vbs_luggage') . '</li>
+          <li class="list-inline-item"><i class="fa fa-briefcase"></i> ' . rwmb_meta('vbs_handbag') . '</li>
+          <li class="list-inline-item"><i class="fa fa-child"></i> ' . rwmb_meta('vbs_child_seats') . '</li>
+        </ul>';
       $car_html .= '</div>';
       $car_html .= '<div class="col-sm-3 p-0"><h1 class="car_cost"><span class="currency">€</span><span class="cost">'. round($cost,2) .'</span></h1>';
       $car_html .= '<input class="selection" type="radio" data-id="' . get_the_ID() . '" name="cost" value="' . round($cost,2) . '" /> ' . __('Select', 'vbs') . '</div>';

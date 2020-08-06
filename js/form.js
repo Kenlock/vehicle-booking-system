@@ -401,6 +401,7 @@ jQuery(document).ready(function($) {
       fd.append( "action", "get_cars" );
       fd.append( "distance", get('dist') );
       fd.append( "pickup_date", get('pickup_date') );
+      fd.append( "pickup_time", get('pickup_time') );
       fd.append( "return", get('return') );
       fd.append( "start_id", get('start_location_id') );
       fd.append( "end_id", get('end_location_id') );

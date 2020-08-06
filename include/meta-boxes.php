@@ -59,6 +59,15 @@ function vbs_register_meta_boxes( $meta_boxes )
 				'type'             => 'plupload_image',
 				'max_file_uploads' => 1,
 			),
+
+			// Fleet availability
+			array(
+				'name'        => __( 'Fleet availability', 'vbs' ),
+				'id'          => $prefix . 'fleet_availability',
+				'type'        => 'number',
+				'step'        => 1,
+				'min'         => 1,
+			),
 		)
 	);
 
