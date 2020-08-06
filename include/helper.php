@@ -1,5 +1,9 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly
+}
+
 // Adds extra profile fields
 add_filter('user_contactmethods', 'modify_contact_methods');
 function modify_contact_methods($profile_fields) {

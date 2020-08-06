@@ -1,4 +1,9 @@
 <?php
+
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly
+}
+
 //start session in all pages
 if (session_status() == PHP_SESSION_NONE) { session_start(); } //PHP >= 5.4.0
 //if(session_id() == '') { session_start(); } //uncomment this line if PHP < 5.4.0 and comment out line above

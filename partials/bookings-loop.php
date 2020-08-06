@@ -1,4 +1,9 @@
 <?php
+
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly
+}
+
 // Used to display user's bookings in a loop
 foreach ($usr_bookings as $bookings):
 ?>

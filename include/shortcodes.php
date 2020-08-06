@@ -1,5 +1,9 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly
+}
+
 // Cars List
 function cars_list( $atts ) {
 	$vars = shortcode_atts(array(

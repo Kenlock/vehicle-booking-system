@@ -1,4 +1,10 @@
-<?php // Form renderer ?>
+<?php
+
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly
+}
+
+?>
 <div id="bookingForm">
 	<form class="formStep1" method="POST" enctype="multipart/form-data">
 		<div class="step1 container">

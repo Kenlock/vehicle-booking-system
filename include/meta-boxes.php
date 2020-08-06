@@ -1,5 +1,9 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly
+}
+
 add_filter( 'rwmb_meta_boxes', 'vbs_register_meta_boxes' );
 
 function vbs_register_meta_boxes( $meta_boxes )

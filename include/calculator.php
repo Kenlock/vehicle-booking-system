@@ -1,5 +1,9 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly
+}
+
 add_action('wp_ajax_recalculate_cost', 'ajax_recalculate_cost');
 add_action('wp_ajax_nopriv_recalculate_cost', 'ajax_recalculate_cost');
 function ajax_recalculate_cost() {

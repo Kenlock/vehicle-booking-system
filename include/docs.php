@@ -1,4 +1,10 @@
-<?php // Strat content ?>
+<?php
+
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly
+}
+
+?>
 
 <div class="wrap">
   <h1>Vehicle Booking System - Help</h1>

@@ -1,5 +1,9 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly
+}
+
 add_action('wp_ajax_get_cars', 'ajax_get_car_list');
 add_action('wp_ajax_nopriv_get_cars', 'ajax_get_car_list');
 function ajax_get_car_list() {

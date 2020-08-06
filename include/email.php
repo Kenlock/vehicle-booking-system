@@ -1,5 +1,9 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly
+}
+
 function get_email_template( $id ) {
   global $booking;
   $body = file_get_contents( PLUGIN_DIR . 'templates/' . $booking['email_template'] . '/index.html' );
