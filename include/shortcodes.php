@@ -33,10 +33,13 @@ add_shortcode( 'carlist', 'cars_list' );
 
 // Booking Form
 function booking_form() {
-
 	global $booking;
 	ob_start();
-	require_once PLUGIN_DIR . 'partials/form.php';
+	if( $booking['form_style'] == 'stacked' ) {
+		require_once PLUGIN_DIR . 'partials/form.php';
+	} else {
+		require_once PLUGIN_DIR . 'partials/form-horizontal.php';
+	}
 	return ob_get_clean();
 }
 add_shortcode('bookingform', 'booking_form');
